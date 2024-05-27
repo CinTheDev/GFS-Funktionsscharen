@@ -55,3 +55,19 @@ Definition, und bestimmen von Ortskurven
 #### Exponentielle
 
 #### Trigonometrische
+
+### Anwendung in der echten Welt
+
+TODO: Mehr Recherche und verstehen
+
+## Externe Recherche
+
+### Hüllkurven
+
+#### Einführung mit Parabel und Tangente
+
+Tangente soll parameterisiert sein, damit ist Tangentenfunktion eine Funktionenschar.
+
+Die Parabel ist die Hüllkurve der Schar.
+
+### Kaustik
