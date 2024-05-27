@@ -25,3 +25,11 @@ gemeinsame Punkte.
 
 Man schaut welche Teile der Funktion von a betroffen sind, und schaut, ob es Werte für x
 gibt, wo jedes a vernichtet wird (z.B. mit Multiplikation mit 0)
+
+### Funktionsscharen bei verschiedenen Funktionstypen
+
+#### Ganzrationale
+
+#### Exponentielle
+
+#### Trigonometrische
