@@ -33,6 +33,14 @@ TODO: Allgemeinerer Titel
 Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
 den tiefsten oder höchsten Punkt der Extrempunkte finden?
 
+### Ortskurven
+
+Definition, und bestimmen von Ortskurven
+
+#### Definition Ortskurven
+
+#### Kurzer Exkurs: Parameterisierte Funktionen
+
 ### Flächeninhalt
 
 Wie kann man Flächeninhalt bestimmen?
