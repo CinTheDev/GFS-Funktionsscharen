@@ -10,6 +10,14 @@ Hier sind Notizen über Unterpunkte und Recherche.
 
 ### Rechnen mit Funktionsscharen
 
+## Funktionsscharen bei verschiedenen Funktionstypen
+
+### Ganzrationale
+
+### Exponentielle
+
+### Trigonometrische
+
 ## Flächeninhalt
 
 Wie kann man Flächeninhalt bestimmen?
@@ -45,14 +53,6 @@ Definition, und bestimmen von Ortskurven
 ### Definition Ortskurven
 
 ### Kurzer Exkurs: Parameterisierte Funktionen
-
-## Funktionsscharen bei verschiedenen Funktionstypen
-
-### Ganzrationale
-
-### Exponentielle
-
-### Trigonometrische
 
 ## Anwendung in der echten Welt
 
