@@ -12,6 +12,13 @@ Hier sind Notizen über Unterpunkte und Recherche.
 
 #### Rechnen mit Funktionsscharen
 
+### Flächeninhalt
+
+Wie kann man Flächeninhalt bestimmen?
+
+Man berechnet den Flächeninhalt normal aus (mit Integralen), und mit der Variable wird
+weitergerechnet.
+
 ### Gemeinsame Punkte (Funktionsbündel)
 
 Methoden, um gemeinsame Punkte (genannt Funktionsbündel) zu bestimmen
@@ -40,13 +47,6 @@ Definition, und bestimmen von Ortskurven
 #### Definition Ortskurven
 
 #### Kurzer Exkurs: Parameterisierte Funktionen
-
-### Flächeninhalt
-
-Wie kann man Flächeninhalt bestimmen?
-
-Man berechnet den Flächeninhalt normal aus (mit Integralen), und mit der Variable wird
-weitergerechnet.
 
 ### Funktionsscharen bei verschiedenen Funktionstypen
 
