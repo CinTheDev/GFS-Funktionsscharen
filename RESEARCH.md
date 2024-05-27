@@ -26,6 +26,13 @@ gemeinsame Punkte.
 Man schaut welche Teile der Funktion von a betroffen sind, und schaut, ob es Werte für x
 gibt, wo jedes a vernichtet wird (z.B. mit Multiplikation mit 0)
 
+### Tiefste Hochpunkt der Schar
+
+TODO: Allgemeinerer Titel
+
+Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
+den tiefsten oder höchsten Punkt der Extrempunkte finden?
+
 ### Funktionsscharen bei verschiedenen Funktionstypen
 
 #### Ganzrationale
