@@ -33,6 +33,13 @@ TODO: Allgemeinerer Titel
 Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
 den tiefsten oder höchsten Punkt der Extrempunkte finden?
 
+### Flächeninhalt
+
+Wie kann man Flächeninhalt bestimmen?
+
+Man berechnet den Flächeninhalt normal aus (mit Integralen), und mit der Variable wird
+weitergerechnet.
+
 ### Funktionsscharen bei verschiedenen Funktionstypen
 
 #### Ganzrationale
