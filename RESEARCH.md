@@ -66,4 +66,6 @@ Tangente soll parameterisiert sein, damit ist Tangentenfunktion eine Funktionens
 
 Die Parabel ist die Hüllkurve der Schar.
 
-## Kaustik
+### Wurfbahn
+
+### Kaustik
