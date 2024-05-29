@@ -56,6 +56,12 @@ Man bezeichnet als Ortskurven den "Weg" von bestimmten speziellen Punkten in ein
 Falls man den Parameter ändert, können Punkte wie z.B. Extrempunkte sicht bewegen, wobei der
 zurückgelegte Weg ebenfalls auf einer Kurve liegt.
 
+### Betimmen Ortskurve von Extrempunkten
+
+1. f_a(x) nach x Ableiten und nullsetzen
+2. Nach a auflösen
+3. a in ursprüngliche Funktion einsetzen.
+
 ### Kurzer Exkurs: Parameterisierte Funktionen
 
 ## Anwendung in der echten Welt
