@@ -14,3 +14,4 @@ die englischen Artikel mehr Informationen an.
 
 - [Definition Geradenschar](https://de.wikipedia.org/wiki/Kurvenschar)
 - [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
+- [Ortskurven](https://de.wikipedia.org/wiki/Ortskurve_(Kurvendiskussion))

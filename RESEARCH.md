@@ -52,6 +52,10 @@ Definition, und bestimmen von Ortskurven
 
 ### Definition Ortskurven
 
+Man bezeichnet als Ortskurven den "Weg" von bestimmten speziellen Punkten in einer Funktionenschar.
+Falls man den Parameter ändert, können Punkte wie z.B. Extrempunkte sicht bewegen, wobei der
+zurückgelegte Weg ebenfalls auf einer Kurve liegt.
+
 ### Kurzer Exkurs: Parameterisierte Funktionen
 
 ## Anwendung in der echten Welt
