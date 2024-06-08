@@ -1,3 +1,3 @@
 #!/bin/bash
 
-manim render -qh -a basic.py
+manim render -qh -a --save_sections basic.py

@@ -25,6 +25,7 @@ class OpeningManim(Scene):
             FadeIn(basel, shift=DOWN),
         )
         self.wait()
+        self.next_section()
 
         transform_title = Tex("That was a transform")
         transform_title.to_corner(UP + LEFT)
@@ -33,6 +34,7 @@ class OpeningManim(Scene):
             LaggedStart(*(FadeOut(obj, shift=DOWN) for obj in basel)),
         )
         self.wait()
+        self.next_section()
 
         grid = NumberPlane()
         grid_title = Tex("This is a grid", font_size=72)
@@ -45,6 +47,7 @@ class OpeningManim(Scene):
             Create(grid, run_time=3, lag_ratio=0.1),
         )
         self.wait()
+        self.next_section()
 
         grid_transform_title = Tex(
             r"That was a non-linear function \\ applied to the grid",
@@ -65,10 +68,13 @@ class OpeningManim(Scene):
             run_time=3,
         )
         self.wait()
+        self.next_section()
+
         self.play(Transform(grid_title, grid_transform_title))
         self.wait()
+        self.next_section()
 
-
+'''
 class SquareToCircle(Scene):
     def construct(self):
         circle = Circle()
@@ -174,6 +180,6 @@ class LineJoints(Scene):
         grp.set(width=config.frame_width - 1)
 
         self.add(grp)
-
+'''
 
 # See many more examples at https://docs.manim.community/en/stable/examples.html
