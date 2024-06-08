@@ -1,0 +1,3 @@
+[submodule "mp4-presenter"]
+	path = mp4-presenter
+	url = https://github.com/CinTheDev/mp4-presenter
