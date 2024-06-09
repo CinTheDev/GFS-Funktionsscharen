@@ -22,6 +22,13 @@ kann nicht alle möglichen Werte auf einmal darstellen, ohne in die 3. Dimension
 
 ### Verhalten von Funktionsscharen
 
+(Darstellung mit einem Graph)
+
+- Das Verändern des Parameters verändert die Funktion in irgendeiner Weise
+- (Einfache Beispiele: Verschiebung, Sreckung / Stauchung)
+- Bündel & Wie kann man solche in der Funktion erkennen (siehe unten)
+- Extrempunkte können sich bewegen, auftauchen und verschwinden
+
 #### Bündel
 
 *Bündel* sind Punkte, durch welche alle Funktionen der Schar durchgehen.
