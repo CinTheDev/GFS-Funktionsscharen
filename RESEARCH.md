@@ -76,6 +76,8 @@ Wie kann man Flächeninhalt bestimmen?
 Man berechnet den Flächeninhalt normal aus (mit Integralen), und mit der Variable wird
 weitergerechnet.
 
+- (Beispiele aufführen, am besten aus dem Buch)
+
 ## Gemeinsame Punkte (Funktionsbündel)
 
 Methoden, um gemeinsame Punkte (genannt Funktionsbündel) zu bestimmen
@@ -85,10 +87,14 @@ Methoden, um gemeinsame Punkte (genannt Funktionsbündel) zu bestimmen
 Man setzt zwei Werte für a ein, und setzt beide Funktionen gleich. Alle Schnittpunkte sind
 gemeinsame Punkte.
 
+- (Beispiel aus dem Buch)
+
 ### Analytische Methode
 
 Man schaut welche Teile der Funktion von a betroffen sind, und schaut, ob es Werte für x
 gibt, wo jedes a vernichtet wird (z.B. mit Multiplikation mit 0)
+
+- (Gleiches Beispiel wie oben)
 
 ## Tiefste Hochpunkt der Schar
 
@@ -96,6 +102,8 @@ TODO: Allgemeinerer Titel
 
 Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
 den tiefsten oder höchsten Punkt der Extrempunkte finden?
+
+- (Mehrere Beispiele)
 
 ## Ortskurven
 
@@ -113,7 +121,11 @@ zurückgelegte Weg ebenfalls auf einer Kurve liegt.
 2. Nach a auflösen
 3. a in ursprüngliche Funktion einsetzen.
 
+- (1-2 Beispiele)
+
 ### Kurzer Exkurs: Parameterisierte Funktionen
+
+TODO: Schauen, ob dieses Kapitel tatsächlich nötig ist
 
 ## Anwendung in der echten Welt
 
@@ -135,6 +147,8 @@ Die Parabel ist die Hüllkurve der Schar.
 
 Die neue Funktion (falls eine Lösung möglich ist) ist die Hüllkurve von der ursprünglichen
 Funktion.
+
+- (Ein oder zwei schnelle Beispiele)
 
 #### Erklärung der Schritte
 
@@ -175,4 +189,12 @@ Funktionenschar. Egal welches a man einsetzt, kommt die Funktion niemals aus die
 
 ### Wurfbahn
 
+Wurfbahnen können als Funktionsschar dargestellt werden, um alle möglichen Wurfbahnen darzustellen.
+Die Hüllkurve markiert die Grenze, wo das Wurfobjekte hinkommen kann, und welchen Bereich es
+niemals erreichen wird.
+
+TODO
+
 ### Kaustik
+
+TODO
