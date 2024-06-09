@@ -6,7 +6,7 @@ class Intro(Scene):
     def construct(self):
         self.next_section("Title")
         title = Tex(r"GFS Funktionsscharen")
-        formula = Tex(r"Mit \LaTeX yeah whats going on")
+        formula = Tex(r"Mit \LaTeX \:yeah whats going on")
 
         VGroup(title, formula).arrange(DOWN)
 
