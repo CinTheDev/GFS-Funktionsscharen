@@ -12,6 +12,6 @@ Anmerkung zu Wikipedia: Es wurde jeweils in Deutsch und in Englisch recherchiert
 hierzu die Artikel jeweils unterschiedliche Informationen anbieten. Meistens bieten
 die englischen Artikel mehr Informationen an.
 
-- [Definition Geradenschar](https://de.wikipedia.org/wiki/Kurvenschar)
+- [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
 - [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
 - [Ortskurven](https://de.wikipedia.org/wiki/Ortskurve_(Kurvendiskussion))
