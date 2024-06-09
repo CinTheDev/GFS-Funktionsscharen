@@ -49,11 +49,25 @@ Die meisten Lösungen werden aber abhängig vom Parameter sein.
 
 ## Funktionsscharen bei verschiedenen Funktionstypen
 
+(Beipiele im Graph)
+
 ### Ganzrationale
+
+- Meisens als Koeffizient
+- Kann auch im Exponenten stehen, solange die Exponenten Natürliche Zahlen bleiben
 
 ### Exponentielle
 
+- Als Koeffizient der Basis
+- Als Koeffizient des Exponenten
+- Addiert mit dem Exponent
+
 ### Trigonometrische
+
+- Als Koeffizient ausserhalb
+- Koeffizient innerhalb
+- Addition ausserhalb
+- Addition innerhalb
 
 ## Flächeninhalt
 
