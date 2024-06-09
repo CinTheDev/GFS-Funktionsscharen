@@ -1,12 +1,7 @@
 #!/bin/bash
 
-declare -a SCENES=(
-    "opening.py"
-    "placeholder.py"
-)
-
-# Render all scenes
-for scene in "${SCENES[@]}"
+# Render all specified scenes
+for scene in "$@"
 do
     manim render -qh -a --save_sections "$scene"
 done
