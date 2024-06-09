@@ -35,6 +35,18 @@ kann nicht alle möglichen Werte auf einmal darstellen, ohne in die 3. Dimension
 
 ### Rechnen mit Funktionsscharen
 
+Man kann mit Funktionsscharen alles machen, was man mit einer normalen Funktion
+auch machen kann. Man muss nur immer den zusätzlichen Parameter "mitschleppen".
+
+Wenn man z.B. Schnittpunkte berechnet, ist oft der Schnittpunkt vom zusätzlichen
+Parameter abhängig, was man auch im Graph sehen kann.
+
+Falls sich bei irgendeiner Sache dieser Parameter herauskürzt, dann gilt die
+Lösung für jede mögliche Funktion der Schar, bzw. ändern sich nicht wenn der
+Parameter sich ändert.
+
+Die meisten Lösungen werden aber abhängig vom Parameter sein.
+
 ## Funktionsscharen bei verschiedenen Funktionstypen
 
 ### Ganzrationale
