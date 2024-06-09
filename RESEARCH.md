@@ -12,21 +12,19 @@ in der Funktion sein.
 
 Andere Namen sind "Funktionenscharen", "Kurvenschar", oder "Parameterfunktion".
 
+Funktionsscharen die man mit nur einem Parameter darstellen kann, nennt man *Büschel*.
+In der GFS werde ich zum größten Teil solche Scharen behandeln, und für Einfachheit
+trotzdem "Funktionsscharen" nennen.
+
 Falls man eine Funktionsschar als Graph darstellt, wird nur der "normale" Parameter auf
 einer Achse dargestellt. Der zusätzliche Parameter kann somit die Kurve ändern, und man
 kann nicht alle möglichen Werte auf einmal darstellen, ohne in die 3. Dimension zu gehen.
 
-#### Bündel und Büschel
+### Verhalten von Funktionsscharen
 
-*Bündel* und *Büschel* sind spezielle Arten von Funktionsscharen (so wie Quadrat ein
-spezielles Rechteck ist).
-
-*Büschel* sind Funktionsscharen, die mit nur einem zusätzlichen Parameter dargestellt werden
-können.
+#### Bündel
 
 *Bündel* sind Punkte, durch welche alle Funktionen der Schar durchgehen.
-
-### Verhalten von Funktionsscharen
 
 ### Rechnen mit Funktionsscharen
 
