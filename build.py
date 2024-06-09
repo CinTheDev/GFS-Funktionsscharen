@@ -28,7 +28,7 @@ subprocess.run(['cargo', 'build', '--release'], cwd='mp4-presenter')
 shutil.copy2('mp4-presenter/target/release/mp4-presenter', 'out/mp4-presenter')
 
 # Render and copy animations
-subprocess.run(['./render.sh'] + scene_files, cwd='animation')
+subprocess.run(['python3', 'render.py'] + scene_files, cwd='animation')
 
 for i in range(len(scenes)):
     sections = 'animation/media/videos/' + scenes[i] + '/1080p60/sections'
