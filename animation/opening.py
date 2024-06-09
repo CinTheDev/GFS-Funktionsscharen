@@ -6,6 +6,9 @@ class Intro(Scene):
     def construct(self):
         self.next_section("Title")
         title = Tex(r"GFS Funktionsscharen")
+        formula = Tex(r"Mit \LaTeX yeah whats going on")
+
+        VGroup(title, formula).arrange(DOWN)
 
         self.play(
             Write(title)
@@ -14,11 +17,8 @@ class Intro(Scene):
         self.wait()
         self.next_section("Example")
 
-        formula = MathText(r"Mit \LaTeX yeah what's going on")
-
         self.play(
             Write(formula)
         )
 
         self.wait()
-

@@ -22,4 +22,4 @@ cp mp4-presenter/target/release/mp4-presenter out/mp4-presenter
     cd animation
     ./render.sh
 )
-cp -r animation/media/videos/basic/1080p60/sections/*.mp4 out/vid/
+cp -r animation/media/videos/opening/1080p60/sections/*.mp4 out/vid/
