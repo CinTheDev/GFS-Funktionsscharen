@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./build.sh
+python3 build.py
 
 (
     cd out
