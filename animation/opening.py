@@ -203,7 +203,8 @@ class Intro(Scene):
             r"f_a(x) = x + a",
             substrings_to_isolate="a",
         )
-        function_equation.set_color_by_tex("a", PURPLE)
+        new_equation.set_color_by_tex("a", PURPLE)
+        new_equation.move_to(function_equation.get_center())
 
         new_parabola = always_redraw(
             lambda: grid.plot(
