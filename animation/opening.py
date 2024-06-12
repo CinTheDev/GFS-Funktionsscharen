@@ -32,7 +32,6 @@ class Intro(Scene):
             FadeOut(title),
             FadeOut(formula),
         )
-        self.wait()
     
     def intro(self):
         base_function = MathTex(r"f_a(x)")
