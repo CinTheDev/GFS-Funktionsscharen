@@ -104,7 +104,8 @@ class Intro(Scene):
     
     def play_graph(self):
         screen = FullScreenRectangle()
-        
+
+        # Draw coordinate system
         grid = NumberPlane(
             x_range=(-5.1, 5.1, 1),
             y_range=(-1.1, 5.1, 1),
@@ -115,3 +116,13 @@ class Intro(Scene):
         self.play(
             Create(grid, run_time=3, lag_ratio=0.1),
         )
+
+        parabola = grid.plot(
+            lambda x: x*x,
+            color=YELLOW
+        )
+
+        self.play(
+            Create(parabola)
+        )
+        self.wait()
