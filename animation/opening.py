@@ -35,9 +35,23 @@ class Intro(Scene):
         )
     
     def intro(self):
-        base_function = MathTex(r"f_a(x)")
-        function_linear1 = MathTex(r"f_a(x) = ax")
-        function_linear2 = MathTex(r"f_a(x) = x + a")
+        base_function = MathTex(
+            r"f_a(x)",
+            substrings_to_isolate="a",
+        )
+        base_function.set_color_by_tex("a", PURPLE)
+
+        function_linear1 = MathTex(
+            r"f_a(x) = ax",
+            substrings_to_isolate="a",
+        )
+        function_linear1.set_color_by_tex("a", PURPLE)
+
+        function_linear2 = MathTex(
+            r"f_a(x) = x + a",
+            substrings_to_isolate="a"
+        )
+        function_linear2.set_color_by_tex("a", PURPLE)
 
         function = base_function.copy()
 
