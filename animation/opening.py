@@ -106,11 +106,14 @@ class Intro(Scene):
         screen = FullScreenRectangle()
 
         # Draw coordinate system
-        grid = NumberPlane(
-            x_range=(-5.1, 5.1, 1),
-            y_range=(-1.1, 5.1, 1),
+        grid = Axes(
+            x_range=(-5, 5, 1),
+            y_range=(-1, 5, 1),
             x_length=screen.width,
             y_length=screen.height,
+            axis_config={
+                'include_numbers': True,
+            }
         )
 
         self.play(
