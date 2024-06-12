@@ -106,6 +106,7 @@ class Intro(Scene):
         screen = FullScreenRectangle()
 
         # Draw coordinate system
+
         grid = Axes(
             x_range=(-5, 5, 1),
             y_range=(-1, 5, 1),
@@ -117,8 +118,14 @@ class Intro(Scene):
         )
 
         self.play(
-            Create(grid, run_time=3, lag_ratio=0.1),
+            Write(grid, run_time=3, lag_ratio=0.1),
         )
+
+        # Draw axis labels and function
+
+        x_label = grid.get_x_axis_label("x")
+        y_label = grid.get_y_axis_label("f(x)")
+        grid_labels = VGroup(x_label, y_label)
 
         parabola = grid.plot(
             lambda x: x*x,
@@ -126,6 +133,7 @@ class Intro(Scene):
         )
 
         self.play(
-            Create(parabola)
+            Write(grid_labels),
+            Create(parabola),
         )
         self.wait()
