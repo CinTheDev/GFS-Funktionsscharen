@@ -123,13 +123,17 @@ class Intro(Scene):
 
         # Draw axis labels and function
 
+        param_a = ValueTracker(1)
+
         x_label = grid.get_x_axis_label("x")
         y_label = grid.get_y_axis_label("f(x)")
         grid_labels = VGroup(x_label, y_label)
 
-        parabola = grid.plot(
-            lambda x: x*x,
-            color=YELLOW
+        parabola = always_redraw(
+            lambda: grid.plot(
+                lambda x: param_a.get_value() * x*x,
+                color=YELLOW
+            )
         )
 
         self.play(
@@ -137,3 +141,9 @@ class Intro(Scene):
             Create(parabola),
         )
         self.wait()
+        self.next_section("Parabola_Animation")
+
+        self.play(
+            param_a.animate.set_value(-1),
+            run_time=1,
+        )
