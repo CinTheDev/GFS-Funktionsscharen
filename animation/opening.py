@@ -168,6 +168,40 @@ class Intro(Scene):
         # Animate parameter a
 
         self.play(
-            param_a.tracker.animate.set_value(-1),
-            run_time=1,
+            param_a.tracker.animate.set_value(-0.5),
+            run_time=3,
+            rate_func=rate_functions.smooth,
         )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(10.0),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(1.0),
+            run_time=1,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Parabola_Animation_zero")
+
+        self.play(
+            param_a.tracker.animate.set_value(0),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Parabola_Animation_return")
+
+        self.play(
+            param_a.tracker.animate.set_value(1),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
