@@ -137,7 +137,7 @@ class Intro(Scene):
         parabola = always_redraw(
             lambda: grid.plot(
                 lambda x: param_a.tracker.get_value() * x*x,
-                color=YELLOW
+                color=YELLOW,
             )
         )
 
@@ -200,22 +200,22 @@ class Intro(Scene):
         self.next_section("Parameter_Change")
 
         new_equation = MathTex(
-            r"f_a(x) = x + a",
+            r"f_a(x) = x^2 + a",
             substrings_to_isolate="a",
         )
         new_equation.set_color_by_tex("a", PURPLE)
         new_equation.move_to(function_equation.get_center())
 
-        new_parabola = always_redraw(
+        parabola_offset_y = always_redraw(
             lambda: grid.plot(
                 lambda x: x*x + param_a.tracker.get_value(),
-                color=YELLOW
+                color=YELLOW,
             )
         )
 
         self.play(
-            Transform(function_equation, new_equation, replace_mobject_with_target_in_scene=True),
-            Transform(parabola, new_parabola, replace_mobject_with_target_in_scene=True),
+            Transform(function_equation, new_equation, replace_mobject_with_target_in_scene=False),
+            Transform(parabola, parabola_offset_y, replace_mobject_with_target_in_scene=True),
         )
         self.wait()
 
@@ -230,6 +230,51 @@ class Intro(Scene):
 
         self.play(
             param_a.tracker.animate.set_value(-0.5),
+            rate=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(0.0),
+            rate=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Parabola_Parameter_Change")
+
+        new_equation = MathTex(
+            r"f_a(x) = (x - a)^2",
+            substrings_to_isolate="a",
+        )
+        new_equation.set_color_by_tex("a", PURPLE)
+        new_equation.move_to(function_equation.get_center())
+
+        parabola_offset_x = always_redraw(
+            lambda: grid.plot(
+                lambda x: (x - param_a.tracker.get_value()) * (x - param_a.tracker.get_value()),
+                color=YELLOW
+            )
+        )
+
+        self.play(
+            Transform(function_equation, new_equation, replace_mobject_with_target_in_scene=False),
+            Transform(parabola_offset_y, parabola_offset_x, replace_mobject_with_target_in_scene=True),
+        )
+        self.wait()
+
+        self.next_section("Parabola_Offset_x")
+
+        self.play(
+            param_a.tracker.animate.set_value(3.0),
+            rate=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(-1.23),
             rate=2,
             rate_func=rate_functions.smooth,
         )
