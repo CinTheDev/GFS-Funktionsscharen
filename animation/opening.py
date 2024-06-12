@@ -140,13 +140,16 @@ class Intro(Scene):
             Write(grid_labels),
             Create(parabola),
         )
-        self.wait()
-        self.next_section("Parabola_Animation")
 
         # Draw function equation
 
-        function_equation = MathTex(r"f_a(x) = ax^2")
-        param_equation = MathTex(r"a = TODO")
+        function_equation = MathTex(
+            r"f_a(x) = ax^2",
+            substrings_to_isolate="a",
+        )
+        function_equation.set_color_by_tex("a", PURPLE)
+
+        param_equation = MathTex(r"a = TODO", color=PURPLE)
 
         equations = VGroup(function_equation, param_equation)
         equations.arrange(DOWN)
@@ -157,6 +160,7 @@ class Intro(Scene):
             FadeIn(equations)
         )
         self.wait()
+        self.next_section("Parabola_Animation")
 
         # Animate parameter a
 
