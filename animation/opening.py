@@ -41,6 +41,8 @@ class Intro(Scene):
 
         function = base_function.copy()
 
+        # Linear function examples
+
         self.play(
             Write(function)
         )
@@ -59,8 +61,31 @@ class Intro(Scene):
         self.wait()
         self.next_section("Names")
 
+        # Different names for "Funktionsscharen"
+
+        names = [
+            Tex("- Funktionsschar"),
+            Tex("- Funktionenschar"),
+            Tex("- Kurvenschar"),
+            Tex("- Parameterfunktion"),
+        ]
+
+        names_list = VGroup()
+        names_animations = []
+
+        for name in names:
+            names_list.add(name)
+            names_animations.append(Write(name))
+
+        names_list.arrange(DOWN, aligned_edge=LEFT)
+
         self.play(
-            Transform(function, base_function)
+            LaggedStart(
+                *names_animations,
+                lag_ratio=0.25,
+                run_time=2,
+            )
         )
+
         self.wait()
-        # TODO: Write titles
+        # TODO: Move title up
