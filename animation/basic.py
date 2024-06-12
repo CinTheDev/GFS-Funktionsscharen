@@ -74,7 +74,6 @@ class OpeningManim(Scene):
         self.wait()
         self.next_section()
 
-'''
 class SquareToCircle(Scene):
     def construct(self):
         circle = Circle()
@@ -180,6 +179,5 @@ class LineJoints(Scene):
         grp.set(width=config.frame_width - 1)
 
         self.add(grp)
-'''
 
 # See many more examples at https://docs.manim.community/en/stable/examples.html
