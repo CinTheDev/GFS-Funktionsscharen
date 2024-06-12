@@ -293,3 +293,46 @@ class Intro(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
+
+        self.next_section("Parabola_exoticfunction")
+
+        self.play(
+            param_a.tracker.animate.set_value(0),
+            rate=3,
+            rate_func=rate_functions.smooth,
+        )
+
+        new_equation = MathTex(
+            r"f_a(x) = 0.5a^2 \cdot (x + 0.1a^3)^2",
+            substrings_to_isolate="a",
+        )
+        new_equation.set_color_by_tex("a", PURPLE)
+        new_equation.move_to(function_equation.get_center())
+
+        parabola_exotic = always_redraw(
+            lambda: grid.plot(
+                lambda x: 0.5 * param_a.tracker.get_value()**2 * (x + 0.1 * param_a.tracker.get_value()**3)**2,
+                color=YELLOW
+            )
+        )
+
+        self.play(
+            Transform(function_equation, new_equation, replace_mobject_with_target_in_scene=False),
+            Transform(parabola_offset_x, parabola_exotic, replace_mobject_with_target_in_scene=True),
+        )
+        self.wait()
+
+        self.next_section("Parabola_exoticmovement")
+
+        self.play(
+            param_a.tracker.animate.set_value(-2),
+            rate=1,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(2),
+            run_time=5,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
