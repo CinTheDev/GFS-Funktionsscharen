@@ -63,10 +63,10 @@ class Intro(Scene):
         # Different names for "Funktionsscharen"
 
         names = [
-            Tex("- Funktionsschar"),
-            Tex("- Funktionenschar"),
-            Tex("- Kurvenschar"),
-            Tex("- Parameterfunktion"),
+            Tex("- Funktionsschar", color=YELLOW),
+            Tex("- Funktionenschar", color=YELLOW),
+            Tex("- Kurvenschar", color=YELLOW),
+            Tex("- Parameterfunktion", color=YELLOW),
         ]
 
         names_list = VGroup()
@@ -83,7 +83,9 @@ class Intro(Scene):
         function.target.set_x(0) # Align function in center
 
         self.play(
-            MoveToTarget(function),
+            MoveToTarget(function)
+        )
+        self.play(
             LaggedStart(
                 *names_animations,
                 lag_ratio=0.25,
