@@ -35,9 +35,32 @@ class Intro(Scene):
         self.wait()
     
     def intro(self):
-        test = Tex("Some more text")
+        base_function = MathTex(r"f_a(x)")
+        function_linear1 = MathTex(r"f_a(x) = ax")
+        function_linear2 = MathTex(r"f_a(x) = x + a")
+
+        function = base_function.copy()
 
         self.play(
-            Write(test)
+            Write(function)
         )
         self.wait()
+        self.next_section("Linear1")
+
+        self.play(
+            Transform(function, function_linear1)
+        )
+        self.wait()
+        self.next_section("Linear2")
+
+        self.play(
+            Transform(function, function_linear2)
+        )
+        self.wait()
+        self.next_section("Names")
+
+        self.play(
+            Transform(function, base_function)
+        )
+        self.wait()
+        # TODO: Write titles
