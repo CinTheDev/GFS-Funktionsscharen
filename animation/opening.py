@@ -197,11 +197,39 @@ class Intro(Scene):
         )
         self.wait()
 
-        self.next_section("Parabola_Animation_return")
+        self.next_section("Parameter_Change")
+
+        new_equation = MathTex(
+            r"f_a(x) = x + a",
+            substrings_to_isolate="a",
+        )
+        function_equation.set_color_by_tex("a", PURPLE)
+
+        new_parabola = always_redraw(
+            lambda: grid.plot(
+                lambda x: x*x + param_a.tracker.get_value(),
+                color=YELLOW
+            )
+        )
 
         self.play(
-            param_a.tracker.animate.set_value(1),
-            run_time=2,
+            Transform(function_equation, new_equation, replace_mobject_with_target_in_scene=True),
+            Transform(parabola, new_parabola, replace_mobject_with_target_in_scene=True),
+        )
+        self.wait()
+
+        self.next_section("Parabola_Offset")
+
+        self.play(
+            param_a.tracker.animate.set_value(1.5),
+            rate=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(-0.5),
+            rate=2,
             rate_func=rate_functions.smooth,
         )
         self.wait()
