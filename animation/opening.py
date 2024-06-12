@@ -73,19 +73,22 @@ class Intro(Scene):
         names_list = VGroup()
         names_animations = []
 
+        function.generate_target()
+        names_list.add(function.target)
+
         for name in names:
             names_list.add(name)
             names_animations.append(Write(name))
 
         names_list.arrange(DOWN, aligned_edge=LEFT)
+        function.target.set_x(0) # Align function in center
 
         self.play(
+            MoveToTarget(function),
             LaggedStart(
                 *names_animations,
                 lag_ratio=0.25,
                 run_time=2,
             )
         )
-
         self.wait()
-        # TODO: Move title up
