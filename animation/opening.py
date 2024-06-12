@@ -123,7 +123,12 @@ class Intro(Scene):
 
         # Draw axis labels and function
 
-        param_a = ValueTracker(1)
+        label_a = Tex("a", color=PURPLE)
+        param_a = Variable(
+            1,
+            label_a,
+            num_decimal_places=2,
+        )
 
         x_label = grid.get_x_axis_label("x")
         y_label = grid.get_y_axis_label("f(x)")
@@ -131,7 +136,7 @@ class Intro(Scene):
 
         parabola = always_redraw(
             lambda: grid.plot(
-                lambda x: param_a.get_value() * x*x,
+                lambda x: param_a.tracker.get_value() * x*x,
                 color=YELLOW
             )
         )
@@ -149,9 +154,7 @@ class Intro(Scene):
         )
         function_equation.set_color_by_tex("a", PURPLE)
 
-        param_equation = MathTex(r"a = TODO", color=PURPLE)
-
-        equations = VGroup(function_equation, param_equation)
+        equations = VGroup(function_equation, param_a)
         equations.arrange(DOWN)
         equations.shift(RIGHT * 4)
         equations.shift(DOWN * 1)
@@ -165,6 +168,6 @@ class Intro(Scene):
         # Animate parameter a
 
         self.play(
-            param_a.animate.set_value(-1),
+            param_a.tracker.animate.set_value(-1),
             run_time=1,
         )
