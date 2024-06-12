@@ -5,6 +5,7 @@ from manim import *
 class Intro(Scene):
     def construct(self):
         self.title()
+        self.intro()
 
     def title(self):
         self.next_section("Title")
@@ -16,12 +17,27 @@ class Intro(Scene):
         self.play(
             Write(title)
         )
-
         self.wait()
+
         self.next_section("Example")
 
         self.play(
             Write(formula)
         )
+        self.wait()
 
+        self.next_section("Transition")
+
+        self.play(
+            FadeOut(title),
+            FadeOut(formula),
+        )
+        self.wait()
+    
+    def intro(self):
+        test = Tex("Some more text")
+
+        self.play(
+            Write(test)
+        )
         self.wait()
