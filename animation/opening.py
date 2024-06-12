@@ -6,6 +6,7 @@ class Intro(Scene):
     def construct(self):
         self.title()
         self.intro()
+        self.play_graph()
 
     def title(self):
         self.next_section("Title")
@@ -93,3 +94,17 @@ class Intro(Scene):
             )
         )
         self.wait()
+
+        self.next_section("Transition")
+
+        self.play(
+            FadeOut(function),
+            FadeOut(names_list),
+        )
+    
+    def play_graph(self):
+        grid = NumberPlane()
+
+        self.play(
+            Create(grid, run_time=3, lag_ratio=0.1),
+        )
