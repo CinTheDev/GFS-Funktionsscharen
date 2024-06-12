@@ -103,7 +103,14 @@ class Intro(Scene):
         )
     
     def play_graph(self):
-        grid = NumberPlane()
+        screen = FullScreenRectangle()
+        
+        grid = NumberPlane(
+            x_range=(-5.1, 5.1, 1),
+            y_range=(-1.1, 5.1, 1),
+            x_length=screen.width,
+            y_length=screen.height,
+        )
 
         self.play(
             Create(grid, run_time=3, lag_ratio=0.1),
