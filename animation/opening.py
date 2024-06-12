@@ -143,6 +143,23 @@ class Intro(Scene):
         self.wait()
         self.next_section("Parabola_Animation")
 
+        # Draw function equation
+
+        function_equation = MathTex(r"f_a(x) = ax^2")
+        param_equation = MathTex(r"a = TODO")
+
+        equations = VGroup(function_equation, param_equation)
+        equations.arrange(DOWN)
+        equations.shift(RIGHT * 4)
+        equations.shift(DOWN * 1)
+
+        self.play(
+            FadeIn(equations)
+        )
+        self.wait()
+
+        # Animate parameter a
+
         self.play(
             param_a.animate.set_value(-1),
             run_time=1,
