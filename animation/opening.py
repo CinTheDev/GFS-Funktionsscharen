@@ -4,6 +4,9 @@ from manim import *
 
 class Intro(Scene):
     def construct(self):
+        self.title()
+
+    def title(self):
         self.next_section("Title")
         title = Tex(r"GFS Funktionsscharen")
         formula = Tex(r"Mit \LaTeX \:yeah whats going on")
