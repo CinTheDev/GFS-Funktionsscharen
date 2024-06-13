@@ -40,7 +40,7 @@ class IntroGraphProperties(Scene):
         )
 
         function_equation = MathTex(
-            r"f_a(x) = x^4 + ax^3 + 2x",
+            r"f_a(x) = x^4 - 0.4ax^2",
             substrings_to_isolate="a",
         )
         function_equation.set_color_by_tex("a", PURPLE)
@@ -52,7 +52,7 @@ class IntroGraphProperties(Scene):
 
         function = always_redraw(
             lambda: grid.plot(
-                lambda x: x**4 + param_a.tracker.get_value() * x**3 + 2*x,
+                lambda x: x**4 - 0.4 * param_a.tracker.get_value() * x**2,
                 color=YELLOW
             )
         )
@@ -62,6 +62,31 @@ class IntroGraphProperties(Scene):
         )
         self.play(
             Create(function),
+        )
+        self.wait()
+
+        self.next_section("Test_animation")
+
+        self.play(
+            param_a.tracker.animate.set_value(-5),
+            run_time=1,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.play(
+            param_a.tracker.animate.set_value(5),
+            run_time=5,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Test_animation_2")
+
+        self.play(
+            param_a.tracker.animate.set_value(-1),
+            run_time=10,
+            rate_func=rate_functions.smooth
         )
         self.wait()
 
