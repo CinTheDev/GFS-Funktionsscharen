@@ -4,6 +4,9 @@ from manim import *
 
 class IntroGraph(Scene):
     def construct(self):
+        self.parameter_showcase()
+    
+    def parameter_showcase(self):
         screen = FullScreenRectangle()
 
         # Draw coordinate system
