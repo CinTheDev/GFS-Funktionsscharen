@@ -240,13 +240,18 @@ class IntroGraphParameter(Scene):
             Tex("- Mehrere Operationen auf einmal ausführen"),
         ]
 
-        text = VGroup(title, *description_parts).arrange(DOWN)
+        description_animations = []
+
+        for desc in description_parts:
+            description_animations.append(Write(desc))
+
+        text = VGroup(title, *description_parts).arrange(DOWN, aligned_edge=LEFT)
 
         self.add(title)
 
         self.play(
             LaggedStart(
-                Write(text),
+                *description_animations,
                 lag_ratio=0.1,
                 run_time=5,
             )
