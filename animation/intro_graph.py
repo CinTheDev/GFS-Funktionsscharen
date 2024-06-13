@@ -5,6 +5,9 @@ from manim import *
 class IntroGraph(Scene):
     def construct(self):
         self.parameter_showcase()
+        self.parameter_description()
+        self.properties_showcase()
+        self.properties_description()
     
     def parameter_showcase(self):
         screen = FullScreenRectangle()
@@ -226,3 +229,33 @@ class IntroGraph(Scene):
             run_time=5,
             rate_func=rate_functions.ease_in_out_sine,
         )
+
+    def parameter_description(self):
+        self.next_section("Parameter_description")
+        self.clear()
+
+        title = Tex("Der Parameter kann...")
+
+        description_parts = [
+            Tex("- Überall in der Funktion stehen"),
+            Tex("- Operationen wie z.B. verschieben, strecken oder stauchen ausführen"),
+            Tex("- Mehrere Operationen auf einmal ausführen"),
+        ]
+
+        text = VGroup(title, *description_parts).arrange(DOWN)
+
+        self.add(title)
+
+        self.play(
+            LaggedStart(
+                Write(text),
+                lag_ratio=0.1,
+                run_time=5,
+            )
+        )
+
+    def properties_showcase(self):
+        pass
+    
+    def properties_description(self):
+        pass
