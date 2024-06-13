@@ -12,6 +12,7 @@ def get_scene_filenames(scenes):
 
 scenes = [
     "opening",
+    "intro_graph",
     "placeholder",
 ]
 scene_files = get_scene_filenames(scenes)
