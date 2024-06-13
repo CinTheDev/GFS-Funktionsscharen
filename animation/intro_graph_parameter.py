@@ -2,12 +2,10 @@
 
 from manim import *
 
-class IntroGraph(Scene):
+class IntroGraphParameter(Scene):
     def construct(self):
         self.parameter_showcase()
         self.parameter_description()
-        self.properties_showcase()
-        self.properties_description()
     
     def parameter_showcase(self):
         screen = FullScreenRectangle()
@@ -253,9 +251,3 @@ class IntroGraph(Scene):
                 run_time=5,
             )
         )
-
-    def properties_showcase(self):
-        pass
-    
-    def properties_description(self):
-        pass
