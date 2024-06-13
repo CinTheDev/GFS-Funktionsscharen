@@ -234,25 +234,29 @@ class IntroGraphParameter(Scene):
 
         title = Tex("Der Parameter kann...")
 
-        description_parts = [
-            Tex("- Überall in der Funktion stehen"),
-            Tex("- Operationen wie z.B. verschieben, strecken oder stauchen ausführen"),
-            Tex("- Mehrere Operationen auf einmal ausführen"),
+        description_strings = [
+            "- Überall in der Funktion stehen",
+            "- Operationen wie z.B. verschieben, strecken oder stauchen ausführen",
+            "- Mehrere Operationen auf einmal ausführen",
         ]
 
+        description_tex = []
         description_animations = []
 
-        for desc in description_parts:
-            description_animations.append(Write(desc))
+        for desc in description_strings:
+            desc_tex = Tex(desc, color=YELLOW).scale(0.6)
 
-        text = VGroup(title, *description_parts).arrange(DOWN, aligned_edge=LEFT)
+            description_tex.append(desc_tex)
+            description_animations.append(Write(desc_tex))
+
+        text = VGroup(title, *description_tex).arrange(DOWN, aligned_edge=LEFT)
 
         self.add(title)
 
         self.play(
             LaggedStart(
                 *description_animations,
-                lag_ratio=0.1,
+                lag_ratio=0.5,
                 run_time=5,
             )
         )
