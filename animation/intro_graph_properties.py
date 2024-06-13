@@ -65,6 +65,7 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
+        # TODO: Improve section names and maybe the animations
         self.next_section("Test_animation")
 
         self.play(
