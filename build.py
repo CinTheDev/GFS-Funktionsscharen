@@ -1,3 +1,4 @@
+import sys
 import os
 import shutil
 import subprocess
@@ -9,6 +10,14 @@ def get_scene_filenames(scenes):
         filenames.append(scene + '.py')
     
     return filenames
+
+def get_start_scene():
+    try:
+        input_string = sys.argv[1]
+        start_scene = int(input_string)
+        return start_scene
+    except:
+        return 0
 
 scenes = [
     "opening",
@@ -32,7 +41,9 @@ shutil.copy2('mp4-presenter/target/release/mp4-presenter', 'out/mp4-presenter')
 # Render and copy animations
 subprocess.run(['python3', 'render.py'] + scene_files, cwd='animation')
 
-for i in range(len(scenes)):
+start_index = get_start_scene()
+
+for i in range(start_index, len(scenes)):
     sections = 'animation/media/videos/' + scenes[i] + '/1080p60/sections'
 
     for entry in os.scandir(sections):
