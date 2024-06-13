@@ -30,5 +30,40 @@ class IntroGraphProperties(Scene):
         self.add(grid, grid_labels)
         self.wait()
 
+        self.next_section("Create_Function")
+
+        label_a = Tex("a", color=PURPLE)
+        param_a = Variable(
+            0,
+            label_a,
+            num_decimal_places=2
+        )
+
+        function_equation = MathTex(
+            r"f_a(x) = x^4 + ax^3 + 2x",
+            substrings_to_isolate="a",
+        )
+        function_equation.set_color_by_tex("a", PURPLE)
+
+        equations = VGroup(function_equation, param_a)
+        equations.arrange(DOWN)
+        equations.shift(RIGHT * 4)
+        equations.shift(DOWN * 3)
+
+        function = always_redraw(
+            lambda: grid.plot(
+                lambda x: x**4 + param_a.tracker.get_value() * x**3 + 2*x,
+                color=YELLOW
+            )
+        )
+
+        self.play(
+            Write(equations),
+        )
+        self.play(
+            Create(function),
+        )
+        self.wait()
+
     def description(self):
         pass
