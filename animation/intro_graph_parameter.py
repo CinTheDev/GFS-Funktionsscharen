@@ -253,6 +253,8 @@ class IntroGraphParameter(Scene):
 
         self.add(title)
 
+        self.next_section("Parameter_description_text")
+
         self.play(
             LaggedStart(
                 *description_animations,
