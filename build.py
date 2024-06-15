@@ -3,14 +3,6 @@ import os
 import shutil
 import subprocess
 
-def get_scene_filenames(scenes):
-    filenames = []
-
-    for scene in scenes:
-        filenames.append(scene + '.py')
-    
-    return filenames
-
 def get_start_scene():
     try:
         input_string = sys.argv[1]
@@ -25,7 +17,6 @@ scenes = [
     "intro_graph_properties",
     "placeholder",
 ]
-scene_files = get_scene_filenames(scenes)
 
 # Create empty "out" directory
 if os.path.isdir('out'):
@@ -39,7 +30,7 @@ subprocess.run(['cargo', 'build', '--release'], cwd='mp4-presenter')
 shutil.copy2('mp4-presenter/target/release/mp4-presenter', 'out/mp4-presenter')
 
 # Render and copy animations
-subprocess.run(['python3', 'render.py'] + scene_files, cwd='animation')
+subprocess.run(['python3', 'render.py'] + scenes, cwd='animation')
 
 start_index = get_start_scene()
 
