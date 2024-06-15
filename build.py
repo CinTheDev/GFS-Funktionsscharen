@@ -15,7 +15,8 @@ scenes = [
     "opening",
     "intro_graph_parameter",
     "intro_graph_properties",
-    "intro_calculation"
+    "calculation_insertion",
+    "calculation_turning_points",
 ]
 
 # Create empty "out" directory
