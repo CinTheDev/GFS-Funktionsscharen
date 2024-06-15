@@ -91,5 +91,41 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
+        # TODO: Highlight "Bündel" point in graph
+
     def description(self):
-        pass
+        self.next_section("Properties_Description")
+
+        self.clear()
+        title = Tex("Falls der Parameter sich ändert, können Extrempunkte...")
+
+        bullet_points = [
+            "- ... sich bewegen",
+            "- ... erscheinen oder verschwinden",
+            "- ... ihre \"Art\" ändern, z.B. Hochpunkt wird zum Tiefpunkt"
+        ]
+
+        bullet_points_tex = []
+        bullet_points_animations = []
+
+        for p in bullet_points:
+            p_tex = Tex(p, color=YELLOW).scale(0.6)
+
+            bullet_points_tex.append(p_tex)
+            bullet_points_animations.append(Write(p_tex))
+        
+        text = VGroup(title, *bullet_points_tex).arrange(DOWN, aligned_edge=LEFT)
+
+        self.add(title)
+        self.wait()
+
+        self.next_section("Properties_Description_text")
+
+        self.play(
+            LaggedStart(
+                *bullet_points_animations,
+                lag_ratio=0.5,
+                run_time=5,
+            )
+        )
+        self.wait()
