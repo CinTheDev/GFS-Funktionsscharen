@@ -117,7 +117,7 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
-        self.next_section("graph_points_split_prepare")
+        self.next_section("graph_points_split")
 
         self.play(
             Unwrite(text_bundle),
@@ -152,9 +152,6 @@ class IntroGraphProperties(Scene):
             Create(arrow_right),
             Write(text_points),
         )
-        self.wait()
-
-        self.next_section("graph_points_split")
 
         self.play(
             param_a.tracker.animate.set_value(5),
