@@ -164,3 +164,49 @@ class IntroCalculation(Scene):
             MoveToTarget(equation_derivative)
         )
         self.wait()
+
+        self.next_section("Start_solving")
+
+        self.play(
+            FadeOut(equation),
+            FadeOut(comment),
+            run_time=0.5
+        )
+
+        equation_derivative.generate_target()
+        equation_derivative.target.move_to(UP)
+
+        self.play(
+            MoveToTarget(equation_derivative),
+            run_time=0.5
+        )
+        self.next_section("Solve_Step")
+
+        solve_steps_first = [
+            r"0 = 4x^3 - 0.8ax",
+            r"0 = x(4x^2 - 0.8a)",
+            r"x_1 = 0, x_{2;3} = ...",
+            #r"0 = 4x^2 - 0.8a",
+            #r"0.8a = 4x^2",
+            #r"0.2a = x^2",
+            #r"\pm \sqrt{0.2a} = x_{2;3}",
+        ]
+
+        old_position = equation_derivative
+
+        for step in solve_steps_first:
+            step_tex = MathTex(
+                step,
+                substrings_to_isolate="a"
+            )
+            step_tex.set_color_by_tex("a", color=PURPLE)
+            step_tex.next_to(old_position, DOWN)
+
+            self.play(
+                Write(step_tex),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Solve_Step")
+
+            old_position = step_tex
