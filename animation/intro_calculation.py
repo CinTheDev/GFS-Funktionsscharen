@@ -224,8 +224,6 @@ class IntroCalculation(Scene):
         )
         self.wait()
 
-        self.next_section("Secondary_Equation")
-
         # Solve second half
 
         equation_secondary = MathTex(
