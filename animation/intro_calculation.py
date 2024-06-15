@@ -135,3 +135,32 @@ class IntroCalculation(Scene):
             Write(equation),
             run_time=0.5,
         )
+
+        self.next_section("Derive")
+
+        comment = Tex("Wir wollen Hoch-/Tiefpunkte herausfinden", color=YELLOW)
+        comment.scale(0.6)
+        comment.next_to(equation, UP)
+
+        equation_derivative = MathTex(
+            r"f'_a(x) = 4x^3 - 0.8ax",
+            substrings_to_isolate="a",
+        )
+        equation_derivative.set_color_by_tex("a", color=PURPLE)
+        equation_derivative.next_to(equation, DOWN)
+
+        comment.generate_target()
+        comment.move_to(equation)
+        comment.set_opacity(0)
+
+        equation_derivative.generate_target()
+        equation_derivative.move_to(equation)
+        equation_derivative.set_opacity(0)
+
+        self.play(
+            MoveToTarget(comment)
+        )
+        self.play(
+            MoveToTarget(equation_derivative)
+        )
+        self.wait()
