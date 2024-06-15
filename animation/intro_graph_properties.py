@@ -104,6 +104,18 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
+        self.next_section("graph_points_split")
+
+        self.play(
+            Uncreate(point_bundle),
+            Unwrite(text_bundle),
+            Uncreate(arrow_bundle),
+        )
+
+
+
+        self.wait()
+
     def description(self):
         self.next_section("Properties_Description")
 
