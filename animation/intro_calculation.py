@@ -204,6 +204,8 @@ class IntroCalculation(Scene):
             MoveToTarget(equation_derivative),
             run_time=0.5
         )
+        self.wait()
+        
         self.next_section("Solve_Step")
 
         solve_steps_first = [
