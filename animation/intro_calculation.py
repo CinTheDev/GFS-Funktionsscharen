@@ -104,6 +104,30 @@ class IntroCalculation(Scene):
             FadeOut(title),
         )
     
+    def animate_solve_steps(self, top_equation, string_list):
+        steps = VGroup(top_equation)
+        old_position = top_equation
+
+        for step in string_list:
+            step_tex = MathTex(
+                step,
+                substrings_to_isolate="a"
+            )
+            step_tex.set_color_by_tex("a", color=PURPLE)
+            step_tex.next_to(old_position, DOWN)
+
+            self.play(
+                Write(step_tex),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Solve_Step")
+
+            steps.add(step_tex)
+            old_position = step_tex
+        
+        return steps
+
     def second_option(self):
         title = Tex("2. Fall: Extrempunkte", color=YELLOW)
 
@@ -174,7 +198,7 @@ class IntroCalculation(Scene):
         )
 
         equation_derivative.generate_target()
-        equation_derivative.target.move_to(UP)
+        equation_derivative.target.move_to(UP * 2)
 
         self.play(
             MoveToTarget(equation_derivative),
@@ -185,28 +209,46 @@ class IntroCalculation(Scene):
         solve_steps_first = [
             r"0 = 4x^3 - 0.8ax",
             r"0 = x(4x^2 - 0.8a)",
-            r"x_1 = 0, x_{2;3} = ...",
-            #r"0 = 4x^2 - 0.8a",
-            #r"0.8a = 4x^2",
-            #r"0.2a = x^2",
-            #r"\pm \sqrt{0.2a} = x_{2;3}",
+            r"x_1 = 0; x_{2;3} = ...",
         ]
 
-        old_position = equation_derivative
+        steps_first = self.animate_solve_steps(equation_derivative, solve_steps_first)
 
-        for step in solve_steps_first:
-            step_tex = MathTex(
-                step,
-                substrings_to_isolate="a"
-            )
-            step_tex.set_color_by_tex("a", color=PURPLE)
-            step_tex.next_to(old_position, DOWN)
+        # Move steps out of way
 
-            self.play(
-                Write(step_tex),
-                run_time=0.5,
-            )
-            self.wait()
-            self.next_section("Solve_Step")
+        steps_first.generate_target()
+        steps_first.target.move_to(steps_first.get_center() + LEFT * 3)
 
-            old_position = step_tex
+        self.play(
+            MoveToTarget(steps_first)
+        )
+        self.wait()
+
+        self.next_section("Secondary_Equation")
+
+        # Solve second half
+
+        equation_secondary = MathTex(
+            r"0 = 4x^2 - 0.8a",
+            substrings_to_isolate="a"
+        )
+        equation_secondary.set_color_by_tex("a", color=PURPLE)
+        equation_secondary.move_to(UP * 2 + RIGHT * 3)
+
+        self.play(
+            Write(equation_secondary),
+            run_time=0.5
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        solve_steps_secondary = [
+            r"0 = 4x^2 - 0.8a",
+            r"0.8a = 4x^2",
+            r"0.2a = x^2",
+            r"\pm \sqrt{0.2a} = x_{2;3}",
+        ]
+
+        steps_secondary = self.animate_solve_steps(equation_secondary, solve_steps_secondary)
+
