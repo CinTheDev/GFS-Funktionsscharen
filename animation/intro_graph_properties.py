@@ -170,7 +170,7 @@ class IntroGraphProperties(Scene):
         bullet_points = [
             "- ... sich bewegen",
             "- ... erscheinen oder verschwinden",
-            "- ... ihre \"Art\" ändern, z.B. Hochpunkt wird zum Tiefpunkt"
+            "- ... ihre \"Art\" ändern; z.B. Hochpunkt wird zum Tiefpunkt"
         ]
 
         bullet_points_tex = []
