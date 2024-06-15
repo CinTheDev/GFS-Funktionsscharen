@@ -5,6 +5,8 @@ from manim import *
 class CalculationTurningPoints(Scene):
     def construct(self):
         self.algebra_example()
+        # TODO: Visualize solution on graph
+        # TODO: Analyze for type (Tiefpunkt, Hochpunkt, ...) [next scene]
     
     def animate_solve_steps(self, top_equation, string_list):
         steps = VGroup(top_equation)
