@@ -4,6 +4,33 @@ from manim import *
 
 class CalculationTurningPoints(Scene):
     def construct(self):
+        self.algebra_example()
+    
+    def animate_solve_steps(self, top_equation, string_list):
+        steps = VGroup(top_equation)
+        old_position = top_equation
+
+        for step in string_list:
+            step_tex = MathTex(
+                step,
+                substrings_to_isolate="a"
+            )
+            step_tex.set_color_by_tex("a", color=PURPLE)
+            step_tex.next_to(old_position, DOWN)
+
+            self.play(
+                Write(step_tex),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Solve_Step")
+
+            steps.add(step_tex)
+            old_position = step_tex
+        
+        return steps
+    
+    def algebra_example(self):
         title = Tex("2. Fall: Extrempunkte", color=YELLOW)
 
         self.play(
@@ -139,27 +166,3 @@ class CalculationTurningPoints(Scene):
             Circumscribe(solution)
         )
         self.wait()
-    
-    def animate_solve_steps(self, top_equation, string_list):
-        steps = VGroup(top_equation)
-        old_position = top_equation
-
-        for step in string_list:
-            step_tex = MathTex(
-                step,
-                substrings_to_isolate="a"
-            )
-            step_tex.set_color_by_tex("a", color=PURPLE)
-            step_tex.next_to(old_position, DOWN)
-
-            self.play(
-                Write(step_tex),
-                run_time=0.5,
-            )
-            self.wait()
-            self.next_section("Solve_Step")
-
-            steps.add(step_tex)
-            old_position = step_tex
-        
-        return steps
