@@ -32,7 +32,6 @@ for i in range(len(scenes)):
     # Remove sections
     sections_path = 'media/videos/' + scenes[i] + '/1080p60/sections/'
     if os.path.isdir(sections_path):
-        print("sections found")
         shutil.rmtree(sections_path)
 
     # Render the scene
