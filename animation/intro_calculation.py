@@ -21,7 +21,6 @@ class IntroCalculation(Scene):
         self.play(
             FadeOut(title)
         )
-        self.wait()
     
     def first_option(self):
         first_option = Tex("1. Möglichkeit: Wert für a einsetzen", color=YELLOW)
