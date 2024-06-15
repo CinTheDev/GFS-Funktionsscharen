@@ -105,9 +105,33 @@ class IntroCalculation(Scene):
         )
     
     def second_option(self):
-        title = Tex("Yeah", color=YELLOW)
+        title = Tex("2. Fall: Extrempunkte", color=YELLOW)
 
         self.play(
             Write(title)
         )
         self.wait()
+
+        self.next_section("Turning_Point_Example")
+
+        # Move title out of way
+
+        title.generate_target()
+        title.target.move_to(UP * 3)
+
+        self.play(
+            MoveToTarget(title),
+        )
+
+        # Write equation
+
+        equation = MathTex(
+            r"f_a(x) = x^4 - 0.4ax^2",
+            substrings_to_isolate="a",
+        )
+        equation.set_color_by_tex("a", color=PURPLE)
+
+        self.play(
+            Write(equation),
+            run_time=0.5,
+        )
