@@ -64,9 +64,8 @@ class IntroGraphProperties(Scene):
             Create(function),
         )
         self.wait()
-
-        # TODO: Improve section names and maybe the animations
-        self.next_section("Test_animation")
+        
+        self.next_section("graph_goes_down")
 
         self.play(
             param_a.tracker.animate.set_value(-5),
@@ -82,7 +81,7 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
-        self.next_section("Test_animation_2")
+        self.next_section("graph_goes_up")
 
         self.play(
             param_a.tracker.animate.set_value(-1),
