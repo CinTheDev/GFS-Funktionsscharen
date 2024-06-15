@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from manim import *
+import math
 
 class IntroGraphProperties(Scene):
     def construct(self):
@@ -10,8 +11,14 @@ class IntroGraphProperties(Scene):
     def graph_function(self, x, a):
         return x**4 - 0.4 * a * x**2
     
-    def extreme_points(self, a):
-        pass
+    def turning_points(self, a):
+        if a < 0:
+            return [0, 0]
+        
+        x_1 = math.sqrt(0.2 * a)
+        x_2 = x_1 * -1
+
+        return [x_1, x_2]
     
     def graph(self):
         self.next_section("Empty_Graph")
@@ -110,15 +117,50 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
-        self.next_section("graph_points_split")
+        self.next_section("graph_points_split_prepare")
 
         self.play(
-            Uncreate(point_bundle),
             Unwrite(text_bundle),
             Uncreate(arrow_bundle),
         )
 
+        point_left = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.turning_points(param_a.tracker.get_value())[0], function), color=ORANGE)
+        )
+        point_right = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.turning_points(param_a.tracker.get_value())[1], function), color=ORANGE)
+        )
 
+        text_points = Tex("Extrempunkte")
+        text_points.move_to(DOWN * 3.5 + LEFT)
+
+        arrow_left = always_redraw(
+            lambda: Arrow(start=text_points.get_center(), end=point_left, color=YELLOW)
+        )
+        arrow_middle = always_redraw(
+            lambda: Arrow(start=text_points.get_center(), end=point_bundle, color=YELLOW)
+        )
+        arrow_right = always_redraw(
+            lambda: Arrow(start=text_points.get_center(), end=point_right, color=YELLOW)
+        )
+
+        self.play(
+            Create(point_left),
+            Create(point_right),
+            Create(arrow_left),
+            Create(arrow_middle),
+            Create(arrow_right),
+            Write(text_points),
+        )
+        self.wait()
+
+        self.next_section("graph_points_split")
+
+        self.play(
+            param_a.tracker.animate.set_value(5),
+            run_time=10,
+            rate_func=rate_functions.smooth,
+        )
 
         self.wait()
 
