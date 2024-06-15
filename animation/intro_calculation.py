@@ -5,7 +5,9 @@ from manim import *
 class IntroCalculation(Scene):
     def construct(self):
         self.transition()
+        # TODO: Better function names
         self.first_option()
+        self.second_option()
     
     def transition(self):
         self.next_section("Transition_Title")
@@ -23,22 +25,21 @@ class IntroCalculation(Scene):
         )
     
     def first_option(self):
-        first_option = Tex("1. Möglichkeit: Wert für a einsetzen", color=YELLOW)
-        first_option.scale(0.8)
+        title = Tex("1. Fall: Wert für a einsetzen", color=YELLOW)
 
         self.play(
-            Write(first_option)
+            Write(title)
         )
         self.wait()
 
         self.next_section("First_Option_Example")
 
         # Move text to upper edge of screen
-        first_option.generate_target()
-        first_option.target.move_to(UP * 3)
+        title.generate_target()
+        title.target.move_to(UP * 3)
 
         self.play(
-            MoveToTarget(first_option)
+            MoveToTarget(title)
         )
 
         # Write the equation
@@ -92,5 +93,21 @@ class IntroCalculation(Scene):
 
         self.play(
             Transform(equation, equation_solved),
+        )
+        self.wait()
+
+        self.next_section("Fadeout")
+
+        self.play(
+            FadeOut(equation),
+            FadeOut(parameter_equation),
+            FadeOut(title),
+        )
+    
+    def second_option(self):
+        title = Tex("Yeah", color=YELLOW)
+
+        self.play(
+            Write(title)
         )
         self.wait()
