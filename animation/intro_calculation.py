@@ -252,3 +252,15 @@ class IntroCalculation(Scene):
 
         steps_secondary = self.animate_solve_steps(equation_secondary, solve_steps_secondary)
 
+        self.next_section("Solution_Summary")
+
+        solution = MathTex(r"x_1 = 0; x_{2;3} = \pm \sqrt{0.2a}")
+        solution.move_to(DOWN * 2.5)
+
+        self.play(
+            Write(solution)
+        )
+        self.play(
+            Circumscribe(solution)
+        )
+        self.wait()
