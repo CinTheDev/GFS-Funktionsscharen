@@ -64,7 +64,7 @@ class IntroGraphProperties(Scene):
             Create(function),
         )
         self.wait()
-        
+
         self.next_section("graph_goes_down")
 
         self.play(
@@ -83,14 +83,26 @@ class IntroGraphProperties(Scene):
 
         self.next_section("graph_goes_up")
 
+        bundle_point = grid.input_to_graph_point(0, function)
+
+        point_bundle = Dot(point=bundle_point, color=ORANGE)
+        text_bundle = Tex("Bündel", color=YELLOW)
+        text_bundle.move_to(DOWN * 3 + LEFT)
+
+        arrow_bundle = Arrow(start=text_bundle, end=bundle_point, color=YELLOW)
+
+        self.play(
+            Create(point_bundle),
+            Write(text_bundle),
+            Create(arrow_bundle),
+        )
+
         self.play(
             param_a.tracker.animate.set_value(-1),
             run_time=10,
             rate_func=rate_functions.smooth
         )
         self.wait()
-
-        # TODO: Highlight "Bündel" point in graph
 
     def description(self):
         self.next_section("Properties_Description")
