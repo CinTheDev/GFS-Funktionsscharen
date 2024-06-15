@@ -6,6 +6,12 @@ class IntroGraphProperties(Scene):
     def construct(self):
         self.graph()
         self.description()
+
+    def graph_function(self, x, a):
+        return x**4 - 0.4 * a * x**2
+    
+    def extreme_points(self, a):
+        pass
     
     def graph(self):
         self.next_section("Empty_Graph")
@@ -52,7 +58,7 @@ class IntroGraphProperties(Scene):
 
         function = always_redraw(
             lambda: grid.plot(
-                lambda x: x**4 - 0.4 * param_a.tracker.get_value() * x**2,
+                lambda x: self.graph_function(x, param_a.tracker.get_value()),
                 color=YELLOW
             )
         )
