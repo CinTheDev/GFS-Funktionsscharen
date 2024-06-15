@@ -227,6 +227,7 @@ class IntroGraphParameter(Scene):
             run_time=5,
             rate_func=rate_functions.ease_in_out_sine,
         )
+        self.wait()
 
     def parameter_description(self):
         self.next_section("Parameter_description")
@@ -252,6 +253,7 @@ class IntroGraphParameter(Scene):
         text = VGroup(title, *description_tex).arrange(DOWN, aligned_edge=LEFT)
 
         self.add(title)
+        self.wait()
 
         self.next_section("Parameter_description_text")
 
@@ -262,3 +264,4 @@ class IntroGraphParameter(Scene):
                 run_time=5,
             )
         )
+        self.wait()
