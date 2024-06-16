@@ -18,6 +18,7 @@ scenes = [
     "calculation_insertion",
     "calculation_turning_points",
     "calculation_verification_graph",
+    "analysis_exponential",
 ]
 
 # Create empty "out" directory
