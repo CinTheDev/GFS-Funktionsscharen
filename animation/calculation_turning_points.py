@@ -4,7 +4,7 @@ from manim import *
 
 class CalculationTurningPoints(Scene):
     def construct(self):
-        self.algebra_example()
+        self.solve_x()
         # TODO: Visualize solution on graph
         # TODO: Analyze for type (Tiefpunkt, Hochpunkt, ...) [next scene]
     
@@ -32,7 +32,7 @@ class CalculationTurningPoints(Scene):
         
         return steps
     
-    def algebra_example(self):
+    def solve_x(self):
         title = Tex("2. Fall: Extrempunkte", color=YELLOW)
 
         self.play(
