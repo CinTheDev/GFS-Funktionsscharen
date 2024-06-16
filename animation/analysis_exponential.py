@@ -48,18 +48,16 @@ class AnalysisExponential(Scene):
     
     def write_derivatives(self):
         equations = [
+            r"f_b(x) = e^x - bx",
             r"f'_b(x) = e^x - b",
             r"f''_b(x) = e^x",
         ]
 
-        top_equation = MathTex(
-            r"f_b(x) = e^x - bx",
-            substrings_to_isolate="b"
-        )
-        top_equation.set_color_by_tex("b", color=PURPLE)
-        top_equation.move_to(UP * 2)
+        top = Tex("Ableitungen", color=YELLOW)
+        top.scale(0.6)
+        top.move_to(UP * 2)
 
-        eq_tex = self.construct_equations(equations, top_equation)
+        eq_tex = self.construct_equations(equations, top)
 
         for eq in eq_tex:
             self.next_section("Draw_Equation")
