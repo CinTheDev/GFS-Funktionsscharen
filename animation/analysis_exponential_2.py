@@ -10,10 +10,13 @@ class AnalysisExponentialAdvanced(Scene):
         self.write_equations()
         self.solve_x()
         self.solve_y()
+
         self.prepare_determining_types()
         self.determine_local_maximum()
         self.determine_local_minimum()
         self.determine_saddle_point()
+
+        self.prepare_solve_inflection()
     
     def clear_blocks(self):
         self.next_section("Clear blocks")
@@ -71,7 +74,7 @@ class AnalysisExponentialAdvanced(Scene):
 
         if wrong:
             self.next_section("Cross")
-            
+
             border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
             cross = Cross(border)
 
@@ -131,9 +134,11 @@ class AnalysisExponentialAdvanced(Scene):
         eq_ddx = MathTex(r"f''_h(x) = h^2 x \cdot e^{h x} + 2h \cdot e^{h x}")
         eq_ddx.next_to(eq_x, DOWN)
 
+        start_equations = VGroup(eq_x, eq_ddx)
+        self.blocks.append(start_equations)
+
         self.play(
-            Write(eq_x),
-            Write(eq_ddx),
+            Write(start_equations),
             run_time=1
         )
         self.wait()
@@ -170,3 +175,22 @@ class AnalysisExponentialAdvanced(Scene):
         ]
 
         self.block("Sattelpunkte", RIGHT * 4, steps, [-1], scale=0.7, wrong=True)
+    
+    def prepare_solve_inflection(self):
+        self.clear_blocks()
+
+        eq_ddx = MathTex(r"f''_h(x) = h^2 x \cdot e^{h x} + 2h \cdot e^{h x}")
+        eq_ddx.move_to(UP * 2)
+
+        eq_dddx = MathTex(r"f'''_h(x) = h^3 x \cdot e^{h x} + 3h^2 \cdot e^{h x}")
+        eq_dddx.next_to(eq_ddx, DOWN)
+
+        start_equations = VGroup(eq_ddx, eq_dddx)
+        self.blocks.append(start_equations)
+
+        self.play(
+            Write(start_equations),
+            run_time=1
+        )
+        self.wait()
+
