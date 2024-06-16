@@ -236,3 +236,33 @@ class CalculationTurningPoints(Scene):
             run_time=0.5
         )
         self.wait()
+
+        self.next_section("Determine_local_maximum")
+
+        constraint_local_maximum = MathTex(
+            r"f''_a(x) < 0",
+            substrings_to_isolate="a"
+        )
+        constraint_local_maximum.set_color_by_tex("a", color=PURPLE)
+        constraint_local_maximum.move_to(LEFT * 4 + DOWN)
+
+        comment_local_maximum = Tex("Hochpunkt", color=YELLOW)
+        comment_local_maximum.scale(0.6)
+        comment_local_maximum.next_to(constraint_local_maximum, UP)
+
+        self.play(
+            Write(constraint_local_maximum),
+            Write(comment_local_maximum)
+            run_time=1,
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        local_maximum_steps = [
+            r"-0.8a < 0",
+            r"-a < 0",
+            r"a > 0",
+        ]
+
+        self.animate_solve_steps(constraint_local_maximum, local_maximum_steps)
