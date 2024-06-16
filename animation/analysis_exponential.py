@@ -8,6 +8,7 @@ class AnalysisExponential(Scene):
         self.write_derivatives()
         self.solve_x()
         self.solve_minimum()
+        self.solve_maximum()
     
     def transition(self):
         self.next_section("Transition")
@@ -47,7 +48,7 @@ class AnalysisExponential(Scene):
         
         return all_equations
     
-    def block(self, heading, pos, equations, highlighted=[]):
+    def block(self, heading, pos, equations, highlighted=[], wrong=False):
         top = Tex(heading, color=YELLOW)
         top.scale(0.6)
         top.move_to(pos)
@@ -65,12 +66,22 @@ class AnalysisExponential(Scene):
                 run_time=0.5,
             )
             self.wait()
-        
-        border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
 
-        self.play(
-            Write(border)
-        )
+        if wrong:
+            border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
+            cross = Cross(border)
+
+            self.play(
+                Write(border),
+                Write(cross)
+            )
+        else:
+            border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
+
+            self.play(
+                Write(border)
+            )
+
         self.wait()
     
     def write_derivatives(self):
@@ -101,3 +112,12 @@ class AnalysisExponential(Scene):
         ]
 
         self.block("Tiefpunkte", DOWN * 1 + LEFT * 4, steps)
+    
+    def solve_maximum(self):
+        steps = [
+            r"f''_b(ln(b)) < 0",
+            r"e^{ln(b)} < 0",
+            r"b < 0",
+        ]
+
+        self.block("Hochpunkte", DOWN * 1, steps, [-1], wrong=True)
