@@ -7,7 +7,6 @@ class AnalysisExponential(Scene):
         self.transition()
         self.write_derivatives()
         self.solve_x()
-        # TODO: Generalize these "blocks"
     
     def transition(self):
         self.next_section("Transition")
@@ -47,16 +46,10 @@ class AnalysisExponential(Scene):
         
         return all_equations
     
-    def write_derivatives(self):
-        equations = [
-            r"f_b(x) = e^x - bx",
-            r"f'_b(x) = e^x - b",
-            r"f''_b(x) = e^x",
-        ]
-
-        top = Tex("Ableitungen", color=YELLOW)
+    def block(self, heading, pos, equations):
+        top = Tex(heading, color=YELLOW)
         top.scale(0.6)
-        top.move_to(UP * 2)
+        top.move_to(pos)
 
         eq_tex = self.construct_equations(equations, top)
 
@@ -65,7 +58,7 @@ class AnalysisExponential(Scene):
 
             self.play(
                 Write(eq),
-                run_time=0.5
+                run_time=0.5,
             )
             self.wait()
         
@@ -76,6 +69,15 @@ class AnalysisExponential(Scene):
         )
         self.wait()
     
+    def write_derivatives(self):
+        equations = [
+            r"f_b(x) = e^x - bx",
+            r"f'_b(x) = e^x - b",
+            r"f''_b(x) = e^x",
+        ]
+
+        self.block("Ableitungen", UP * 2, equations)
+    
     def solve_x(self):
         steps = [
             r"f'_b(x) = 0",
@@ -85,25 +87,7 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        top = Tex("Extremstellen", color=YELLOW)
-        top.scale(0.6)
-        top.move_to(UP * 2.5 + LEFT * 4)
+        self.block("Extremstellen", UP * 2.5 + LEFT * 4, steps)
 
-        steps_tex = self.construct_equations(steps, top)
-        steps_tex[-1].set_color(RED)
-
-        for step in steps_tex:
-            self.next_section("Solve_x_Step")
-
-            self.play(
-                Write(step),
-                run_time=0.5
-            )
-            self.wait()
-        
-        border = SurroundingRectangle(steps_tex, color=YELLOW, corner_radius=0.1)
-
-        self.play(
-            Write(border)
-        )
-        self.wait()
+        #steps_tex = self.construct_equations(steps, top)
+        #steps_tex[-1].set_color(RED)
