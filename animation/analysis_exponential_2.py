@@ -10,6 +10,16 @@ class AnalysisExponentialAdvanced(Scene):
         self.write_equations()
         self.solve_x()
         self.solve_y()
+        self.clear_blocks()
+    
+    def clear_blocks(self):
+        self.next_section("Clear blocks")
+
+        self.play(
+            [Unwrite(block) for block in self.blocks],
+            run_time=2
+        )
+        self.wait()
 
     def transition(self):
         self.next_section("Transition")
