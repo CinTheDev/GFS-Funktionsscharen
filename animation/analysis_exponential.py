@@ -5,6 +5,7 @@ from manim import *
 class AnalysisExponential(Scene):
     def construct(self):
         self.transition()
+        self.write_derivatives()
         self.solve_x()
     
     def transition(self):
@@ -45,7 +46,7 @@ class AnalysisExponential(Scene):
         
         return all_equations
     
-    def solve_x(self):
+    def write_derivatives(self):
         equations = [
             r"f'_b(x) = e^x - b",
             r"f''_b(x) = e^x",
@@ -65,6 +66,31 @@ class AnalysisExponential(Scene):
 
             self.play(
                 Write(eq),
+                run_time=0.5
+            )
+            self.wait()
+    
+    def solve_x(self):
+        steps = [
+            r"f'_b(x) = 0",
+            r"e^x - b = 0",
+            r"e^x = b",
+            r"x = ln(b)",
+            r"b > 0",
+        ]
+
+        top = Tex("Extremstellen", color=YELLOW)
+        top.scale(0.6)
+        top.move_to(UP * 2.5 + LEFT * 4)
+
+        steps_tex = self.construct_equations(steps, top)
+        steps_tex[-1].set_color(RED)
+
+        for step in steps_tex:
+            self.next_section("Solve_x_Step")
+
+            self.play(
+                Write(step),
                 run_time=0.5
             )
             self.wait()
