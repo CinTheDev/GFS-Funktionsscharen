@@ -67,6 +67,13 @@ class AnalysisExponential(Scene):
                 run_time=0.5
             )
             self.wait()
+        
+        border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
+
+        self.play(
+            Write(border)
+        )
+        self.wait()
     
     def solve_x(self):
         steps = [
@@ -92,3 +99,10 @@ class AnalysisExponential(Scene):
                 run_time=0.5
             )
             self.wait()
+        
+        border = SurroundingRectangle(steps_tex, color=YELLOW, corner_radius=0.1)
+
+        self.play(
+            Write(border)
+        )
+        self.wait()
