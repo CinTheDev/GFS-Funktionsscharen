@@ -183,7 +183,7 @@ class AnalysisExponentialAdvanced(Scene):
         self.clear_blocks()
 
         eq_ddx = MathTex(r"f''_h(x) = h^2 x \cdot e^{h x} + 2h \cdot e^{h x}")
-        eq_ddx.move_to(UP * 2)
+        eq_ddx.move_to(UP * 2 + LEFT * 3)
 
         eq_dddx = MathTex(r"f'''_h(x) = h^3 x \cdot e^{h x} + 3h^2 \cdot e^{h x}")
         eq_dddx.next_to(eq_ddx, DOWN)
@@ -198,11 +198,33 @@ class AnalysisExponentialAdvanced(Scene):
         self.wait()
     
     def inflection_solve_x(self):
-        pass
+        steps = [
+            r"f''_h(x) = 0",
+            r"h^2 x e^{h x} + 2h e^{h x} = 0",
+            r"h^2 x + 2h = 0",
+            r"h^2 x = -2h",
+            r"x = -\frac{2}{h}",
+        ]
+
+        self.block("Wendestelle", LEFT * 4, steps, scale=0.7)
     
     def inflection_verify(self):
-        pass
+        steps = [
+            r"f'''_h(-\frac{2}{h}) \neq 0",
+            r"h^3 (-\frac{2}{h}) e^{h (-\frac{2}{h})} + 3h^2 e^{h (-\frac{2}{h})} \neq 0",
+            r"h^3 (-\frac{2}{h}) + 3 h^2 \neq 0",
+            r"-2h^2 + 3h^2 \neq 0",
+            r"h^2 \neq 0",
+            r"h \neq 0",
+        ]
+
+        self.block("Wendestelle prüfen", UP * 2.5 + RIGHT * 4, steps, [-1], scale=0.7)
     
     def inflection_solve_y(self):
-        pass
+        steps = [
+            r"y = -\frac{2}{h} e^{h (-\frac{2}{h})}",
+            r"y = -\frac{2}{he^2}"
+        ]
+
+        self.block("Wendepunkt", LEFT * 0.5, steps, scale=0.7)
 
