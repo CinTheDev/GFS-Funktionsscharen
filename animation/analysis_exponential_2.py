@@ -11,6 +11,9 @@ class AnalysisExponentialAdvanced(Scene):
         self.solve_x()
         self.solve_y()
         self.prepare_determining_types()
+        self.determine_local_maximum()
+        self.determine_local_minimum()
+        self.determine_saddle_point()
     
     def clear_blocks(self):
         self.next_section("Clear blocks")
@@ -56,7 +59,7 @@ class AnalysisExponentialAdvanced(Scene):
 
         for index in highlighted:
             eq_tex[index].set_color(RED)
-
+        self.wait()
         for eq in eq_tex:
             self.wait()
             self.next_section("Draw_Equation")
@@ -132,3 +135,12 @@ class AnalysisExponentialAdvanced(Scene):
             run_time=1
         )
         self.wait()
+    
+    def determine_local_maximum(self):
+        pass
+    
+    def determine_local_minimum(self):
+        pass
+    
+    def determine_saddle_point(self):
+        pass
