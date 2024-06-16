@@ -46,12 +46,15 @@ class AnalysisExponential(Scene):
         
         return all_equations
     
-    def block(self, heading, pos, equations):
+    def block(self, heading, pos, equations, highlighted=[]):
         top = Tex(heading, color=YELLOW)
         top.scale(0.6)
         top.move_to(pos)
 
         eq_tex = self.construct_equations(equations, top)
+
+        for index in highlighted:
+            eq_tex[index].set_color(RED)
 
         for eq in eq_tex:
             self.next_section("Draw_Equation")
@@ -87,7 +90,4 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Extremstellen", UP * 2.5 + LEFT * 4, steps)
-
-        #steps_tex = self.construct_equations(steps, top)
-        #steps_tex[-1].set_color(RED)
+        self.block("Extremstellen", UP * 2.5 + LEFT * 4, steps, [-1])
