@@ -7,6 +7,7 @@ class AnalysisExponential(Scene):
         self.transition()
         self.write_derivatives()
         self.solve_x()
+        # TODO: Generalize these "blocks"
     
     def transition(self):
         self.next_section("Transition")
