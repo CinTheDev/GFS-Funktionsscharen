@@ -7,6 +7,7 @@ class AnalysisExponentialAdvanced(Scene):
 
     def construct(self):
         self.transition()
+        self.write_equations()
 
     def transition(self):
         self.next_section("Transition")
@@ -23,11 +24,12 @@ class AnalysisExponentialAdvanced(Scene):
         all_equations = VGroup(top_equation)
 
         for string in tex_strings:
+            print("DEBUG: " + string)
             tex = MathTex(
                 string,
-                substrings_to_isolate="b"
+                substrings_to_isolate="r"
             )
-            tex.set_color_by_tex("b", color=PURPLE)
+            tex.set_color_by_tex("r", color=PURPLE)
             tex.scale(scale)
 
             tex.next_to(top_equation, DOWN)
@@ -78,3 +80,13 @@ class AnalysisExponentialAdvanced(Scene):
 
         self.blocks.append(eq_tex)
         self.wait()
+    
+    def write_equations(self):
+        equations = [
+            r"f_r(x) = x \cdot e^{r x}",
+            r"f'_r(x) = r^1 x \cdot e^{r x} + 1r^0 \cdot e^{r x}",
+            r"f''_r(x) = r^2 x \cdot e^{r x} + 2r^1 \cdot e^{r x}",
+            r"f'''_r(x) = r^3 x \cdot e^{r x} + 3r^2 \cdot e^{r x}",
+        ]
+
+        self.block(r"Funktion \& Ableitungen", UP * 2 + LEFT * 3.5, equations)
