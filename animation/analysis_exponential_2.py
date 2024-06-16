@@ -17,6 +17,9 @@ class AnalysisExponentialAdvanced(Scene):
         self.determine_saddle_point()
 
         self.prepare_solve_inflection()
+        self.inflection_solve_x()
+        self.inflection_verify()
+        self.inflection_solve_y()
     
     def clear_blocks(self):
         self.next_section("Clear blocks")
@@ -193,4 +196,13 @@ class AnalysisExponentialAdvanced(Scene):
             run_time=1
         )
         self.wait()
+    
+    def inflection_solve_x(self):
+        pass
+    
+    def inflection_verify(self):
+        pass
+    
+    def inflection_solve_y(self):
+        pass
 
