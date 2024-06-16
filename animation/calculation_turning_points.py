@@ -252,7 +252,7 @@ class CalculationTurningPoints(Scene):
 
         self.play(
             Write(constraint_local_maximum),
-            Write(comment_local_maximum)
+            Write(comment_local_maximum),
             run_time=1,
         )
         self.wait()
@@ -266,3 +266,81 @@ class CalculationTurningPoints(Scene):
         ]
 
         self.animate_solve_steps(constraint_local_maximum, local_maximum_steps)
+
+        self.next_section("Determine_local_minimum")
+
+        constraint_local_minimum = MathTex(
+            r"f''_a(x) > 0",
+            substrings_to_isolate="a",
+        )
+        constraint_local_minimum.set_color_by_tex("a", color=PURPLE)
+        constraint_local_minimum.move_to(DOWN)
+
+        comment_local_minimum = Tex("Tiefpunkt", color=YELLOW)
+        comment_local_minimum.scale(0.6)
+        comment_local_minimum.next_to(constraint_local_minimum, UP)
+
+        self.play(
+            Write(constraint_local_minimum),
+            Write(comment_local_minimum),
+            run_time=1
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        local_minimum_steps = [
+            r"-0.8a > 0",
+            r"-a > 0",
+            r"a < 0",
+        ]
+
+        self.animate_solve_steps(constraint_local_minimum, local_minimum_steps)
+
+        self.next_section("Determine_saddle_point")
+
+        constraint_saddle = MathTex(
+            r"f''a(x) = 0",
+            substrings_to_isolate="a",
+        )
+        constraint_saddle.set_color_by_tex("a", color=PURPLE)
+        constraint_saddle.move_to(RIGHT * 4 + DOWN)
+
+        comment_saddle = Tex("Sattelpunkt", color=YELLOW)
+        comment_saddle.scale(0.6)
+        comment_saddle.next_to(constraint_saddle, UP)
+
+        self.play(
+            Write(constraint_saddle),
+            Write(comment_saddle),
+            run_time=1
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        saddle_steps = [
+            r"-0.8a = 0",
+            r"a = 0",
+        ]
+
+        saddle_steps_group = self.animate_solve_steps(constraint_saddle, saddle_steps)
+
+        self.next_section("Invalidation")
+
+        invalid_equation = MathTex(r"f'''_a(0) = 0", color=RED)
+        invalid_equation.next_to(saddle_steps_group, DOWN)
+
+        self.play(
+            Write(invalid_equation)
+        )
+        self.wait()
+
+        self.next_section("Solution_cross_out")
+
+        cross = Cross(saddle_steps_group)
+
+        self.play(
+            Write(cross)
+        )
+        self.wait()
