@@ -148,7 +148,23 @@ class AnalysisExponentialAdvanced(Scene):
         self.block("Hochpunkte", LEFT * 4, steps, scale=0.7)
     
     def determine_local_minimum(self):
-        pass
+        steps = [
+            r"f''_h(-\frac{1}{h}) > 0",
+            #r"h^2 (-\frac{1}{h}) e^{h(-\frac{1}{h})} + 2h e^{h(-\frac{1}{h})} > 0",
+            #r"-h e^{-1} + 2h e^{-1} > 0",
+            #r"h e^{-1} > 0",
+            r"h > 0",
+        ]
+
+        self.block("Tiefpunkte", RIGHT, steps, scale=0.7)
     
     def determine_saddle_point(self):
-        pass
+        steps = [
+            r"f''_h(-\frac{1}{h}) = 0",
+            #r"h^2 (-\frac{1}{h}) e^{h(-\frac{1}{h})} + 2h e^{h(-\frac{1}{h})} = 0",
+            #r"-h e^{-1} + 2h e^{-1} = 0",
+            #r"h e^{-1} = 0",
+            r"h = 0",
+        ]
+
+        self.block("Sattelpunkte", RIGHT * 4, steps, [-1], scale=0.7, wrong=True)
