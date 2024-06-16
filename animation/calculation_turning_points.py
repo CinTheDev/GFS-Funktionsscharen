@@ -193,3 +193,46 @@ class CalculationTurningPoints(Scene):
             Write(comment)
         )
         self.wait()
+
+        self.next_section("Make_Space")
+
+        solution_x1 = MathTex(r"x_1 = 0")
+        solution_x1.move_to(UP * 2)
+
+        self.play(
+            Unwrite(comment),
+            run_time=0.5
+        )
+        self.play(
+            Transform(self.solution, solution_x1),
+            run_time=0.5
+        )
+        self.wait()
+
+        self.next_section("Insert_x1")
+
+        equation_second_derivative = MathTex(
+            r"f''_a(x) = 12x^2 - 0.8a",
+            substrings_to_isolate="a",
+        )
+        equation_second_derivative.set_color_by_tex("a", color=PURPLE)
+        equation_second_derivative.next_to(solution_x1, DOWN)
+
+        equation_second_derivative_insert = MathTex(
+            r"f''_a(0) = -0.8a",
+            substrings_to_isolate="a",
+        )
+        equation_second_derivative_insert.set_color_by_tex("a", color=PURPLE)
+        equation_second_derivative_insert.next_to(equation_second_derivative, DOWN)
+
+        self.play(
+            Write(equation_second_derivative),
+            run_time=0.5
+        )
+        self.wait()
+
+        self.play(
+            Write(equation_second_derivative_insert),
+            run_time=0.5
+        )
+        self.wait()
