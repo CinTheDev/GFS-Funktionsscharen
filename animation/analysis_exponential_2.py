@@ -20,6 +20,7 @@ class AnalysisExponentialAdvanced(Scene):
         self.inflection_solve_x()
         self.inflection_verify()
         self.inflection_solve_y()
+        # TODO: Visualize solutions on graph
     
     def clear_blocks(self):
         self.next_section("Clear blocks")
