@@ -10,7 +10,7 @@ class AnalysisExponentialAdvanced(Scene):
 
     def transition(self):
         self.next_section("Transition")
-        title = Tex("Noch ein Beispiel")
+        title = Tex("Noch ein Beispiel", color=YELLOW)
         title.move_to(UP * 3)
 
         self.play(
