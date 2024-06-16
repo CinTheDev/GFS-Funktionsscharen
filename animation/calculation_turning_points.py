@@ -5,8 +5,8 @@ from manim import *
 class CalculationTurningPoints(Scene):
     def construct(self):
         self.solve_x()
-        self.solve_type()
-        self.solve_type_2()
+        self.solve_type_zero()
+        self.solve_type_other()
     
     def animate_solve_steps(self, top_equation, string_list):
         steps = VGroup(top_equation)
@@ -183,7 +183,7 @@ class CalculationTurningPoints(Scene):
             run_time=0.5,
         )
 
-    def solve_type(self):
+    def solve_type_zero(self):
         comment = Tex("Hochpunkt, Tiefpunkt, Sattelpunkt??", color=YELLOW)
         comment.scale(0.6)
         comment.next_to(self.solution, UP)
@@ -373,7 +373,7 @@ class CalculationTurningPoints(Scene):
             for step in g:
                 self.remove(step)
     
-    def solve_type_2(self):
+    def solve_type_other(self):
         solution_x2 = MathTex(r"x_2 = \sqrt{0.2a}")
         solution_x2.move_to(self.solution)
 
