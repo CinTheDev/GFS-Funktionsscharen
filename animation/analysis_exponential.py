@@ -7,6 +7,7 @@ class AnalysisExponential(Scene):
         self.transition()
         self.write_derivatives()
         self.solve_x()
+        self.solve_minimum()
     
     def transition(self):
         self.next_section("Transition")
@@ -90,4 +91,13 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Extremstellen", UP * 2.5 + LEFT * 4, steps, [-1])
+        self.block("Extremstellen", UP * 3 + LEFT * 4, steps, [-1])
+    
+    def solve_minimum(self):
+        steps = [
+            r"f''_b(ln(b)) > 0",
+            r"e^{ln(b)} > 0",
+            r"b > 0",
+        ]
+
+        self.block("Tiefpunkte", DOWN * 1 + LEFT * 4, steps)
