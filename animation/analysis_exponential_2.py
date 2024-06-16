@@ -10,16 +10,15 @@ class AnalysisExponentialAdvanced(Scene):
         self.write_equations()
         self.solve_x()
         self.solve_y()
-        self.clear_blocks()
+        self.prepare_determining_types()
     
     def clear_blocks(self):
         self.next_section("Clear blocks")
 
         self.play(
             [Unwrite(block) for block in self.blocks],
-            run_time=2
+            run_time=1
         )
-        self.wait()
 
     def transition(self):
         self.next_section("Transition")
@@ -117,3 +116,19 @@ class AnalysisExponentialAdvanced(Scene):
         ]
 
         self.block("Extrempunkte", DOWN * 2 + LEFT * 3.5, steps)
+    
+    def prepare_determining_types(self):
+        self.clear_blocks()
+
+        eq_x = MathTex(r"x = -\frac{1}{h}")
+        eq_x.move_to(UP * 2)
+
+        eq_ddx = MathTex(r"f''_h(x) = h^2 x \cdot e^{h x} + 2h \cdot e^{h x}")
+        eq_ddx.next_to(eq_x, DOWN)
+
+        self.play(
+            Write(eq_x),
+            Write(eq_ddx),
+            run_time=1
+        )
+        self.wait()
