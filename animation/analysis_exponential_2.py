@@ -9,6 +9,7 @@ class AnalysisExponentialAdvanced(Scene):
         self.transition()
         self.write_equations()
         self.solve_x()
+        self.solve_y()
 
     def transition(self):
         self.next_section("Transition")
@@ -27,9 +28,7 @@ class AnalysisExponentialAdvanced(Scene):
         for string in tex_strings:
             tex = MathTex(
                 string,
-                substrings_to_isolate="h"
             )
-            tex.set_color_by_tex("h", color=PURPLE)
             tex.scale(scale)
 
             tex.next_to(top_equation, DOWN)
@@ -101,3 +100,10 @@ class AnalysisExponentialAdvanced(Scene):
         ]
 
         self.block("Extremstellen", UP * 2 + RIGHT * 3.5, steps)
+    
+    def solve_y(self):
+        steps = [
+            r"y = -\frac{1}{h} \cdot e^{h \cdot -\frac{1}{h}} = -\frac{1}{he}",
+        ]
+
+        self.block("Extrempunkte", DOWN * 2 + LEFT * 3.5, steps)
