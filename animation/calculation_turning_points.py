@@ -5,6 +5,7 @@ from manim import *
 class CalculationTurningPoints(Scene):
     def construct(self):
         self.solve_x()
+        self.solve_type()
         # TODO: Visualize solution on graph
         # TODO: Analyze for type (Tiefpunkt, Hochpunkt, ...) [next scene]
     
@@ -33,10 +34,10 @@ class CalculationTurningPoints(Scene):
         return steps
     
     def solve_x(self):
-        title = Tex("2. Fall: Extrempunkte", color=YELLOW)
+        self.title = Tex("2. Fall: Extrempunkte", color=YELLOW)
 
         self.play(
-            Write(title)
+            Write(self.title)
         )
         self.wait()
 
@@ -44,11 +45,11 @@ class CalculationTurningPoints(Scene):
 
         # Move title out of way
 
-        title.generate_target()
-        title.target.move_to(UP * 3)
+        self.title.generate_target()
+        self.title.target.move_to(UP * 3)
 
         self.play(
-            MoveToTarget(title),
+            MoveToTarget(self.title),
         )
 
         # Write equation
@@ -158,13 +159,16 @@ class CalculationTurningPoints(Scene):
 
         self.next_section("Solution_Summary")
 
-        solution = MathTex(r"x_1 = 0; x_{2;3} = \pm \sqrt{0.2a}")
-        solution.move_to(DOWN * 2.5)
+        self.solution = MathTex(r"x_1 = 0; x_{2;3} = \pm \sqrt{0.2a}")
+        self.solution.move_to(DOWN * 2.5)
 
         self.play(
-            Write(solution)
+            Write(self.solution)
         )
         self.play(
-            Circumscribe(solution)
+            Circumscribe(self.solution)
         )
         self.wait()
+
+    def solve_type(self):
+        pass
