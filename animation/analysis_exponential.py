@@ -9,6 +9,7 @@ class AnalysisExponential(Scene):
         self.solve_x()
         self.solve_minimum()
         self.solve_maximum()
+        self.solve_saddle_points()
     
     def transition(self):
         self.next_section("Transition")
@@ -121,3 +122,12 @@ class AnalysisExponential(Scene):
         ]
 
         self.block("Hochpunkte", DOWN * 1, steps, [-1], wrong=True)
+    
+    def solve_saddle_points(self):
+        steps = [
+            r"f''_b(ln(b)) = 0",
+            r"e^{ln(b)} = 0",
+            r"b = 0",
+        ]
+
+        self.block("Sattelpunkte", DOWN * 1 + RIGHT * 4, steps, [-1], wrong=True)
