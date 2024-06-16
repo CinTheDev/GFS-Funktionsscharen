@@ -83,8 +83,8 @@ class AnalysisExponentialAdvanced(Scene):
     def write_equations(self):
         equations = [
             r"f_h(x) = x \cdot e^{h x}",
-            r"f'_h(x) = h^1 x \cdot e^{h x} + 1h^0 \cdot e^{h x}",
-            r"f''_h(x) = h^2 x \cdot e^{h x} + 2h^1 \cdot e^{h x}",
+            r"f'_h(x) = h x \cdot e^{h x} + e^{h x}",
+            r"f''_h(x) = h^2 x \cdot e^{h x} + 2h \cdot e^{h x}",
             r"f'''_h(x) = h^3 x \cdot e^{h x} + 3h^2 \cdot e^{h x}",
         ]
 
@@ -93,7 +93,7 @@ class AnalysisExponentialAdvanced(Scene):
     def solve_x(self):
         steps = [
             r"f'_h(x) = 0",
-            r"h^1 x \cdot e^{h x} + 1h^0 \cdot e^{h_x} = 0",
+            r"h x \cdot e^{h x} + e^{h x} = 0",
             r"h x + 1 = 0",
             r"h x = -1",
             r"x = -\frac{1}{h}",
