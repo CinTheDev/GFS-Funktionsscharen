@@ -149,7 +149,6 @@ class CalculationTurningPoints(Scene):
         self.next_section("Solve_Step")
 
         solve_steps_secondary = [
-            r"0 = 4x^2 - 0.8a",
             r"0.8a = 4x^2",
             r"0.2a = x^2",
             r"\pm \sqrt{0.2a} = x_{2;3}",
