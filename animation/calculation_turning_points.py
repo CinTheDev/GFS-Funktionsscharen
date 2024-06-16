@@ -384,3 +384,49 @@ class CalculationTurningPoints(Scene):
             run_time=0.5
         )
         self.wait()
+
+        self.next_section("Prepare_solving")
+
+        equation_second_derivative = MathTex(
+            r"f''_a(x) = 12x^2 - 0.8a",
+            substrings_to_isolate="a",
+        )
+        equation_second_derivative.set_color_by_tex("a", color=PURPLE)
+        equation_second_derivative.next_to(self.solution, DOWN)
+
+        comment = Tex("Nur Tiefpunkt macht Sinn", color=YELLOW)
+        comment.scale(0.6)
+        comment.next_to(equation_second_derivative, DOWN)
+
+        constraint = MathTex(
+            r"f''_a(x) > 0",
+            substrings_to_isolate="a",
+        )
+        constraint.set_color_by_tex("a", color=PURPLE)
+        constraint.next_to(comment, DOWN)
+
+        self.play(
+            Write(equation_second_derivative),
+            run_time=0.5,
+        )
+        self.play(
+            Write(comment),
+            run_time=0.5,
+        )
+        self.play(
+            Write(constraint),
+            run_time=0.5,
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        solve_steps = [
+            r"12(\sqrt{0.2a})^2 - 0.8a > 0",
+            r"12(0.2a) - 0.8a > 0",
+            r"2.4a - 0.8a > 0",
+            r"1.6a > 0",
+            r"a > 0",
+        ]
+
+        self.animate_solve_steps(constraint, solve_steps)
