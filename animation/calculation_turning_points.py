@@ -186,9 +186,11 @@ class CalculationTurningPoints(Scene):
         )
 
     def solve_type(self):
-        test = Tex("yeah")
+        comment = Tex("Hochpunkt, Tiefpunkt, Sattelpunkt??", color=YELLOW)
+        comment.scale(0.6)
+        comment.next_to(self.solution, UP)
 
         self.play(
-            Write(test)
+            Write(comment)
         )
         self.wait()
