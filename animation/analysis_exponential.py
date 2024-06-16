@@ -105,7 +105,7 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Extremstellen", UP * 3 + LEFT * 4, steps, [-1])
+        self.block("Extremstellen", UP * 3 + LEFT * 4.5, steps, [-1])
     
     def solve_y(self):
         steps = [
@@ -125,7 +125,7 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Tiefpunkte", DOWN * 1 + LEFT * 4, steps)
+        self.block("Tiefpunkte", DOWN * 1 + LEFT * 4.5, steps)
     
     def solve_maximum(self):
         steps = [
@@ -143,4 +143,4 @@ class AnalysisExponential(Scene):
             r"b = 0",
         ]
 
-        self.block("Sattelpunkte", DOWN * 1 + RIGHT * 4, steps, [-1], wrong=True)
+        self.block("Sattelpunkte", DOWN * 1 + RIGHT * 4.5, steps, [-1], wrong=True)
