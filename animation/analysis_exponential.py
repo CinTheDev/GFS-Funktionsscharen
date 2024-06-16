@@ -12,7 +12,7 @@ class AnalysisExponential(Scene):
         title = Tex("2. Analysis-Beispiel", color=YELLOW)
 
         self.play(
-            Write(title)
+            Write(title),
             run_time=1
         )
         self.wait()
@@ -23,13 +23,13 @@ class AnalysisExponential(Scene):
         title.target.move_to(UP * 3)
 
         self.play(
-            MoveToTarget(title)
+            MoveToTarget(title),
             run_time=1
         )
         self.wait()
     
-    def construct_equations(self, tex_strings, start_pos):
-        all_equations = VGroup()
+    def construct_equations(self, tex_strings, top_equation):
+        all_equations = VGroup(top_equation)
 
         for string in tex_strings:
             tex = MathTex(
@@ -38,24 +38,31 @@ class AnalysisExponential(Scene):
             )
             tex.set_color_by_tex("b", color=PURPLE)
 
-            tex.move_to(start_pos)
+            tex.next_to(top_equation, DOWN)
             all_equations.add(tex)
-            start_pos.next_to(tex, DOWN)
+
+            top_equation = tex
+        
+        return all_equations
     
     def solve_x(self):
-        #self.next_section("Write equations")
-
         equations = [
-            r"f_b(x) = e^x - bx",
             r"f'_b(x) = e^x - b",
             r"f''_b(x) = e^x",
         ]
 
-        eq_tex = self.construct_equations(equations, UP)
+        top_equation = MathTex(
+            r"f_b(x) = e^x - bx",
+            substrings_to_isolate="b"
+        )
+        top_equation.set_color_by_tex("b", color=PURPLE)
+        top_equation.move_to(UP * 2)
+
+        eq_tex = self.construct_equations(equations, top_equation)
 
         for eq in eq_tex:
             self.next_section("Draw_Equation")
-            
+
             self.play(
                 Write(eq),
                 run_time=0.5
