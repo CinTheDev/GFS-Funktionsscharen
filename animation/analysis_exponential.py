@@ -7,6 +7,7 @@ class AnalysisExponential(Scene):
         self.transition()
         self.write_derivatives()
         self.solve_x()
+        self.solve_y()
         self.solve_minimum()
         self.solve_maximum()
         self.solve_saddle_points()
@@ -104,6 +105,17 @@ class AnalysisExponential(Scene):
         ]
 
         self.block("Extremstellen", UP * 3 + LEFT * 4, steps, [-1])
+    
+    def solve_y(self):
+        steps = [
+            r"y = f_b(ln(b))",
+            r"y = e^{ln(b)} - b ln(b)",
+            r"y = b - b ln(b)",
+            r"y = b (1 - ln(b))",
+            #r"E(ln(b) | b(1 - ln(b)))",
+        ]
+
+        self.block("Extrempunkte", UP * 3 + RIGHT * 4.5, steps)
     
     def solve_minimum(self):
         steps = [
