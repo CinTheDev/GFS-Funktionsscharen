@@ -62,13 +62,13 @@ class AnalysisExponential(Scene):
             eq_tex[index].set_color(RED)
 
         for eq in eq_tex:
+            self.wait()
             self.next_section("Draw_Equation")
 
             self.play(
                 Write(eq),
                 run_time=0.5,
             )
-            self.wait()
 
         if wrong:
             border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
