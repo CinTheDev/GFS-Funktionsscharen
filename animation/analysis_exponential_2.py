@@ -8,6 +8,7 @@ class AnalysisExponentialAdvanced(Scene):
     def construct(self):
         self.transition()
         self.write_equations()
+        self.solve_x()
 
     def transition(self):
         self.next_section("Transition")
@@ -24,12 +25,11 @@ class AnalysisExponentialAdvanced(Scene):
         all_equations = VGroup(top_equation)
 
         for string in tex_strings:
-            print("DEBUG: " + string)
             tex = MathTex(
                 string,
-                substrings_to_isolate="r"
+                substrings_to_isolate="h"
             )
-            tex.set_color_by_tex("r", color=PURPLE)
+            tex.set_color_by_tex("h", color=PURPLE)
             tex.scale(scale)
 
             tex.next_to(top_equation, DOWN)
@@ -83,10 +83,21 @@ class AnalysisExponentialAdvanced(Scene):
     
     def write_equations(self):
         equations = [
-            r"f_r(x) = x \cdot e^{r x}",
-            r"f'_r(x) = r^1 x \cdot e^{r x} + 1r^0 \cdot e^{r x}",
-            r"f''_r(x) = r^2 x \cdot e^{r x} + 2r^1 \cdot e^{r x}",
-            r"f'''_r(x) = r^3 x \cdot e^{r x} + 3r^2 \cdot e^{r x}",
+            r"f_h(x) = x \cdot e^{h x}",
+            r"f'_h(x) = h^1 x \cdot e^{h x} + 1h^0 \cdot e^{h x}",
+            r"f''_h(x) = h^2 x \cdot e^{h x} + 2h^1 \cdot e^{h x}",
+            r"f'''_h(x) = h^3 x \cdot e^{h x} + 3h^2 \cdot e^{h x}",
         ]
 
         self.block(r"Funktion \& Ableitungen", UP * 2 + LEFT * 3.5, equations)
+    
+    def solve_x(self):
+        steps = [
+            r"f'_h(x) = 0",
+            r"h^1 x \cdot e^{h x} + 1h^0 \cdot e^{h_x} = 0",
+            r"h x + 1 = 0",
+            r"h x = -1",
+            r"x = -\frac{1}{h}",
+        ]
+
+        self.block("Extremstellen", UP * 2 + RIGHT * 3.5, steps)
