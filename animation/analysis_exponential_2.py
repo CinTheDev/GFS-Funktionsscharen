@@ -3,6 +3,8 @@
 from manim import *
 
 class AnalysisExponentialAdvanced(Scene):
+    blocks = []
+
     def construct(self):
         self.transition()
 
@@ -58,6 +60,9 @@ class AnalysisExponentialAdvanced(Scene):
             border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
             cross = Cross(border)
 
+            eq_tex.add(border)
+            eq_tex.add(cross)
+
             self.play(
                 Write(border),
                 Write(cross)
@@ -65,8 +70,11 @@ class AnalysisExponentialAdvanced(Scene):
         else:
             border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
 
+            eq_tex.add(border)
+
             self.play(
                 Write(border)
             )
 
+        self.blocks.append(eq_tex)
         self.wait()
