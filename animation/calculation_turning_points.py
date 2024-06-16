@@ -6,6 +6,7 @@ class CalculationTurningPoints(Scene):
     def construct(self):
         self.solve_x()
         self.solve_type()
+        self.solve_type_2()
         # TODO: Visualize solution on graph
         # TODO: Analyze for type (Tiefpunkt, Hochpunkt, ...) [next scene]
     
@@ -265,7 +266,7 @@ class CalculationTurningPoints(Scene):
             r"a > 0",
         ]
 
-        self.animate_solve_steps(constraint_local_maximum, local_maximum_steps)
+        local_maximum_group = self.animate_solve_steps(constraint_local_maximum, local_maximum_steps)
 
         self.next_section("Determine_local_minimum")
 
@@ -295,7 +296,7 @@ class CalculationTurningPoints(Scene):
             r"a < 0",
         ]
 
-        self.animate_solve_steps(constraint_local_minimum, local_minimum_steps)
+        local_minimum_group = self.animate_solve_steps(constraint_local_minimum, local_minimum_steps)
 
         self.next_section("Determine_saddle_point")
 
@@ -342,5 +343,44 @@ class CalculationTurningPoints(Scene):
 
         self.play(
             Write(cross)
+        )
+        self.wait()
+
+        self.next_section("Fadeout")
+
+        self.play(
+            FadeOut(comment_saddle),
+            FadeOut(constraint_saddle),
+            FadeOut(saddle_steps_group),
+            FadeOut(cross),
+            FadeOut(invalid_equation),
+
+            FadeOut(comment_local_minimum),
+            FadeOut(constraint_local_minimum),
+            FadeOut(local_minimum_group),
+            
+            FadeOut(comment_local_maximum),
+            FadeOut(constraint_local_maximum),
+            FadeOut(local_maximum_group),
+
+            FadeOut(equation_second_derivative),
+            FadeOut(equation_second_derivative_insert),
+        )
+
+        groups = [saddle_steps_group, local_minimum_group, local_maximum_group]
+
+        # Remove single steps from groups
+        # they would reappear otherwise
+        for g in groups:
+            for step in g:
+                self.remove(step)
+    
+    def solve_type_2(self):
+        solution_x2 = MathTex(r"x_2 = \sqrt{0.2a}")
+        solution_x2.move_to(self.solution)
+
+        self.play(
+            Transform(self.solution, solution_x2),
+            run_time=0.5
         )
         self.wait()
