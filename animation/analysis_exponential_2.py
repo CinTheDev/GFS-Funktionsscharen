@@ -70,6 +70,8 @@ class AnalysisExponentialAdvanced(Scene):
             )
 
         if wrong:
+            self.next_section("Cross")
+            
             border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
             cross = Cross(border)
 
