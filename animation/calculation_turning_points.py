@@ -170,5 +170,25 @@ class CalculationTurningPoints(Scene):
         )
         self.wait()
 
+        self.next_section("Fadeout")
+
+        self.solution.generate_target()
+        self.solution.target.center()
+
+        self.play(
+            FadeOut(steps_first),
+            FadeOut(steps_secondary),
+            run_time=0.5
+        )
+        self.play(
+            MoveToTarget(self.solution),
+            run_time=0.5,
+        )
+
     def solve_type(self):
-        pass
+        test = Tex("yeah")
+
+        self.play(
+            Write(test)
+        )
+        self.wait()
