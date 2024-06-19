@@ -71,7 +71,7 @@ class VisualizeAnalysisExponential(Scene):
         )
 
         point_minimum = always_redraw(
-            lambda: Dot(point=grid.input_to_graph_point(self.get_local_minimum(), function), color=ORANGE)
+            lambda: Dot(point=self.grid.input_to_graph_point(self.get_local_minimum(), self.function), color=ORANGE)
         )
 
         self.play(
@@ -92,28 +92,67 @@ class VisualizeAnalysisExponential(Scene):
 
         self.play(
             Write(x_marker),
+            Write(y_marker),
         )
         self.wait()
 
         self.next_section("Positive_b_large")
 
         self.play(
-            param_a.tracker.animate.set_value(3.5),
+            self.param_a.tracker.animate.set_value(3.5),
             run_time=3,
             rate_func=rate_functions.smooth,
         )
     
     def get_x_marker(self):
         a = self.param_a.tracker.get_value()
+
+        fx = self.graph_function(self.get_local_minimum())
+        point = self.grid.input_to_graph_point(self.get_local_minimum(), self.function)
+
         #marker_string = "ln({a:.2f})".format(a=a)
         marker_string="ln(a)"
-        return MathTex(marker_string)
+
+        tex = MathTex(marker_string)
+
+        if fx >= 0:
+            tex.move_to(DOWN * 2)
+        else:
+            tex.move_to(UP)
+            
+        tex.set_x(point[0])
+
+        line_length = abs(point[1] - tex.get_center()[1])
+        line_length -= 0.5
+        line = DashedLine(start=tex.get_center(), end=point)
+        line.set_length(line_length)
+
+        return VGroup(tex, line)
     
     def get_y_marker(self):
         a = self.param_a.tracker.get_value()
+
+        x = self.get_local_minimum()
+        point = self.grid.input_to_graph_point(x, self.function)
+
         #marker_string = "1 - ln({a:.2f})".format(a=a)
         marker_string="1 - ln(a)"
-        return MathTex(marker_string)
+
+        tex = MathTex(marker_string)
+
+        if x >= 0:
+            tex.move_to(LEFT * 1.5)
+        else:
+            tex.move_to(RIGHT * 1.5)
+        
+        tex.set_y(point[1])
+
+        line_length = abs(point[0] - tex.get_center()[0])
+        line_length -= 0.5
+        line = DashedLine(start=tex.get_center(), end=point)
+        line.set_length(line_length)
+
+        return VGroup(tex, line)
 
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
