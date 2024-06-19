@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-from manim import *
+from generic_solve_blocks import *
 
-class AnalysisExponentialAdvanced(Scene):
-    blocks = []
-
+class AnalysisExponentialAdvanced(GenericSolveBlocks):
     def construct(self):
         self.transition()
         self.write_equations()
@@ -21,14 +19,6 @@ class AnalysisExponentialAdvanced(Scene):
         self.inflection_verify()
         self.inflection_solve_y()
         # TODO: Visualize solutions on graph
-    
-    def clear_blocks(self):
-        self.next_section("Clear blocks")
-
-        self.play(
-            [Unwrite(block) for block in self.blocks],
-            run_time=1
-        )
 
     def transition(self):
         self.next_section("Transition")
@@ -39,66 +29,6 @@ class AnalysisExponentialAdvanced(Scene):
             Write(title),
             run_time=1
         )
-        self.wait()
-    
-    def construct_equations(self, tex_strings, top_equation, scale=1):
-        all_equations = VGroup(top_equation)
-
-        for string in tex_strings:
-            tex = MathTex(
-                string,
-            )
-            tex.scale(scale)
-
-            tex.next_to(top_equation, DOWN)
-            all_equations.add(tex)
-
-            top_equation = tex
-        
-        return all_equations
-    
-    def block(self, heading, pos, equations, highlighted=[], wrong=False, scale=1):
-        top = Tex(heading, color=YELLOW)
-        top.scale(0.6)
-        top.move_to(pos)
-
-        eq_tex = self.construct_equations(equations, top, scale)
-
-        for index in highlighted:
-            eq_tex[index].set_color(RED)
-        self.wait()
-        for eq in eq_tex:
-            self.wait()
-            self.next_section("Draw_Equation")
-
-            self.play(
-                Write(eq),
-                run_time=0.5,
-            )
-
-        if wrong:
-            self.next_section("Cross")
-
-            border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
-            cross = Cross(border)
-
-            eq_tex.add(border)
-            eq_tex.add(cross)
-
-            self.play(
-                Write(border),
-                Write(cross)
-            )
-        else:
-            border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
-
-            eq_tex.add(border)
-
-            self.play(
-                Write(border)
-            )
-
-        self.blocks.append(eq_tex)
         self.wait()
     
     def write_equations(self):
@@ -178,7 +108,7 @@ class AnalysisExponentialAdvanced(Scene):
             r"h = 0",
         ]
 
-        self.block("Sattelpunkte", RIGHT * 4, steps, [-1], scale=0.7, wrong=True)
+        self.block("Sattelpunkte", RIGHT * 4, steps, highlighted=[-1], scale=0.7, wrong=True)
     
     def prepare_solve_inflection(self):
         self.clear_blocks()
@@ -219,7 +149,7 @@ class AnalysisExponentialAdvanced(Scene):
             r"h \neq 0",
         ]
 
-        self.block("Wendestelle prüfen", UP * 2.5 + RIGHT * 4, steps, [-1], scale=0.7)
+        self.block("Wendestelle prüfen", UP * 2.5 + RIGHT * 4, steps, highlighted=[-1], scale=0.7)
     
     def inflection_solve_y(self):
         steps = [
