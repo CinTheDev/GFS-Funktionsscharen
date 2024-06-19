@@ -105,6 +105,8 @@ class VisualizeAnalysisExponential(Scene):
         )
     
     def get_x_marker(self):
+        grid_origin = self.grid.get_origin()
+
         a = self.param_a.tracker.get_value()
 
         fx = self.graph_function(self.get_local_minimum())
@@ -113,23 +115,29 @@ class VisualizeAnalysisExponential(Scene):
         #marker_string = "ln({a:.2f})".format(a=a)
         marker_string="ln(a)"
 
-        tex = MathTex(marker_string)
+        tex = MathTex(marker_string, color=YELLOW)
 
         if fx >= 0:
-            tex.move_to(DOWN * 2)
+            tex.move_to(grid_origin + DOWN * 1)
         else:
-            tex.move_to(UP)
+            tex.move_to(grid_origin + UP * 0.5)
             
         tex.set_x(point[0])
 
-        line_length = abs(point[1] - tex.get_center()[1])
-        line_length -= 0.5
-        line = DashedLine(start=tex.get_center(), end=point)
+        point_center = point.copy()
+        point_center[1] = grid_origin[1]
+
+        line_length = abs(point[1] - point_center[1])
+        line_length -= 0.2
+
+        line = DashedLine(start=point, end=point_center)
         line.set_length(line_length)
 
         return VGroup(tex, line)
     
     def get_y_marker(self):
+        grid_origin = self.grid.get_origin()
+
         a = self.param_a.tracker.get_value()
 
         x = self.get_local_minimum()
@@ -138,18 +146,22 @@ class VisualizeAnalysisExponential(Scene):
         #marker_string = "1 - ln({a:.2f})".format(a=a)
         marker_string="1 - ln(a)"
 
-        tex = MathTex(marker_string)
+        tex = MathTex(marker_string, color=YELLOW)
 
         if x >= 0:
-            tex.move_to(LEFT * 1.5)
+            tex.move_to(grid_origin + LEFT * 1.5)
         else:
-            tex.move_to(RIGHT * 1.5)
+            tex.move_to(grid_origin + RIGHT * 1)
         
         tex.set_y(point[1])
 
-        line_length = abs(point[0] - tex.get_center()[0])
-        line_length -= 0.5
-        line = DashedLine(start=tex.get_center(), end=point)
+        point_center = point.copy()
+        point_center[0] = grid_origin[0]
+
+        line_length = abs(point[0] - point_center[0])
+        line_length -= 0.2
+
+        line = DashedLine(start=point, end=point_center)
         line.set_length(line_length)
 
         return VGroup(tex, line)
