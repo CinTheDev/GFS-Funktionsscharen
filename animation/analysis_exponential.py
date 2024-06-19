@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from manim import *
+from generic_solve_blocks import *
 
-class AnalysisExponential(Scene):
+class AnalysisExponential(GenericSolveBlocks):
     def construct(self):
         self.transition()
         self.write_derivatives()
@@ -34,62 +34,6 @@ class AnalysisExponential(Scene):
         )
         self.wait()
     
-    def construct_equations(self, tex_strings, top_equation, scale=1):
-        all_equations = VGroup(top_equation)
-
-        for string in tex_strings:
-            tex = MathTex(
-                string,
-                substrings_to_isolate="b"
-            )
-            tex.set_color_by_tex("b", color=PURPLE)
-            tex.scale(scale)
-
-            tex.next_to(top_equation, DOWN)
-            all_equations.add(tex)
-
-            top_equation = tex
-        
-        return all_equations
-    
-    def block(self, heading, pos, equations, highlighted=[], wrong=False, scale=1):
-        top = Tex(heading, color=YELLOW)
-        top.scale(0.6)
-        top.move_to(pos)
-
-        eq_tex = self.construct_equations(equations, top, scale)
-
-        for index in highlighted:
-            eq_tex[index].set_color(RED)
-
-        for eq in eq_tex:
-            self.wait()
-            self.next_section("Draw_Equation")
-
-            self.play(
-                Write(eq),
-                run_time=0.5,
-            )
-
-        if wrong:
-            self.next_section("Cross")
-            
-            border = SurroundingRectangle(eq_tex, color=RED, corner_radius=0.0)
-            cross = Cross(border)
-
-            self.play(
-                Write(border),
-                Write(cross)
-            )
-        else:
-            border = SurroundingRectangle(eq_tex, color=YELLOW, corner_radius=0.1)
-
-            self.play(
-                Write(border)
-            )
-
-        self.wait()
-    
     def write_derivatives(self):
         equations = [
             r"f_b(x) = e^x - bx",
@@ -97,7 +41,7 @@ class AnalysisExponential(Scene):
             r"f''_b(x) = e^x",
         ]
 
-        self.block("Ableitungen", UP * 2, equations)
+        self.block("Funktion & Ableitungen", UP * 2, equations, colored_var="b")
     
     def solve_x(self):
         steps = [
@@ -108,7 +52,7 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Extremstellen", UP * 3 + LEFT * 4.5, steps, [-1])
+        self.block("Extremstellen", UP * 3 + LEFT * 4.5, steps, colored_var="b", highlighted=[-1])
     
     def solve_y(self):
         steps = [
@@ -119,7 +63,7 @@ class AnalysisExponential(Scene):
             r"E(ln(b) | b(1 - ln(b)))",
         ]
 
-        self.block("Extrempunkte", UP * 3 + RIGHT * 4.5, steps, scale=0.8)
+        self.block("Extrempunkte", UP * 3 + RIGHT * 4.5, steps, colored_var="b", scale=0.8)
     
     def solve_minimum(self):
         steps = [
@@ -128,7 +72,7 @@ class AnalysisExponential(Scene):
             r"b > 0",
         ]
 
-        self.block("Tiefpunkte", DOWN * 1 + LEFT * 4.5, steps)
+        self.block("Tiefpunkte", DOWN * 1 + LEFT * 4.5, steps, colored_var="b")
     
     def solve_maximum(self):
         steps = [
@@ -137,7 +81,7 @@ class AnalysisExponential(Scene):
             r"b < 0",
         ]
 
-        self.block("Hochpunkte", DOWN * 1, steps, [-1], wrong=True)
+        self.block("Hochpunkte", DOWN * 1, steps, colored_var="b", highlighted=[-1], wrong=True)
     
     def solve_saddle_points(self):
         steps = [
@@ -146,4 +90,4 @@ class AnalysisExponential(Scene):
             r"b = 0",
         ]
 
-        self.block("Sattelpunkte", DOWN * 1 + RIGHT * 4.5, steps, [-1], wrong=True)
+        self.block("Sattelpunkte", DOWN * 1 + RIGHT * 4.5, steps, colored_var="b", highlighted=[-1], wrong=True)
