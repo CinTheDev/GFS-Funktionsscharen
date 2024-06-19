@@ -20,6 +20,15 @@ class IntroGraphProperties(Scene):
 
         return [x_1, x_2]
     
+    def nullstellen(self, a):
+        if a <= 0:
+            return [0, 0, 0]
+        
+        x_1 = math.sqrt(0.4 * a)
+        x_2 = x_1 * -1
+
+        return [0, x_1, x_2]
+    
     def graph(self):
         self.next_section("Empty_Graph")
         screen = FullScreenRectangle()
@@ -94,7 +103,7 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
-        self.next_section("graph_goes_up")
+        self.next_section("show_bundle")
 
         bundle_point = grid.input_to_graph_point(0, function)
 
@@ -117,11 +126,67 @@ class IntroGraphProperties(Scene):
         )
         self.wait()
 
-        self.next_section("graph_points_split")
+        self.next_section("show_nullstellen")
 
         self.play(
             Unwrite(text_bundle),
             Uncreate(arrow_bundle),
+        )
+
+        nullstelle_middle = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.nullstellen(param_a.tracker.get_value())[0], function), color=ORANGE)
+        )
+        nullstelle_left = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.nullstellen(param_a.tracker.get_value())[1], function), color=ORANGE)
+        )
+        nullstelle_right = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.nullstellen(param_a.tracker.get_value())[2], function), color=ORANGE)
+        )
+
+        text_nullstellen = Tex("Nullstellen")
+        text_nullstellen.move_to(DOWN * 3.5 + LEFT)
+
+        arrow_nullstelle_left = always_redraw(
+            lambda: Arrow(start=text_nullstellen.get_center(), end=nullstelle_left, color=YELLOW)
+        )
+        arrow_nullstelle_middle = always_redraw(
+            lambda: Arrow(start=text_nullstellen.get_center(), end=nullstelle_middle, color=YELLOW)
+        )
+        arrow_nullstelle_right = always_redraw(
+            lambda: Arrow(start=text_nullstellen.get_center(), end=nullstelle_right, color=YELLOW)
+        )
+
+        self.play(
+            Create(nullstelle_middle),
+            Create(nullstelle_left),
+            Create(nullstelle_right),
+
+            Write(text_nullstellen),
+
+            Create(arrow_nullstelle_left),
+            Create(arrow_nullstelle_middle),
+            Create(arrow_nullstelle_right),
+        )
+
+        self.play(
+            param_a.tracker.animate.set_value(5),
+            run_time=10,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("show_turning_points")
+
+        self.play(
+            Uncreate(nullstelle_middle),
+            Uncreate(nullstelle_left),
+            Uncreate(nullstelle_right),
+
+            Unwrite(text_nullstellen),
+
+            Uncreate(arrow_nullstelle_left),
+            Uncreate(arrow_nullstelle_middle),
+            Uncreate(arrow_nullstelle_right),
         )
 
         point_left = always_redraw(
@@ -154,7 +219,7 @@ class IntroGraphProperties(Scene):
         )
 
         self.play(
-            param_a.tracker.animate.set_value(5),
+            param_a.tracker.animate.set_value(-1),
             run_time=10,
             rate_func=rate_functions.smooth,
         )
