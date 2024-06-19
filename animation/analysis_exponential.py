@@ -41,7 +41,7 @@ class AnalysisExponential(GenericSolveBlocks):
             r"f''_b(x) = e^x",
         ]
 
-        self.block("Funktion & Ableitungen", UP * 2, equations, colored_var="b")
+        self.block(r"Funktion \& Ableitungen", UP * 2, equations, colored_var="b")
     
     def solve_x(self):
         steps = [

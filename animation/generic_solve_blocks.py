@@ -11,7 +11,7 @@ class GenericSolveBlocks(Scene):
             run_time=1
         )
     
-    def block(self, heading, pos, equations, colored_var=r"{a}", highlighted=[], wrong=False, scale=1):
+    def block(self, heading, pos, equations, colored_var=None, highlighted=[], wrong=False, scale=1):
         top = Tex(heading, color=YELLOW)
         top.scale(0.6)
         top.move_to(pos)
@@ -24,7 +24,9 @@ class GenericSolveBlocks(Scene):
                 string,
                 substrings_to_isolate=colored_var,
             )
-            tex.set_color_by_tex(colored_var, color=PURPLE)
+            if colored_var is not None:
+                tex.set_color_by_tex(colored_var, color=PURPLE)
+            
             tex.scale(scale)
 
             tex.next_to(top, DOWN)
