@@ -33,7 +33,7 @@ class CalculationTurningPoints(Scene):
         return steps
     
     def solve_x(self):
-        self.title = Tex("2. Fall: Extrempunkte", color=YELLOW)
+        self.title = Tex("3. Fall: Extrempunkte", color=YELLOW)
 
         self.play(
             Write(self.title)

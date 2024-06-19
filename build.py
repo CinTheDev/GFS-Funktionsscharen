@@ -16,6 +16,7 @@ scenes = [
     "intro_graph_parameter",
     "intro_graph_properties",
     "calculation_insertion",
+    "calculation_nullstellen",
     "calculation_turning_points",
     "calculation_verification_graph",
     "analysis_exponential",
