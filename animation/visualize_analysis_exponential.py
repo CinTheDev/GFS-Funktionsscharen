@@ -55,6 +55,37 @@ class VisualizeAnalysisExponential(Scene):
             Create(function),
         )
         self.wait()
+
+        self.next_section("Negative_b")
+
+        self.play(
+            param_a.tracker.animate.set_value(-1),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Positive_b_small")
+
+        self.play(
+            param_a.tracker.animate.set_value(0.1),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        # TODO: Add point
+
+        self.next_section("Positive_b_large")
+
+        self.play(
+            param_a.tracker.animate.set_value(3.5),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
     
     def graph_function(self, x, a):
         return math.exp(x) - a * x
+    
+    def get_local_minimum(self, a):
+        return math.log(a)
