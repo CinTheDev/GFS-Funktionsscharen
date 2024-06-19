@@ -157,9 +157,9 @@ class VisualizeAnalysisExponential(Scene):
         tex.set_color_by_tex(".", color=PURPLE)
 
         if x >= 0:
-            tex.move_to(grid_origin + LEFT * 1.5)
+            tex.move_to(grid_origin + LEFT * 2)
         else:
-            tex.move_to(grid_origin + RIGHT * 1)
+            tex.move_to(grid_origin + RIGHT * 1.5)
         
         tex.set_y(point[1])
 
