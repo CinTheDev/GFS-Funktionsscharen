@@ -80,8 +80,6 @@ class VisualizeAnalysisExponential(Scene):
             run_time=0.5,
         )
 
-        # TODO: Add Text
-
         x_marker = always_redraw(
             lambda: self.get_x_marker()
         )
@@ -103,6 +101,7 @@ class VisualizeAnalysisExponential(Scene):
             run_time=5,
             rate_func=rate_functions.smooth,
         )
+        self.wait()
     
     def get_x_marker(self):
         grid_origin = self.grid.get_origin()
