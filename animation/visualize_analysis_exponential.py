@@ -100,7 +100,7 @@ class VisualizeAnalysisExponential(Scene):
 
         self.play(
             self.param_a.tracker.animate.set_value(3.5),
-            run_time=3,
+            run_time=5,
             rate_func=rate_functions.smooth,
         )
     
