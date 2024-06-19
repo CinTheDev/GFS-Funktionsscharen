@@ -86,6 +86,18 @@ class VisualizeAnalysisExponential(Scene):
 
         # TODO: Add Text
 
+        x_marker = always_redraw(
+            lambda: self.get_x_marker(param_a.tracker.get_value())
+        )
+
+        y_marker = always_redraw(
+            lambda: self.get_y_marker(param_a.tracker.get_value())
+        )
+
+        self.play(
+            Write(x_marker),
+        )
+
         self.next_section("Positive_b_large")
 
         self.play(
@@ -94,6 +106,16 @@ class VisualizeAnalysisExponential(Scene):
             rate_func=rate_functions.smooth,
         )
     
+    def get_x_marker(self, a):
+        #marker_string = "ln({a:.2f})".format(a=a)
+        marker_string="ln(a)"
+        return MathTex(marker_string)
+    
+    def get_y_marker(self, a):
+        #marker_string = "1 - ln({a:.2f})".format(a=a)
+        marker_string="1 - ln(a)"
+        return MathTex(marker_string)
+
     def graph_function(self, x, a):
         return math.exp(x) - a * x
     
