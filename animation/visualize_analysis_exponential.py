@@ -112,10 +112,14 @@ class VisualizeAnalysisExponential(Scene):
         fx = self.graph_function(self.get_local_minimum())
         point = self.grid.input_to_graph_point(self.get_local_minimum(), self.function)
 
-        #marker_string = "ln({a:.2f})".format(a=a)
-        marker_string="ln(a)"
+        marker_string = [
+            "ln(",
+            "{a:.2f}".format(a=a),
+            ")"
+        ]
 
-        tex = MathTex(marker_string, color=YELLOW)
+        tex = MathTex(*marker_string, color=YELLOW)
+        tex.set_color_by_tex(".", color=PURPLE)
 
         if fx >= 0:
             tex.move_to(grid_origin + DOWN * 1)
@@ -143,10 +147,14 @@ class VisualizeAnalysisExponential(Scene):
         x = self.get_local_minimum()
         point = self.grid.input_to_graph_point(x, self.function)
 
-        #marker_string = "1 - ln({a:.2f})".format(a=a)
-        marker_string="1 - ln(a)"
+        marker_string = [
+            "1 - ln(",
+            "{a:.2f}".format(a=a),
+            ")"
+        ]
 
-        tex = MathTex(marker_string, color=YELLOW)
+        tex = MathTex(*marker_string, color=YELLOW)
+        tex.set_color_by_tex(".", color=PURPLE)
 
         if x >= 0:
             tex.move_to(grid_origin + LEFT * 1.5)
