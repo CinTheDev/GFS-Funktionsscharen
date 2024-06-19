@@ -72,9 +72,19 @@ class VisualizeAnalysisExponential(Scene):
             run_time=2,
             rate_func=rate_functions.smooth,
         )
+
+        point_minimum = always_redraw(
+            lambda: Dot(point=grid.input_to_graph_point(self.get_local_minimum(param_a.tracker.get_value()), function), color=ORANGE)
+        )
+
+        self.play(
+            Create(point_minimum),
+            Flash(point_minimum),
+            run_time=0.5,
+        )
         self.wait()
 
-        # TODO: Add point
+        # TODO: Add Text
 
         self.next_section("Positive_b_large")
 
