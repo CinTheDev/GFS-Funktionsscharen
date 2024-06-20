@@ -72,8 +72,6 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
             run_time=0.5,
         )
 
-        # TODO: Draw markers
-
         turning_point_x_marker = always_redraw(
             lambda: self.get_turning_point_x_marker()
         )

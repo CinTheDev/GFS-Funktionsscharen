@@ -11,7 +11,6 @@ class AnalysisExponential(GenericSolveBlocks):
         self.solve_minimum()
         self.solve_maximum()
         self.solve_saddle_points()
-        # TODO: Visualize solutions on graph
     
     def transition(self):
         self.next_section("Transition")

@@ -18,7 +18,6 @@ class AnalysisExponentialAdvanced(GenericSolveBlocks):
         self.inflection_solve_x()
         self.inflection_verify()
         self.inflection_solve_y()
-        # TODO: Visualize solutions on graph
 
     def transition(self):
         self.next_section("Transition")
