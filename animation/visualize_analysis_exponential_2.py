@@ -78,8 +78,13 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
             lambda: self.get_turning_point_x_marker()
         )
 
+        turning_point_y_marker = always_redraw(
+            lambda: self.get_turning_point_y_marker()
+        )
+
         self.play(
             Write(turning_point_x_marker),
+            Write(turning_point_y_marker),
         )
 
         self.wait()
@@ -120,6 +125,21 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         marker.set_color_by_tex(".", color=PURPLE)
 
         return self.get_x_marker(x, marker)
+    
+    def get_turning_point_y_marker(self):
+        a = self.param_a.tracker.get_value()
+        x = self.get_turning_point()
+
+        marker_string = [
+            "-{1} \over {",
+            "{0:.2f}".format(a),
+            " e}",
+        ]
+
+        marker = MathTex(*marker_string, color=YELLOW)
+        marker.set_color_by_tex(".", color=PURPLE)
+
+        return self.get_y_marker(x, marker)
 
     def get_x_marker(self, x, marker):
         grid_origin = self.grid.get_origin()
@@ -142,6 +162,31 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         point_center[1] = grid_origin[1]
 
         line_length = abs(point[1] - point_center[1])
+        line_length -= 0.2
+
+        line = DashedLine(start=point, end=point_center)
+        line.set_length(line_length)
+
+        return VGroup(marker, line)
+    
+    def get_y_marker(self, x, marker):
+        grid_origin = self.grid.get_origin()
+
+        a = self.param_a.tracker.get_value()
+
+        point = self.grid.input_to_graph_point(x, self.function)
+
+        if x >= 0:
+            marker.next_to(grid_origin, LEFT) # *2
+        else:
+            marker.next_to(grid_origin, RIGHT) # *1.5
+        
+        marker.set_y(point[1])
+
+        point_center = point.copy()
+        point_center[0] = grid_origin[0]
+
+        line_length = abs(point[0] - point_center[0])
         line_length -= 0.2
 
         line = DashedLine(start=point, end=point_center)
