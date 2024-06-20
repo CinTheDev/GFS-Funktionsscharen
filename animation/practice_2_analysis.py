@@ -91,7 +91,58 @@ class Practice_2(GenericSolveBlocks):
         self.block("Nullstellen", UP * 2 + RIGHT * 2, steps)
     
     def solve_turning_points(self):
-        pass
+        self.turning_points_solve_x()
+        self.turning_points_solve_y()
+        self.turning_points_maximum_0()
+        self.turning_points_minimum_0()
+        self.turning_points_saddle_0()
+    
+    def turning_points_solve_x(self):
+        steps = [
+            r"f'_a(x) = 0",
+            r"3x^2 - 2ax = 0",
+            r"x(3x - 2a) = 0",
+            r"x_1 = 0; x_2 = \frac{2}{3} a",
+        ]
+
+        self.block("Extremstellen", UP * 3.5, steps)
+    
+    def turning_points_solve_y(self):
+        steps = [
+            r"y_0 = f_a(0) = 0",
+            #r"y_{\frac{2}{3} a} = f_a(\frac{2}{3} a)",
+            #r"y_{\frac{2}{3} a} = (\frac{2}{3} a)^3 - a(\frac{2}{3} a)^2",
+            #r"y_{\frac{2}{3} a} = -\frac{4}{27} a",
+        ]
+
+        self.block("Extrempunkte", UP * 3.5 + RIGHT * 4.5, steps)
+    
+    def turning_points_maximum_0(self):
+        steps = [
+            r"f''_a(0) < 0",
+            r"-2a < 0",
+            r"a > 0",
+        ]
+
+        self.block("Hochpunkt für x=0", DOWN * 1 + LEFT * 4, steps)
+    
+    def turning_points_minimum_0(self):
+        steps = [
+            r"f''_a(0) > 0",
+            r"-2a > 0",
+            r"a < 0",
+        ]
+
+        self.block("Tiefpunkt für x=0", DOWN * 1, steps)
+    
+    def turning_points_saddle_0(self):
+        steps = [
+            r"f''_a(0) = 0",
+            r"-2a = 0",
+            r"a = 0",
+        ]
+
+        self.block("Sattelpunkt für x=0", DOWN * 1 + RIGHT * 4, steps)
     
     def solve_inflection_points(self):
         pass
