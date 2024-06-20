@@ -7,6 +7,15 @@ class Practice_2(GenericSolveBlocks):
         self.transition()
 
         self.introduce_problem()
+
+        self.solve_nullstellen()
+        self.clear_blocks()
+
+        self.solve_turning_points()
+        self.clear_blocks()
+        
+        self.solve_inflection_points()
+        self.clear_blocks()
     
     def transition(self):
         self.next_section("Transition")
@@ -67,3 +76,12 @@ class Practice_2(GenericSolveBlocks):
         )
 
         self.block(r"Funktionen \& Ableitungen", LEFT * 5 + UP * 3.25, functions, scale=0.8, invincible=True)
+    
+    def solve_nullstellen(self):
+        pass
+    
+    def solve_turning_points(self):
+        pass
+    
+    def solve_inflection_points(self):
+        pass
