@@ -19,10 +19,13 @@ scenes = [
     "calculation_nullstellen",
     "calculation_turning_points",
     "calculation_verification_graph",
+    
     "analysis_exponential",
     "visualize_analysis_exponential",
     "analysis_exponential_2",
     "visualize_analysis_exponential_2",
+
+    "practice_1",
 ]
 
 # Create empty "out" directory
