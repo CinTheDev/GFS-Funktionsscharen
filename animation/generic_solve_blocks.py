@@ -11,7 +11,7 @@ class GenericSolveBlocks(Scene):
             run_time=1
         )
     
-    def block(self, heading, pos, equations, colored_var=None, highlighted=[], wrong=False, scale=1):
+    def block(self, heading, pos, equations, colored_var=None, highlighted=[], wrong=False, scale=1, invincible=False):
         top = Tex(heading, color=YELLOW)
         top.scale(0.6)
         top.move_to(pos)
@@ -70,5 +70,8 @@ class GenericSolveBlocks(Scene):
                 Write(border),
             )
         
-        self.blocks.append(all_equations)
+        # This causes this block to not be affected when "clear_blocks()" is called
+        if not invincible:
+            self.blocks.append(all_equations)
+        
         self.wait()
