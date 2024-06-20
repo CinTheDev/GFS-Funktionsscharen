@@ -42,11 +42,8 @@ class Practice_1(GenericSolveBlocks):
             MoveToTarget(page_num),
             run_time=0.5,
         )
-        #self.wait()
     
     def write_first_problem(self):
-        #self.next_section("Write_problem")
-
         self.equation = MathTex(r"f_a(x) = x^2 - ax")
 
         comment = Tex("Berechne die Nullpunkte der Funktionenschar.", color=YELLOW)
@@ -79,8 +76,8 @@ class Practice_1(GenericSolveBlocks):
         steps = [
             r"f_a(x) = 0",
             r"x^2 - ax = 0",
-            r"x^2 = ax",
-            r"x = a",
+            r"x(x - a) = 0",
+            r"x_1 = 0; x_2 = a"
         ]
 
         self.block("Lösung", UP * 2, steps)
@@ -106,10 +103,11 @@ class Practice_1(GenericSolveBlocks):
             r"\frac{x^2 - a^2}{x} = 0",
             r"x^2 - a^2 = 0",
             r"x^2 = a^2",
-            r"x = \pm a",
+            r"x_{1;2} = \pm a",
+            r"x_{1;2} \neq 0",
         ]
 
-        self.block("Lösung", UP * 2, steps)
+        self.block("Lösung", UP * 2, steps, highlighted=[-1])
     
     def write_third_problem(self):
         self.play(
