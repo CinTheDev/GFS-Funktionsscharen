@@ -15,7 +15,6 @@ class Practice_2(GenericSolveBlocks):
         self.clear_blocks()
         
         self.solve_inflection_points()
-        self.clear_blocks()
     
     def transition(self):
         self.next_section("Transition")
@@ -149,7 +148,7 @@ class Practice_2(GenericSolveBlocks):
             r"a < 0",
         ]
 
-        self.block("Hochpunkt for x=(2/3)a", LEFT * 4.5, steps, scale=0.6)
+        self.block("Hochpunkt for x=(2/3)a", DOWN * 0.25 + LEFT * 4.5, steps, scale=0.6)
     
     def turning_points_minimum_0(self):
         steps = [
@@ -192,4 +191,34 @@ class Practice_2(GenericSolveBlocks):
         self.block("Sattelpunkt für x(2/3)", DOWN * 1 + RIGHT * 4, steps)
     
     def solve_inflection_points(self):
-        pass
+        self.inflection_points_solve_x()
+        self.inflection_points_check()
+        self.inflection_points_solve_y()
+    
+    def inflection_points_solve_x(self):
+        steps = [
+            r"f''_a(x) = 0",
+            r"6x - 2a = 0",
+            r"6x = 2a",
+            r"x = \frac{1}{3} a",
+        ]
+
+        self.block("Wendestellen", UP * 3.5, steps)
+
+    def inflection_points_check(self):
+        steps = [
+            r"f'''_a(x) \neq 0",
+            r"6 \neq 0",
+        ]
+
+        self.block("Wendestelle prüfen", DOWN * 1, steps)
+    
+    def inflection_points_solve_y(self):
+        steps = [
+            r"y_{\frac{1}{3} a} = f_a(\frac{1}{3} a)",
+            r"y_{\frac{1}{3} a} = (\frac{1}{3} a)^3 - a(\frac{1}{3} a)^2",
+            r"y_{\frac{1}{3} a} = \frac{1}{27} a^3 - \frac{1}{9} a^3",
+            r"y_{\frac{1}{3} a} = -\frac{2}{27} a^3",
+        ]
+
+        self.block("Wendepunkte", UP * 3.5 + RIGHT * 4.5, steps)
