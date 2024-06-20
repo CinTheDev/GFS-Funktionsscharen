@@ -48,5 +48,5 @@ for i in range(start_index, len(scenes)):
         if not entry.is_file() or not entry.name.endswith('.mp4'):
             continue
 
-        new_filename = str(i) + '_' + entry.name
+        new_filename = "{index:03d}_{name}".format(index=i, name=entry.name)
         shutil.copy2(entry.path, 'out/vid/' + new_filename)
