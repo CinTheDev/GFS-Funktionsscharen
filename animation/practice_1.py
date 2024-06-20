@@ -12,6 +12,10 @@ class Practice_1(GenericSolveBlocks):
 
         self.write_second_problem()
         self.solve_second_problem()
+        self.clear_blocks()
+
+        self.write_third_problem()
+        self.solve_third_problem()
     
     def transition(self):
         self.next_section("Transition")
@@ -87,8 +91,9 @@ class Practice_1(GenericSolveBlocks):
             run_time=0.5,
         )
 
-        self.equation.become(MathTex(r"f_a(x) = \frac{x^2 - a^2}{x}"))
-        self.equation.move_to(UP * 3)
+        new_equation = MathTex(r"f_a(x) = \frac{x^2 - a^2}{x}")
+        new_equation.move_to(self.equation)
+        self.equation.become(new_equation)
 
         self.play(
             Write(self.equation),
@@ -102,6 +107,32 @@ class Practice_1(GenericSolveBlocks):
             r"x^2 - a^2 = 0",
             r"x^2 = a^2",
             r"x = \pm a",
+        ]
+
+        self.block("Lösung", UP * 2, steps)
+    
+    def write_third_problem(self):
+        self.play(
+            Unwrite(self.equation),
+            run_time=0.5,
+        )
+
+        new_equation = MathTex(r"f_a(x) = e^{\frac{x}{a}} - a")
+        new_equation.move_to(self.equation)
+        self.equation.become(new_equation)
+
+        self.play(
+            Write(self.equation),
+            run_time=0.5,
+        )
+        self.wait()
+    
+    def solve_third_problem(self):
+        steps = [
+            r"e^{\frac{x}{a}} - a = 0",
+            r"e^{\frac{x}{a}} = a",
+            r"\frac{x}{a} = ln(a)",
+            r"x = ln(a) \cdot a",
         ]
 
         self.block("Lösung", UP * 2, steps)
