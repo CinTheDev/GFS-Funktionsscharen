@@ -43,14 +43,14 @@ class Practice_1(GenericSolveBlocks):
     def write_first_problem(self):
         #self.next_section("Write_problem")
 
-        equation = MathTex(r"f_a(x) = x^2 - ax")
+        self.equation = MathTex(r"f_a(x) = x^2 - ax")
 
         comment = Tex("Berechne die Nullpunkte der Funktionenschar.", color=YELLOW)
         comment.scale(0.6)
-        comment.next_to(equation, UP)
+        comment.next_to(self.equation, UP)
 
         self.play(
-            Write(equation),
+            Write(self.equation),
             FadeIn(comment, shift=UP),
             run_time=0.7,
         )
@@ -58,15 +58,15 @@ class Practice_1(GenericSolveBlocks):
 
         self.next_section("Make_Room")
 
-        equation.generate_target()
-        equation.target.move_to(UP * 3)
+        self.equation.generate_target()
+        self.equation.target.move_to(UP * 3)
 
         self.play(
             FadeOut(comment),
             run_time=0.5,
         )
         self.play(
-            MoveToTarget(equation),
+            MoveToTarget(self.equation),
             run_time=0.5,
         )
         self.wait()
@@ -82,30 +82,16 @@ class Practice_1(GenericSolveBlocks):
         self.block("Lösung", UP * 2, steps)
     
     def write_second_problem(self):
-        equation = MathTex(r"f_a(x) = \frac{x^2 - a^2}{x}")
-
-        comment = Tex("Berechne die Nullpunkte der Funktionenschar.", color=YELLOW)
-        comment.scale(0.6)
-        comment.next_to(equation, UP)
-
         self.play(
-            Write(equation),
-            FadeIn(comment, shift=UP),
-            run_time=0.7,
-        )
-        self.wait()
-
-        self.next_section("Make_Room")
-
-        equation.generate_target()
-        equation.target.move_to(UP * 3)
-
-        self.play(
-            FadeOut(comment),
+            Unwrite(self.equation),
             run_time=0.5,
         )
+
+        self.equation.become(MathTex(r"f_a(x) = \frac{x^2 - a^2}{x}"))
+        self.equation.move_to(UP * 3)
+
         self.play(
-            MoveToTarget(equation),
+            Write(self.equation),
             run_time=0.5,
         )
         self.wait()
