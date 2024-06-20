@@ -8,7 +8,15 @@ class GenericSolveBlocks(Scene):
 
         self.play(
             [Unwrite(block) for block in self.blocks],
-            run_time=1
+            run_time=1,
+        )
+    
+    def clear_specific_blocks(self, start_index):
+        self.next_section("Clear_blocks")
+
+        self.play(
+            [Unwrite(block) for block in self.blocks[start_index:]],
+            run_time=1,
         )
     
     def block(self, heading, pos, equations, colored_var=None, highlighted=[], wrong=False, scale=1, invincible=False):
