@@ -3,7 +3,7 @@ import os
 import shutil
 import subprocess
 
-checksum_dir = '/tmp/gfs-funktionsscharen'
+checksum_dir = 'media/checksums'
 checksum_file = checksum_dir + '/animation-checksums.txt'
 
 checksums = []
