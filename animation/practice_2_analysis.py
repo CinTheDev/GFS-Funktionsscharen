@@ -78,7 +78,17 @@ class Practice_2(GenericSolveBlocks):
         self.block(r"Funktionen \& Ableitungen", LEFT * 5 + UP * 3.25, functions, scale=0.8, invincible=True)
     
     def solve_nullstellen(self):
-        pass
+        self.nullstellen_solve()
+    
+    def nullstellen_solve(self):
+        steps = [
+            r"f_a(x) = 0",
+            r"x^3 - ax^2 = 0",
+            r"x^2(x - a) = 0",
+            r"x_1 = 0; x_2 = a",
+        ]
+
+        self.block("Nullstellen", UP * 2 + RIGHT * 2, steps)
     
     def solve_turning_points(self):
         pass
