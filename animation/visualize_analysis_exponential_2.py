@@ -74,6 +74,14 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
 
         # TODO: Draw markers
 
+        turning_point_x_marker = always_redraw(
+            lambda: self.get_turning_point_x_marker()
+        )
+
+        self.play(
+            Write(turning_point_x_marker),
+        )
+
         self.wait()
 
         self.next_section("h_n1")
@@ -92,15 +100,51 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
     def get_turning_point(self):
         a = self.param_a.tracker.get_value()
 
-        if abs(a) < 0.01:
-            return 999999
-
-        return -1.0 / a
+        return a and -1.0 / a or 99
     
     def get_inflection_point(self):
         a = self.param_a.tracker.get_value()
 
-        if abs(a) < 0.01:
-            return 999999
+        return a and -2.0 / a or 99
+    
+    def get_turning_point_x_marker(self):
+        a = self.param_a.tracker.get_value()
+        x = self.get_turning_point()
 
-        return -2.0 / a
+        marker_string = [
+            "-{1} \over ",
+            "{0:.2f}".format(a)
+        ]
+
+        marker = MathTex(*marker_string, color=YELLOW)
+        marker.set_color_by_tex(".", color=PURPLE)
+
+        return self.get_x_marker(x, marker)
+
+    def get_x_marker(self, x, marker):
+        grid_origin = self.grid.get_origin()
+
+        a = self.param_a.tracker.get_value()
+
+        fx = self.graph_function(x)
+        point = self.grid.input_to_graph_point(x, self.function)
+
+        if fx >= 0:
+            #marker.move_to(grid_origin + DOWN * 1)
+            marker.next_to(grid_origin, DOWN)
+        else:
+            #marker.move_to(grid_origin + UP * 0.5)
+            marker.next_to(grid_origin, UP)
+        
+        marker.set_x(point[0])
+
+        point_center = point.copy()
+        point_center[1] = grid_origin[1]
+
+        line_length = abs(point[1] - point_center[1])
+        line_length -= 0.2
+
+        line = DashedLine(start=point, end=point_center)
+        line.set_length(line_length)
+
+        return VGroup(marker, line)
