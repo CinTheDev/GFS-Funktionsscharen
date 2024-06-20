@@ -22,6 +22,7 @@ scenes = [
     "analysis_exponential",
     "visualize_analysis_exponential",
     "analysis_exponential_2",
+    "visualize_analysis_exponential_2",
 ]
 
 # Create empty "out" directory
