@@ -117,8 +117,9 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         x = self.get_turning_point()
 
         marker_string = [
-            "-{1} \over ",
-            "{0:.2f}".format(a)
+            r"-{1 \over ",
+            "{0:.2f}".format(a),
+            r"}",
         ]
 
         marker = MathTex(*marker_string, color=YELLOW)
@@ -131,9 +132,9 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         x = self.get_turning_point()
 
         marker_string = [
-            "-{1} \over {",
+            r"-{1 \over {",
             "{0:.2f}".format(a),
-            " e}",
+            r" e}}",
         ]
 
         marker = MathTex(*marker_string, color=YELLOW)
