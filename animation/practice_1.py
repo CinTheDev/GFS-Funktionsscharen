@@ -6,6 +6,7 @@ class Practice_1(GenericSolveBlocks):
     def construct(self):
         self.transition()
         self.write_problem()
+        self.solve_problem()
     
     def transition(self):
         self.next_section("Transition")
@@ -32,7 +33,7 @@ class Practice_1(GenericSolveBlocks):
             MoveToTarget(page_num),
             run_time=0.5,
         )
-        self.wait()
+        #self.wait()
     
     def write_problem(self):
         #self.next_section("Write_problem")
@@ -49,3 +50,28 @@ class Practice_1(GenericSolveBlocks):
             run_time=0.7,
         )
         self.wait()
+
+        self.next_section("Make_Room")
+
+        equation.generate_target()
+        equation.target.move_to(UP * 3)
+
+        self.play(
+            FadeOut(comment),
+            run_time=0.5,
+        )
+        self.play(
+            MoveToTarget(equation),
+            run_time=0.5,
+        )
+        self.wait()
+    
+    def solve_problem(self):
+        steps = [
+            r"f_a(x) = 0",
+            r"x^2 - ax = 0",
+            r"x^2 = ax",
+            r"x = a",
+        ]
+
+        self.block("Lösung", UP * 2, steps)
