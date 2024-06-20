@@ -5,6 +5,7 @@ import subprocess
 
 checksum_dir = 'media/checksums'
 checksum_file = checksum_dir + '/animation-checksums.txt'
+checksum_file_old = checksum_dir + '/animation-checksums.old.txt'
 
 checksums = []
 
@@ -15,7 +16,7 @@ if os.path.isfile(checksum_file):
         checksums.append(line)
     
     f.close()
-    shutil.rmtree(checksum_dir)
+    os.rename(checksum_file, checksum_file_old)
 
 scenes = sys.argv[1:]
 
@@ -37,7 +38,8 @@ for i in range(len(scenes)):
     # Render the scene
     subprocess.run(['manim', 'render', '-qh', '-a', '--save_sections', scene_filename])
 
-os.mkdir(checksum_dir)
+if not os.path.isdir(checksum_dir):
+    os.mkdir(checksum_dir)
 
 f = open(checksum_file, "w")
 
