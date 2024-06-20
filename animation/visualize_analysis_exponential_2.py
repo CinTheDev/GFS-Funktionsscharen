@@ -58,10 +58,10 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         )
 
         turning_point = always_redraw(
-            lambda: Dot(point=self.grid.input_to_graph_point(self.get_turning_point(), self.function), color=ORANGE)
+            lambda: self.get_turning_point_dot()
         )
         inflection_point = always_redraw(
-            lambda: Dot(point=self.grid.input_to_graph_point(self.get_inflection_point(), self.function), color=RED)
+            lambda: self.get_inflection_point_dot()
         )
 
         self.play(
@@ -98,6 +98,34 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         )
         self.wait()
 
+        self.next_section("h_1p5")
+
+        self.play(
+            Unwrite(turning_point_x_marker),
+            Unwrite(turning_point_y_marker),
+            run_time=0.5,
+        )
+
+        inflection_point_x_marker = always_redraw(
+            lambda: self.get_inflection_point_x_marker()
+        )
+
+        inflection_point_y_marker = always_redraw(
+            lambda: self.get_inflection_point_y_marker()
+        )
+
+        self.play(
+            Write(inflection_point_x_marker),
+            Write(inflection_point_y_marker),
+        )
+
+        self.play(
+            self.param_a.tracker.animate.set_value(1.5),
+            run_time=5,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
         return x * math.exp(a * x)
@@ -105,16 +133,41 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
     def get_turning_point(self):
         a = self.param_a.tracker.get_value()
 
-        return a and -1.0 / a or 99
+        if abs(a) < 0.1:
+            return None
+
+        return -1.0 / a
     
     def get_inflection_point(self):
         a = self.param_a.tracker.get_value()
 
-        return a and -2.0 / a or 99
+        if abs(a) < 0.1:
+            return None
+
+        return -2.0 / a
+
+    def get_turning_point_dot(self):
+        x = self.get_turning_point()
+
+        if x is None:
+            return VGroup()
+
+        return Dot(point=self.grid.input_to_graph_point(x, self.function), color=ORANGE)
+
+    def get_inflection_point_dot(self):
+        x = self.get_inflection_point()
+
+        if x is None:
+            return VGroup()
+        
+        return Dot(point=self.grid.input_to_graph_point(x, self.function), color=RED)
     
     def get_turning_point_x_marker(self):
         a = self.param_a.tracker.get_value()
         x = self.get_turning_point()
+
+        if x is None:
+            return VGroup()
 
         marker_string = [
             r"-{1 \over ",
@@ -131,10 +184,49 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         a = self.param_a.tracker.get_value()
         x = self.get_turning_point()
 
+        if x is None:
+            return VGroup()
+
         marker_string = [
             r"-{1 \over {",
             "{0:.2f}".format(a),
             r" e}}",
+        ]
+
+        marker = MathTex(*marker_string, color=YELLOW)
+        marker.set_color_by_tex(".", color=PURPLE)
+
+        return self.get_y_marker(x, marker)
+    
+    def get_inflection_point_x_marker(self):
+        a = self.param_a.tracker.get_value()
+        x = self.get_inflection_point()
+
+        if x is None:
+            return VGroup()
+
+        marker_string = [
+            r"-{2 \over {",
+            "{0:.2f}".format(a),
+            r" e}}",
+        ]
+
+        marker = MathTex(*marker_string, color=YELLOW)
+        marker.set_color_by_tex(".", color=PURPLE)
+
+        return self.get_x_marker(x, marker)
+    
+    def get_inflection_point_y_marker(self):
+        a = self.param_a.tracker.get_value()
+        x = self.get_inflection_point()
+
+        if x is None:
+            return VGroup()
+
+        marker_string = [
+            r"-{2 \over {",
+            "{0:.2f}".format(a),
+            r" e^2}}",
         ]
 
         marker = MathTex(*marker_string, color=YELLOW)
@@ -151,10 +243,8 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         point = self.grid.input_to_graph_point(x, self.function)
 
         if fx >= 0:
-            #marker.move_to(grid_origin + DOWN * 1)
             marker.next_to(grid_origin, DOWN)
         else:
-            #marker.move_to(grid_origin + UP * 0.5)
             marker.next_to(grid_origin, UP)
         
         marker.set_x(point[0])
@@ -178,9 +268,9 @@ class VisualizeAnalysisExponentialAdvanced(Scene):
         point = self.grid.input_to_graph_point(x, self.function)
 
         if x >= 0:
-            marker.next_to(grid_origin, LEFT) # *2
+            marker.next_to(grid_origin, LEFT)
         else:
-            marker.next_to(grid_origin, RIGHT) # *1.5
+            marker.next_to(grid_origin, RIGHT)
         
         marker.set_y(point[1])
 
