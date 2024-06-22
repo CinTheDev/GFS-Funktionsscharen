@@ -146,7 +146,7 @@ class Practice_1(GenericSolveBlocks):
             run_time=0.5,
         )
 
-        new_equation = MathTex(r"\int cos(ax) \, dx")
+        new_equation = MathTex(r"\int_0^a cos(ax) \, dx")
         self.equation.become(new_equation)
 
         comment = Tex("Löse das Integral", color=YELLOW)
@@ -179,4 +179,11 @@ class Practice_1(GenericSolveBlocks):
         self.wait()
     
     def solve_integral_problem(self):
-        pass
+        steps = [
+            r"\left[ \frac{1}{a} sin(ax) \right]_0^a",
+            r"(\frac{1}{a} sin(a \cdot a)) - (\frac{1}{a} sin(a \cdot 0))",
+            r"\frac{sin(a^2)}{a} - \frac{0}{a}",
+            r"\frac{sin(a^2)}{a}",
+        ]
+
+        self.block("Lösung", UP * 2, steps)
