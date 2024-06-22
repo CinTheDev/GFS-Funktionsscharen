@@ -16,6 +16,10 @@ class Practice_1(GenericSolveBlocks):
 
         self.write_third_problem()
         self.solve_third_problem()
+        self.clear_blocks()
+
+        self.write_integral_problem()
+        self.solve_integral_problem()
     
     def transition(self):
         self.next_section("Transition")
@@ -26,20 +30,20 @@ class Practice_1(GenericSolveBlocks):
 
         self.next_section("Prepare")
 
-        page_num = Tex("Seite 163 Nummer 1")
-        page_num.scale(0.4)
-        page_num.move_to(LEFT * 6 + UP * 5)
+        self.page_num = Tex("Seite 163 Nummer 1")
+        self.page_num.scale(0.4)
+        self.page_num.move_to(LEFT * 6 + UP * 5)
 
-        page_num.generate_target()
-        page_num.target.move_to(LEFT * 6 + UP * 3.75)
+        self.page_num.generate_target()
+        self.page_num.target.move_to(LEFT * 6 + UP * 3.75)
 
-        self.add(page_num)
+        self.add(self.page_num)
         self.play(
             FadeOut(title),
             run_time=0.5,
         )
         self.play(
-            MoveToTarget(page_num),
+            MoveToTarget(self.page_num),
             run_time=0.5,
         )
     
@@ -134,3 +138,45 @@ class Practice_1(GenericSolveBlocks):
         ]
 
         self.block("Lösung", UP * 2, steps)
+    
+    def write_integral_problem(self):
+        self.play(
+            Unwrite(self.equation),
+            FadeOut(self.page_num, shift=UP),
+            run_time=0.5,
+        )
+
+        new_equation = MathTex(r"\int cos(ax) \, dx")
+        self.equation.become(new_equation)
+
+        comment = Tex("Löse das Integral", color=YELLOW)
+        comment.scale(0.6)
+        comment.next_to(new_equation, UP)
+
+        self.play(
+            Write(self.equation),
+            run_time=0.5,
+        )
+        self.play(
+            Write(comment),
+            run_time=0.5,
+        )
+        self.wait()
+
+        self.next_section("Integral_Move")
+
+        self.equation.generate_target()
+        self.equation.target.move_to(UP * 3)
+
+        self.play(
+            Unwrite(comment),
+            run_time=0.5,
+        )
+        self.play(
+            MoveToTarget(self.equation),
+            run_time=0.5,
+        )
+        self.wait()
+    
+    def solve_integral_problem(self):
+        pass
