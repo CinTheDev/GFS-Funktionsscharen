@@ -105,7 +105,18 @@ class Bundles(Scene):
         )
     
     def first_example_graph(self):
-        pass
+        function = lambda x, a: a * x**2 - 4*a
+        bundles = [-2, 2]
+        animate_steps = [
+            -1,
+            0.5,
+        ]
+        animate_lengths = [
+            3,
+            2,
+        ]
+
+        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths)
     
     def second_example(self):
         equation = MathTex(r"f_a(x) = x^2 - (a + 2)x + (a - 2)a")
@@ -201,3 +212,60 @@ class Bundles(Scene):
     
     def second_example_graph(self):
         pass
+    
+    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths):
+        screen = FullScreenRectangle()
+
+        grid = Axes(
+            x_range=(-5, 5, 1),
+            y_range=(-3, 3, 1),
+            x_length=screen.width,
+            y_length=screen.height,
+            axis_config={
+                'include_numbers': True,
+            },
+        )
+
+        x_label = grid.get_x_axis_label("x")
+        y_label = grid.get_y_axis_label("f(x)")
+        grid_labels = VGroup(x_label, y_label)
+
+        self.play(
+            Create(grid),
+            Write(grid_labels),
+            run_time=3,
+        )
+
+        param_a = ValueTracker(initial_param)
+
+        draw_function = always_redraw(
+            lambda: grid.plot(
+                lambda x: function(x, param_a.get_value()),
+                color=BLUE,
+            )
+        )
+
+        self.play(
+            Create(draw_function),
+        )
+        
+        for bundle in bundles_x:
+            draw_bundle = Dot(point=grid.input_to_graph_point(bundle, draw_function), color=PURPLE)
+
+            self.play(
+                GrowFromCenter(draw_bundle, point_color=RED),
+                run_time=1,
+            )
+        
+        self.wait()
+
+        if len(animate_steps) != len(animate_lengths):
+            raise Exception("ERROR IN Bundles::quick_graph() - animate_steps does not have same length as animate_lengths.")
+        
+        for i in range(len(animate_steps)):
+            self.next_section("Graph_value_animate")
+            self.play(
+                param_a.animate.set_value(animate_steps[i]),
+                run_time=animate_lengths[i],
+            )
+            self.wait()
