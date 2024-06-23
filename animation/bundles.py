@@ -227,16 +227,16 @@ class Bundles(Scene):
         bundles = []
         animate_steps = [
             -1,
-            0.5,
+            8,
         ]
         animate_lengths = [
             5,
             3,
         ]
 
-        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths)
+        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths, y_range=(-4, 10, 2))
     
-    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths):
+    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
         self.subtitle.generate_target()
         self.subtitle.target.shift(UP)
 
@@ -248,8 +248,8 @@ class Bundles(Scene):
         screen = FullScreenRectangle()
 
         grid = Axes(
-            x_range=(-7, 7, 1),
-            y_range=(-5, 5, 1),
+            x_range=x_range,
+            y_range=y_range,
             x_length=screen.width,
             y_length=screen.height,
             axis_config={
