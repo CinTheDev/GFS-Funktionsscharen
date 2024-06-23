@@ -2,6 +2,7 @@ from manim import *
 
 class GenericSolveBlocks(Scene):
     blocks = []
+    default_color = YELLOW
 
     def clear_blocks(self):
         self.next_section("Clear_blocks")
@@ -20,7 +21,7 @@ class GenericSolveBlocks(Scene):
         )
     
     def block(self, heading, pos, equations, colored_var=None, highlighted=[], wrong=False, scale=1, invincible=False):
-        top = Tex(heading, color=YELLOW)
+        top = Tex(heading, color=self.default_color)
         top.scale(0.6)
         top.move_to(pos)
 
@@ -70,7 +71,7 @@ class GenericSolveBlocks(Scene):
                 Write(cross),
             )
         else:
-            border = SurroundingRectangle(all_equations, color=YELLOW, corner_radius=0.1)
+            border = SurroundingRectangle(all_equations, color=self.default_color, corner_radius=0.1)
 
             all_equations.add(border),
 

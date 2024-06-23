@@ -4,6 +4,7 @@ from generic_solve_blocks import *
 
 class Practice_Bundles(GenericSolveBlocks):
     def construct(self):
+        self.default_color = BLUE
         self.transition()
 
         self.write_first_problem()
@@ -29,6 +30,7 @@ class Practice_Bundles(GenericSolveBlocks):
     
     def write_first_problem(self):
         equation = MathTex(r"f_r(x) = 2(x + 5) \cdot e^{rx}")
+        self.blocks.append(VGroup(equation))
 
         self.play(
             Write(equation),
