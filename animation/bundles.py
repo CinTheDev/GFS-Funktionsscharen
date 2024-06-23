@@ -173,7 +173,7 @@ class Bundles(Scene):
         top.move_to(UP * 2)
 
         self.play(
-            Transform(equations_left, top),
+            Transform(equations_left, top, replace_mobject_with_target_in_scene=True),
             run_time=1,
         )
 
@@ -209,9 +209,32 @@ class Bundles(Scene):
             run_time=1,
         )
         self.wait()
+
+        self.next_section("Second_Example_Clear")
+
+        self.play(
+            LaggedStart(
+                [Unwrite(eq) for eq in equations_right],
+                lag_ratio=0.1,
+            ),
+            Unwrite(comment),
+            Uncreate(underline),
+            run_time=1,
+        )
     
     def second_example_graph(self):
-        pass
+        function = lambda x, a: x**2 - (a + 2)*x + (a - 2)*a
+        bundles = []
+        animate_steps = [
+            -1,
+            0.5,
+        ]
+        animate_lengths = [
+            5,
+            3,
+        ]
+
+        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths)
     
     def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths):
         self.subtitle.generate_target()
