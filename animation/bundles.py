@@ -5,8 +5,12 @@ from manim import *
 class Bundles(Scene):
     def construct(self):
         self.transition()
+
         self.first_example()
+        self.first_example_graph()
+
         self.second_example()
+        self.second_example_graph()
     
     def transition(self):
         self.next_section("Transition")
@@ -100,6 +104,9 @@ class Bundles(Scene):
             )
         )
     
+    def first_example_graph(self):
+        pass
+    
     def second_example(self):
         equation = MathTex(r"f_a(x) = x^2 - (a + 2)x + (a - 2)a")
 
@@ -191,3 +198,6 @@ class Bundles(Scene):
             run_time=1,
         )
         self.wait()
+    
+    def second_example_graph(self):
+        pass
