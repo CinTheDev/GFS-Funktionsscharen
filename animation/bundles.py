@@ -301,6 +301,7 @@ class Bundles(Scene):
             self.play(
                 param_a.animate.set_value(animate_steps[i]),
                 run_time=animate_lengths[i],
+                rate_func=rate_functions.smooth,
             )
             self.wait()
         
