@@ -65,22 +65,29 @@ class Bundles(Scene):
             MoveToTarget(equation),
             run_time=0.7,
         )
-        steps = [
+        steps_left = [
             MathTex(r"f_a(x) = f_b(x); {{ a \neq b }}"),
             MathTex(r"f_1(x) = f_2(x)"),
             MathTex(r"1 \cdot x^2 - 4 \cdot 1 = 2 \cdot x^2 - 4 \cdot 2"),
             MathTex(r"x^2 - 4 = 2x^2 - 8"),
             MathTex(r"4 = x^2"),
             MathTex(r"\pm 2 = x"),
-            MathTex(r"f_a(-2) = 0 = f_a(2)"),
+            #MathTex(r"f_a(-2) = 0 = f_a(2)"),
+        ]
+        steps_right = [
+            MathTex(r"f_a(-2) = a(-2)^2 - 4a"),
+            MathTex(r"f_a(-2) = 4a - 4a"),
+            MathTex(r"f_a(-2) = 0"),
+            MathTex(r"f_a(2) = a(2)^2 - 4a"),
+            MathTex(r"f_a(2) = 0"),
         ]
 
         last_pos = equation
-        all_equations = VGroup(equation)
+        equations_left = VGroup(equation)
 
-        steps[0].submobjects[1].set_color(ORANGE)
+        steps_left[0].submobjects[1].set_color(ORANGE)
 
-        for step in steps:
+        for step in steps_left:
             tex = step
             tex.next_to(last_pos, DOWN)
 
@@ -92,16 +99,57 @@ class Bundles(Scene):
             self.next_section("Solve_Step")
 
             last_pos = tex
-            all_equations.add(tex)
+            equations_left.add(tex)
+        
+        self.next_section("Move_equations")
+
+        equations_left.generate_target()
+        equations_left.target.shift(LEFT * 4),
+
+        self.play(
+            MoveToTarget(equations_left),
+            run_time=1.5,
+        )
+
+        heading_right = Tex("Höhe", color=BLUE)
+        heading_right.scale(0.6)
+        heading_right.move_to(UP * 2.5 + RIGHT * 4)
+
+        self.play(
+            Write(heading_right),
+            run_time=0.5,
+        )
+
+        last_pos = heading_right
+        equations_right = VGroup(heading_right)
+
+        for step in steps_right:
+            tex = step
+            tex.next_to(last_pos, DOWN)
+
+            self.play(
+                FadeIn(tex, shift=LEFT),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Solve_Step")
+
+            last_pos = tex
+            equations_right.add(tex)
         
         self.next_section("Clear_First_Example")
 
         self.play(
             LaggedStart(
-                [Unwrite(eq) for eq in all_equations],
+                [Unwrite(eq) for eq in equations_left],
                 lag_ratio=0.1,
                 run_time=1
-            )
+            ),
+            LaggedStart(
+                [Unwrite(eq) for eq in equations_right],
+                lag_ratio=0.1,
+                run_time=1
+            ),
         )
     
     def first_example_graph(self):
