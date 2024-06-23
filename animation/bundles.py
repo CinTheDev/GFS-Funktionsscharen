@@ -99,7 +99,6 @@ class Bundles(Scene):
                 run_time=1
             )
         )
-        self.wait()
     
     def second_example(self):
         equation = MathTex(r"f_a(x) = x^2 - (a + 2)x + (a - 2)a")
@@ -119,7 +118,6 @@ class Bundles(Scene):
             MoveToTarget(equation),
             run_time=1,
         )
-        #self.wait()
 
         steps_left = [
             r"f_{-2}(x) = f_{2}(x)",
