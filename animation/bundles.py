@@ -315,11 +315,21 @@ class Bundles(Scene):
             run_time=3,
         )
 
-        param_a = ValueTracker(initial_param)
+        param_a = Variable(
+            initial_param,
+            Tex("a", color=BLUE),
+            num_decimal_places=2,
+        )
+        param_a.move_to(LEFT * 5 + DOWN * 3)
+
+        self.play(
+            Write(param_a),
+            run_time=0.5,
+        )
 
         draw_function = always_redraw(
             lambda: grid.plot(
-                lambda x: function(x, param_a.get_value()),
+                lambda x: function(x, param_a.tracker.get_value()),
                 color=BLUE,
             )
         )
@@ -347,7 +357,7 @@ class Bundles(Scene):
         for i in range(len(animate_steps)):
             self.next_section("Graph_value_animate")
             self.play(
-                param_a.animate.set_value(animate_steps[i]),
+                param_a.tracker.animate.set_value(animate_steps[i]),
                 run_time=animate_lengths[i],
                 rate_func=rate_functions.smooth,
             )
@@ -359,6 +369,7 @@ class Bundles(Scene):
             Uncreate(grid),
             Uncreate(draw_function),
             Unwrite(grid_labels),
+            Unwrite(param_a),
             [ShrinkToCenter(draw_bundle) for draw_bundle in draw_bundles],
             run_time=1,
         )
