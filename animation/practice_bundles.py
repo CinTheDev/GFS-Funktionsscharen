@@ -64,5 +64,13 @@ class Practice_Bundles(GenericSolveBlocks):
             r"x_2 = 0",
         ]
 
+        steps_ctrl = [
+            r"f_r(-5) = 2(0) \cdot e^{-5r}",
+            r"f_r(-5) = 0",
+            r"f_r(0) = 2(5) \cdot 1",
+            r"f_r(0) = 10",
+        ]
+
         self.block("Auflösen", UP * 2, steps_1)
-        self.block("Nullprodukt", UP * 2 + RIGHT * 5, steps_2)
+        self.block("Nullprodukt", UP * 2 + LEFT * 5, steps_2)
+        self.block("Kontrolle", UP * 2 + RIGHT * 5, steps_ctrl, scale=0.8)
