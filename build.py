@@ -29,6 +29,7 @@ scenes = [
     "practice_2_analysis",
 
     "bundles",
+    "practice_bundles",
 ]
 
 # Create empty "out" directory
