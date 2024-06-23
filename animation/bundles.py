@@ -17,30 +17,30 @@ class Bundles(Scene):
 
         title = Tex("Spezielle Eigenschaften von Funktionenscharen", color=BLUE)
 
-        subtitle = Tex("1: Bestimmen von Funktionsbündeln", color=BLUE)
-        subtitle.scale(0.6)
-        subtitle.next_to(title, DOWN)
+        self.subtitle = Tex("1: Bestimmen von Funktionsbündeln", color=BLUE)
+        self.subtitle.scale(0.6)
+        self.subtitle.next_to(title, DOWN)
 
         self.play(
             Write(title),
         )
         self.play(
-            FadeIn(subtitle, shift=UP),
+            FadeIn(self.subtitle, shift=UP),
             run_time=0.7,
         )
         self.wait()
 
         self.next_section("Make_Room")
 
-        subtitle.generate_target()
-        subtitle.target.move_to(UP * 3.5)
+        self.subtitle.generate_target()
+        self.subtitle.target.move_to(UP * 3.5)
 
         self.play(
             Unwrite(title),
             run_time=0.5,
         )
         self.play(
-            MoveToTarget(subtitle),
+            MoveToTarget(self.subtitle),
             run_time=0.7
         )
         self.wait()
@@ -214,11 +214,19 @@ class Bundles(Scene):
         pass
     
     def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths):
+        self.subtitle.generate_target()
+        self.subtitle.target.shift(UP)
+
+        self.play(
+            MoveToTarget(self.subtitle),
+            run_time=0.5,
+        )
+
         screen = FullScreenRectangle()
 
         grid = Axes(
-            x_range=(-5, 5, 1),
-            y_range=(-3, 3, 1),
+            x_range=(-7, 7, 1),
+            y_range=(-5, 5, 1),
             x_length=screen.width,
             y_length=screen.height,
             axis_config={
@@ -248,13 +256,16 @@ class Bundles(Scene):
         self.play(
             Create(draw_function),
         )
+
+        draw_bundles = VGroup()
         
         for bundle in bundles_x:
             draw_bundle = Dot(point=grid.input_to_graph_point(bundle, draw_function), color=PURPLE)
+            draw_bundles.add(draw_bundle)
 
             self.play(
                 GrowFromCenter(draw_bundle, point_color=RED),
-                run_time=1,
+                run_time=0.5,
             )
         
         self.wait()
@@ -269,3 +280,20 @@ class Bundles(Scene):
                 run_time=animate_lengths[i],
             )
             self.wait()
+        
+        self.next_section("Remove_graph")
+
+        self.play(
+            Uncreate(grid),
+            Uncreate(draw_function),
+            Unwrite(grid_labels),
+            [ShrinkToCenter(draw_bundle) for draw_bundle in draw_bundles],
+            run_time=1,
+        )
+
+        self.subtitle.generate_target()
+        self.subtitle.target.shift(DOWN)
+        self.play(
+            MoveToTarget(self.subtitle),
+            run_time=0.5,
+        )
