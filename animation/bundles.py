@@ -282,9 +282,9 @@ class Bundles(Scene):
             3,
         ]
 
-        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths, y_range=(-4, 10, 2))
+        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths, fadeout=False, y_range=(-4, 10, 2))
     
-    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
+    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths, fadeout=True, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
         self.subtitle.generate_target()
         self.subtitle.target.shift(UP)
 
@@ -363,6 +363,9 @@ class Bundles(Scene):
             )
             self.wait()
         
+        if not fadeout:
+            return
+
         self.next_section("Remove_graph")
 
         self.play(
