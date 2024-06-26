@@ -59,6 +59,24 @@ class PointAnalysis(Scene):
             run_time=2,
         )
         self.wait()
+
+        self.next_section("Goes_Left")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(-1.5),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Goes_Right")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(1.5),
+            run_time=4,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
