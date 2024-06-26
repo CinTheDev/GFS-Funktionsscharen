@@ -6,6 +6,7 @@ class PointAnalysis(Scene):
     def construct(self):
         self.graph()
         self.simple_insertion()
+        self.solve_turning_point()
     
     def graph(self):
         self.next_section("Draw_Graph")
@@ -132,6 +133,47 @@ class PointAnalysis(Scene):
             run_time=2,
         )
         self.wait()
+    
+    def solve_turning_point(self):
+        self.next_section("Start_Solving_turning_point")
+        steps = [
+            r"f'_a(x) = 0",
+            r"4x - 8a = 0",
+            r"4x = 8a",
+            r"x = 0.5a",
+        ]
+
+        heading = Tex("Extremstelle herausfinden", color=ORANGE)
+        heading.scale(0.6)
+        heading.move_to(LEFT * 4.5 + UP * 2)
+
+        steps_tex = VGroup(heading)
+
+        last_pos = heading
+
+        for step in steps:
+            step_tex = MathTex(step)
+            step_tex.next_to(last_pos, DOWN)
+            
+            steps_tex.add(step_tex)
+            last_pos = step_tex
+        
+        steps_background = BackgroundRectangle(steps_tex, buff=0.1, fill_opacity=1, stroke_color=ORANGE, stroke_opacity=1, stroke_width=1)
+
+        self.play(
+            GrowFromCenter(steps_background),
+            run_time=1,
+        )
+
+        for step in steps_tex:
+            self.play(
+                Write(step),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Write_equations")
+        
+        steps_tex.add(steps_background)
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
