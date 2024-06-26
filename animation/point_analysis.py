@@ -8,6 +8,9 @@ class PointAnalysis(Scene):
         self.simple_insertion()
         self.solve_turning_point()
         self.solve_cool_function()
+        self.graph_cool_function()
+
+        # TODO: Second example
     
     def graph(self):
         self.next_section("Draw_Graph")
@@ -148,7 +151,7 @@ class PointAnalysis(Scene):
         heading.scale(0.6)
         heading.move_to(LEFT * 4.5 + UP * 2)
 
-        steps_tex = VGroup(heading)
+        self.steps_tex_left = VGroup(heading)
 
         last_pos = heading
 
@@ -156,17 +159,24 @@ class PointAnalysis(Scene):
             step_tex = MathTex(step)
             step_tex.next_to(last_pos, DOWN)
             
-            steps_tex.add(step_tex)
+            self.steps_tex_left.add(step_tex)
             last_pos = step_tex
         
-        steps_background = BackgroundRectangle(steps_tex, buff=0.1, fill_opacity=1, stroke_color=ORANGE, stroke_opacity=1, stroke_width=1)
+        steps_background = BackgroundRectangle(
+            self.steps_tex_left,
+            buff=0.1,
+            fill_opacity=1,
+            stroke_color=ORANGE,
+            stroke_opacity=1,
+            stroke_width=1
+        )
 
         self.play(
             GrowFromCenter(steps_background),
             run_time=1,
         )
 
-        for step in steps_tex:
+        for step in self.steps_tex_left:
             self.play(
                 Write(step),
                 run_time=0.5,
@@ -174,7 +184,7 @@ class PointAnalysis(Scene):
             self.wait()
             self.next_section("Write_equations")
         
-        steps_tex.add(steps_background)
+        self.steps_tex_left.add(steps_background)
     
     def solve_cool_function(self):
         self.next_section("Solve_cool_function")
@@ -186,29 +196,87 @@ class PointAnalysis(Scene):
             r"g(a) = 5.5a^2",
         ]
 
-        steps_tex = VGroup()
+        self.steps_tex_right = VGroup()
 
         for step in steps:
             step_tex = MathTex(step)
-            steps_tex.add(step_tex)
+            self.steps_tex_right.add(step_tex)
         
-        steps_tex.arrange(DOWN)
-        steps_tex.move_to(RIGHT * 3 + UP * 1)
+        self.steps_tex_right.arrange(DOWN)
+        self.steps_tex_right.move_to(RIGHT * 3 + UP * 1)
 
-        steps_background = BackgroundRectangle(steps_tex, buff=0.1, fill_opacity=1, stroke_color=ORANGE, stroke_opacity=1, stroke_width=1)
+        steps_background = BackgroundRectangle(
+            self.steps_tex_right,
+            buff=0.1,
+            fill_opacity=1,
+            stroke_color=ORANGE,
+            stroke_opacity=1,
+            stroke_width=1
+        )
 
         self.play(
             GrowFromCenter(steps_background),
             run_time=1,
         )
 
-        for step in steps_tex:
+        for step in self.steps_tex_right:
             self.play(
                 Write(step),
                 run_time=0.5,
             )
             self.wait()
             self.next_section("Draw_step")
+        
+        self.steps_tex_right.add(steps_background)
+    
+    def graph_cool_function(self):
+        self.next_section("Compress_Blocks")
+
+        cool_function_equation = MathTex(r"g({{ a }}) = 5.5{{ a }}^2")
+        cool_function_equation.set_color_by_tex("a", color=PURPLE)
+        cool_function_equation.move_to(RIGHT * 4 + DOWN * 3)
+        cool_function_equation.add_background_rectangle(
+            opacity=1,
+            stroke_width=1,
+            stroke_opacity=1,
+            stroke_color=ORANGE,
+            buff=0.1,
+        )
+
+        self.play(
+            ShrinkToCenter(self.steps_tex_left),
+            Transform(self.steps_tex_right, cool_function_equation),
+            run_time=1,
+        )
+        self.wait()
+
+        self.next_section("Graph_g")
+
+        self.play(
+            Unwrite(self.simple_insertion_function),
+            Unwrite(self.grid_labels),
+            run_time=0.5,
+        )
+
+        self.turning_point_function = always_redraw(
+            lambda: self.grid.plot(
+                lambda a: self.graph_turning_point_function(a),
+                color=PURPLE,
+            )
+        )
+        new_labels = VGroup(
+            self.grid.get_x_axis_label("a"),
+            self.grid.get_y_axis_label("g(x)"),
+        )
+
+        self.grid_labels.become(new_labels)
+
+        self.play(
+            Write(self.turning_point_function),
+            Write(self.grid_labels),
+            run_time=0.5,
+        )
+        self.wait()
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
@@ -217,3 +285,6 @@ class PointAnalysis(Scene):
     def graph_point_function(self, a):
         x = self.param_a.tracker.get_value()
         return 2 * x**2 - 8 * a * x + 9 * a**2
+    
+    def graph_turning_point_function(self, a):
+        return 5.5 * a**2
