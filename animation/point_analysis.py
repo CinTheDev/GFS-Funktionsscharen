@@ -7,6 +7,7 @@ class PointAnalysis(Scene):
         self.graph()
         self.simple_insertion()
         self.solve_turning_point()
+        self.solve_cool_function()
     
     def graph(self):
         self.next_section("Draw_Graph")
@@ -174,6 +175,40 @@ class PointAnalysis(Scene):
             self.next_section("Write_equations")
         
         steps_tex.add(steps_background)
+    
+    def solve_cool_function(self):
+        self.next_section("Solve_cool_function")
+
+        steps = [
+            r"g(a) = f_a(0.5a)",
+            r"g(a) = 2(0.5a)^2 - 8a(0.5a) + 9a^2",
+            r"g(a) = 0.5a^2 - 4a^2 + 9a^2",
+            r"g(a) = 5.5a^2",
+        ]
+
+        steps_tex = VGroup()
+
+        for step in steps:
+            step_tex = MathTex(step)
+            steps_tex.add(step_tex)
+        
+        steps_tex.arrange(DOWN)
+        steps_tex.move_to(RIGHT * 3 + UP * 1)
+
+        steps_background = BackgroundRectangle(steps_tex, buff=0.1, fill_opacity=1, stroke_color=ORANGE, stroke_opacity=1, stroke_width=1)
+
+        self.play(
+            GrowFromCenter(steps_background),
+            run_time=1,
+        )
+
+        for step in steps_tex:
+            self.play(
+                Write(step),
+                run_time=0.5,
+            )
+            self.wait()
+            self.next_section("Draw_step")
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
