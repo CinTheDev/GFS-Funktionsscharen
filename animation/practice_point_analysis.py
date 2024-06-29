@@ -47,7 +47,7 @@ class PracticePointAnalysis(GenericSolveBlocks):
         )
         self.wait()
 
-        self.next_section("Make room")
+        self.next_section("Make_room")
 
         self.title.generate_target()
         self.title.target.scale(0.5)
