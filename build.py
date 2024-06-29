@@ -14,25 +14,25 @@ def get_start_scene():
 scenes = [
     "opening",
     "intro_graph_parameter",
-    "intro_graph_properties",
-    "calculation_insertion",
-    "calculation_nullstellen",
-    "calculation_turning_points",
-    "calculation_verification_graph",
+    #"intro_graph_properties",
+    #"calculation_insertion",
+    #"calculation_nullstellen",
+    #"calculation_turning_points",
+    #"calculation_verification_graph",
 
-    "analysis_exponential",
-    "visualize_analysis_exponential",
-    "analysis_exponential_2",
-    "visualize_analysis_exponential_2",
+    #"analysis_exponential",
+    #"visualize_analysis_exponential",
+    #"analysis_exponential_2",
+    #"visualize_analysis_exponential_2",
 
-    "practice_1",
-    "practice_2_analysis",
+    #"practice_1",
+    #"practice_2_analysis",
 
-    "bundles",
-    "practice_bundles",
+    #"bundles",
+    #"practice_bundles",
 
-    "point_analysis",
-    "practice_point_analysis",
+    #"point_analysis",
+    #"practice_point_analysis",
 ]
 
 # Create empty "out" directory
