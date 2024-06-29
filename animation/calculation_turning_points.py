@@ -7,6 +7,8 @@ class CalculationTurningPoints(Scene):
         self.solve_x()
         self.solve_type_zero()
         self.solve_type_other()
+
+        # TODO: Animate solving for inflection points
     
     def animate_solve_steps(self, top_equation, string_list):
         steps = VGroup(top_equation)
