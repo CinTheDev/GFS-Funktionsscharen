@@ -11,6 +11,10 @@ class PracticePointAnalysis(GenericSolveBlocks):
 
         self.introduce_first_problem()
         self.solve_first_problem()
+        self.clear_blocks()
+
+        self.introduce_second_problem()
+        self.solve_second_problem()
 
     def write_steps(self):
         steps = [
@@ -94,6 +98,52 @@ class PracticePointAnalysis(GenericSolveBlocks):
             r"7.5t - 3 = 0",
             r"7.5t = 3",
             r"t = 0.4",
+        ]
+
+        self.block("Extremstellen von f", RIGHT * 5 + UP * 2, steps_solve_first)
+        self.block("Höhenfunktion der Extremstelle", LEFT * 3, steps_create_function)
+        self.block("Extremstellen der Höhenfunktion", RIGHT * 4.25 + DOWN * 1.1, steps_solve_second)
+    
+    def introduce_second_problem(self):
+        equation = MathTex(r"f_t(x) = x^2 - 8x + 20 + t^2 + 6t")
+        self.blocks.append(equation)
+
+        self.play(
+            Write(equation),
+            run_time=0.5,
+        )
+        self.wait()
+
+        self.next_section("Move_equation")
+
+        equation.generate_target()
+        equation.target.move_to(UP * 1.5)
+        equation.target.scale(0.8)
+
+        self.play(
+            MoveToTarget(equation),
+            run_time=1,
+        )
+        self.wait()
+    
+    def solve_second_problem(self):
+        steps_solve_first = [
+            r"f'_t(x) = 2x - 8",
+            r"2x - 8 = 0",
+            r"2x = 8",
+            r"x = 4",
+        ]
+        steps_create_function = [
+            r"g(t) = f_t(4)",
+            r"g(t) = 4^2 - 8(4) + 20 + t^2 + 6t",
+            r"g(t) = 16 - 32 + 20 + t^2 + 6t",
+            r"g(t) = t^2 + 6t + 4",
+        ]
+        steps_solve_second = [
+            r"g'(t) = 2t + 6",
+            r"2t + 6 = 0",
+            r"2t = -6",
+            r"t = -3",
         ]
 
         self.block("Extremstellen von f", RIGHT * 5 + UP * 2, steps_solve_first)
