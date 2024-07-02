@@ -82,13 +82,16 @@ class ExkursParametricFunction(Scene):
         equations.move_to(LEFT * 4 + UP * 2.5)
         equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.4)
 
-        function = self.grid.plot_parametric_curve(
-            lambda a: [
-                a,
-                a,
-                0,
-            ],
-            color=BLUE,
+        function = always_redraw(
+            lambda: self.grid.plot_parametric_curve(
+                lambda a: [
+                    a,
+                    a,
+                    0,
+                ],
+                t_range=[-3, self.param_a.tracker.get_value()],
+                color=BLUE,
+            )
         )
 
         function_point = always_redraw(
@@ -100,7 +103,6 @@ class ExkursParametricFunction(Scene):
 
         self.play(
             FadeIn(equations),
-            #Create(function),
             Create(function_point),
             Flash(function_point),
             run_time=1,
@@ -121,6 +123,22 @@ class ExkursParametricFunction(Scene):
         self.play(
             self.param_a.tracker.animate.set_value(-2.5),
             run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Draw_function")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(-3),
+            run_time=1,
+            rate_func=rate_functions.smooth,
+        )
+        self.add(function)
+
+        self.play(
+            self.param_a.tracker.animate.set_value(3),
+            run_time=3,
             rate_func=rate_functions.smooth,
         )
         self.wait()
