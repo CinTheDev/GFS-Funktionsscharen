@@ -104,9 +104,14 @@ class Locus(Scene):
         # Scroll down
 
         self.grid.generate_target()
+        x_label.generate_target()
+
         self.grid.target.shift(UP * 3)
+        x_label.target.shift(UP * 3)
+
         self.play(
             MoveToTarget(self.grid),
+            MoveToTarget(x_label),
             run_time=1,
             rate_func=rate_functions.smooth,
         )
