@@ -38,6 +38,7 @@ scenes = [
     "locus_calculation",
     "locus_exkurs",
     "locus_exkurs_calculation",
+    "locus_continuation",
 ]
 
 # Create empty "out" directory
