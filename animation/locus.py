@@ -62,7 +62,7 @@ class Locus(Scene):
         equations.move_to(LEFT * 4 + DOWN * 3)
         equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
-        self.base_function = always_redraw(
+        self.function = always_redraw(
             lambda: self.grid.plot(
                 lambda x: self.graph_function(x),
                 color=BLUE,
@@ -72,9 +72,23 @@ class Locus(Scene):
         self.play(
             Create(self.grid),
             Write(self.grid_labels),
-            Write(self.base_function),
+            Write(self.function),
             FadeIn(equations),
             run_time=2,
+        )
+        self.wait()
+
+        self.dot_local_minimum = always_redraw(
+            lambda: Dot(point=self.grid.input_to_graph_point(self.get_local_minimum(), self.function), color=ORANGE)
+        )
+
+        self.next_section("Goes_Down")
+
+        self.add(self.dot_local_minimum)
+        self.play(
+            self.param_a.tracker.animate.set_value(2),
+            run_time=3,
+            rate_func=rate_functions.smooth,
         )
         self.wait()
     
@@ -82,3 +96,11 @@ class Locus(Scene):
         a = self.param_a.tracker.get_value()
 
         return math.exp(2*x) - a * math.exp(x)
+    
+    def get_local_minimum(self):
+        a = self.param_a.tracker.get_value()
+
+        if a < 0.01:
+            return -10.0
+
+        return math.log(a / 2.0)
