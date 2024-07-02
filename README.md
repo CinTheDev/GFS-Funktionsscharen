@@ -6,6 +6,10 @@ Repository zur GFS über Funktionsscharen.
 
 Notizen über Recherche sind in RESEARCH.md geschrieben.
 
+## Allgemeine TODOs
+
+- Anfang konsitenter machen
+
 ## Genutzte Quellen
 
 Anmerkung zu Wikipedia: Es wurde jeweils in Deutsch und in Englisch recherchiert, da

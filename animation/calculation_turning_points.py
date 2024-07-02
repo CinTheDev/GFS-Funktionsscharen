@@ -301,7 +301,7 @@ class CalculationTurningPoints(Scene):
         self.next_section("Determine_saddle_point")
 
         constraint_saddle = MathTex(
-            r"f''a(x) = 0",
+            r"f''_a(x) = 0",
             substrings_to_isolate="a",
         )
         constraint_saddle.set_color_by_tex("a", color=PURPLE)
@@ -393,6 +393,8 @@ class CalculationTurningPoints(Scene):
         )
         equation_second_derivative.set_color_by_tex("a", color=PURPLE)
         equation_second_derivative.next_to(self.solution, DOWN)
+
+        # TODO: Add other paths as well
 
         comment = Tex("Nur Tiefpunkt macht Sinn", color=YELLOW)
         comment.scale(0.6)

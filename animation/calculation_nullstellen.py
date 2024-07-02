@@ -88,6 +88,7 @@ class CalculationNullstellen(Scene):
 
         # steps solving
 
+        # TODO: Fix this (x = 0 should be part of solution)
         solve_steps = [
             r"f_a(x) = 0",
             r"x^4 - 0.4ax^2 = 0",

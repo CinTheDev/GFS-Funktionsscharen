@@ -19,6 +19,7 @@ class Practice_Locus(GenericSolveBlocks):
         self.solve_third_problem()
     
     def transition(self):
+        # TODO: Better transition
         title = Tex("Bestimme die Ortskurve aller Tiefpunkte", color=RED)
         title.scale(0.6)
         title.move_to(UP * 3.5)
