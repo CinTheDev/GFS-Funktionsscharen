@@ -6,6 +6,7 @@ class ExkursParametricFunction(Scene):
     def construct(self):
         self.transition()
         self.linear_function()
+        self.quadratic_function()
     
     def transition(self):
         self.next_section("Transition")
@@ -77,12 +78,12 @@ class ExkursParametricFunction(Scene):
             num_decimal_places=2,
         )
 
-        equations = VGroup(x_equation, y_equation, self.param_a)
-        equations.arrange(DOWN)
-        equations.move_to(LEFT * 4 + UP * 2.5)
-        equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.4)
+        self.equations = VGroup(x_equation, y_equation, self.param_a)
+        self.equations.arrange(DOWN)
+        self.equations.move_to(LEFT * 4 + UP * 2.5)
+        self.equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.4)
 
-        function = always_redraw(
+        function_partial = always_redraw(
             lambda: self.grid.plot_parametric_curve(
                 lambda a: [
                     a,
@@ -96,13 +97,13 @@ class ExkursParametricFunction(Scene):
 
         function_point = always_redraw(
             lambda: Dot(
-                point=self.grid.input_to_graph_point(self.param_a.tracker.get_value(), function),
+                point=self.grid.input_to_graph_point(self.param_a.tracker.get_value(), function_partial),
                 color=ORANGE,
             )
         )
 
         self.play(
-            FadeIn(equations),
+            FadeIn(self.equations),
             Create(function_point),
             Flash(function_point),
             run_time=1,
@@ -134,7 +135,7 @@ class ExkursParametricFunction(Scene):
             run_time=1,
             rate_func=rate_functions.smooth,
         )
-        self.add(function)
+        self.add(function_partial)
 
         self.play(
             self.param_a.tracker.animate.set_value(3),
@@ -148,14 +149,14 @@ class ExkursParametricFunction(Scene):
         new_x_equation = x_equation.copy()
         new_y_equation = MathTex(r"y(a) = 0.5a")
 
-        equations.remove(self.param_a)
+        self.equations.remove(self.param_a)
 
         new_equations = VGroup(new_x_equation, new_y_equation)
         new_equations.arrange(DOWN)
-        new_equations.move_to(equations)
+        new_equations.move_to(self.equations)
         new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
-        new_function = self.grid.plot_parametric_curve(
+        self.function = self.grid.plot_parametric_curve(
             lambda a: [
                 a,
                 0.5*a,
@@ -166,8 +167,8 @@ class ExkursParametricFunction(Scene):
         )
 
         self.play(
-            Transform(equations, new_equations),
-            Transform(function, new_function, replace_mobject_with_target_in_scene=True),
+            Transform(self.equations, new_equations),
+            Transform(function_partial, self.function, replace_mobject_with_target_in_scene=True),
             FadeOut(self.param_a),
             FadeOut(function_point),
             run_time=0.5,
@@ -180,10 +181,10 @@ class ExkursParametricFunction(Scene):
 
         new_equations = VGroup(new_x_equation, new_y_equation)
         new_equations.arrange(DOWN)
-        new_equations.move_to(equations)
+        new_equations.move_to(self.equations)
         new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
-        newer_function = self.grid.plot_parametric_curve(
+        new_function = self.grid.plot_parametric_curve(
             lambda a: [
                 1.3*a,
                 0.5*a,
@@ -194,8 +195,35 @@ class ExkursParametricFunction(Scene):
         )
 
         self.play(
-            Transform(equations, new_equations),
-            Transform(new_function, newer_function),
+            Transform(self.equations, new_equations),
+            Transform(self.function, new_function),
             run_time=0.5,
+        )
+        self.wait()
+    
+    def quadratic_function(self):
+        self.next_section("Transition_Quadratic")
+
+        new_x_equation = MathTex(r"x(a) = 3a")
+        new_y_equation = MathTex(r"y(a) = a^2")
+
+        new_equations = VGroup(new_x_equation, new_y_equation)
+        new_equations.arrange(DOWN)
+        new_equations.move_to(self.equations)
+        new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
+
+        new_function = self.grid.plot_parametric_curve(
+            lambda a: [
+                3*a,
+                a*a,
+                0,
+            ],
+            t_range=[-10, 10],
+            color=BLUE,
+        )
+
+        self.play(
+            Transform(self.equations, new_equations),
+            Transform(self.function, new_function),
         )
         self.wait()
