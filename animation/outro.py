@@ -15,11 +15,10 @@ class Outro(Scene):
         external_sources = self.construct_external_sources()
         animation_sources = self.construct_animation_sources()
 
-        external_sources.align_on_border(LEFT)
+        external_sources.align_on_border(RIGHT)
         external_sources.shift(UP * 2)
 
-        animation_sources.next_to(external_sources, DOWN, buff=1)
-        animation_sources.align_on_border(RIGHT)
+        animation_sources.align_on_border(LEFT)
 
         self.add(
             heading,
@@ -44,7 +43,7 @@ class Outro(Scene):
             source_text.scale(0.4)
             block.add(source_text)
         
-        block.arrange(DOWN, aligned_edge=LEFT)
+        block.arrange(DOWN, aligned_edge=RIGHT)
         return block
     
     def construct_animation_sources(self):
@@ -64,5 +63,5 @@ class Outro(Scene):
             source_text.scale(0.4)
             block.add(source_text)
 
-        block.arrange(DOWN, aligned_edge=RIGHT)        
+        block.arrange(DOWN, aligned_edge=LEFT)        
         return block
