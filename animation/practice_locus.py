@@ -29,8 +29,13 @@ class Practice_Locus(GenericSolveBlocks):
         equation = MathTex(r"f_a(x) = e^{x-a} - x")
         self.blocks.append(equation)
 
+        page_num = Tex("Seite 165 Nummer 19")
+        page_num.scale(0.4)
+        page_num.move_to(LEFT * 5 + UP * 3.75)
+
         self.play(
             Write(equation),
+            FadeIn(page_num, shift=DOWN),
             run_time=1,
         )
         self.wait()
