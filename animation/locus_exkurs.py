@@ -142,3 +142,60 @@ class ExkursParametricFunction(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
+
+        self.next_section("Different_slope")
+
+        new_x_equation = x_equation.copy()
+        new_y_equation = MathTex(r"y(a) = 0.5a")
+
+        equations.remove(self.param_a)
+
+        new_equations = VGroup(new_x_equation, new_y_equation)
+        new_equations.arrange(DOWN)
+        new_equations.move_to(equations)
+        new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
+
+        new_function = self.grid.plot_parametric_curve(
+            lambda a: [
+                a,
+                0.5*a,
+                0,
+            ],
+            t_range=[-10, 10],
+            color=BLUE,
+        )
+
+        self.play(
+            Transform(equations, new_equations),
+            Transform(function, new_function, replace_mobject_with_target_in_scene=True),
+            FadeOut(self.param_a),
+            FadeOut(function_point),
+            run_time=0.5,
+        )
+        self.wait()
+
+        self.next_section("Another_slope")
+
+        new_x_equation = MathTex(r"x(a) = 1.3a")
+
+        new_equations = VGroup(new_x_equation, new_y_equation)
+        new_equations.arrange(DOWN)
+        new_equations.move_to(equations)
+        new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
+
+        newer_function = self.grid.plot_parametric_curve(
+            lambda a: [
+                1.3*a,
+                0.5*a,
+                0,
+            ],
+            t_range=[-10, 10],
+            color=BLUE,
+        )
+
+        self.play(
+            Transform(equations, new_equations),
+            Transform(new_function, newer_function),
+            run_time=0.5,
+        )
+        self.wait()
