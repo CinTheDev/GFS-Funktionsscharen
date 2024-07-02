@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 from manim import *
+import math
 
 class ExkursParametricFunction(Scene):
     def construct(self):
         self.transition()
         self.linear_function()
         self.quadratic_function()
+        self.circular_function()
     
     def transition(self):
         self.next_section("Transition")
@@ -30,9 +32,12 @@ class ExkursParametricFunction(Scene):
 
         screen = FullScreenRectangle()
 
+        x_extend = 5
+        y_extend = x_extend * (screen.height / screen.width)
+
         self.grid = NumberPlane(
-            x_range=(-5, 5, 1),
-            y_range=(-3, 3, 1),
+            x_range=(-x_extend, x_extend, 1),
+            y_range=(-y_extend, y_extend, 1),
             x_length=screen.width,
             y_length=screen.height,
             tips=True,
@@ -209,7 +214,7 @@ class ExkursParametricFunction(Scene):
 
         new_equations = VGroup(new_x_equation, new_y_equation)
         new_equations.arrange(DOWN)
-        new_equations.move_to(self.equations)
+        new_equations.move_to(LEFT * 4 + DOWN * 2)
         new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
         new_function = self.grid.plot_parametric_curve(
@@ -225,5 +230,61 @@ class ExkursParametricFunction(Scene):
         self.play(
             Transform(self.equations, new_equations),
             Transform(self.function, new_function),
+        )
+        self.wait()
+    
+    def circular_function(self):
+        self.next_section("Transition_Circular")
+
+        self.param_a.tracker.set_value(0)
+
+        new_x_equation = MathTex(r"x(a) = cos(a)")
+        new_y_equation = MathTex(r"y(a) = sin(a)")
+
+        new_equations = VGroup(new_x_equation, new_y_equation, self.param_a)
+        new_equations.arrange(DOWN)
+        new_equations.move_to(self.equations)
+        new_equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
+
+        # Remove it temporarily so Transform() works
+        new_equations.remove(self.param_a)
+
+        function_partial = always_redraw(
+            lambda: self.grid.plot_parametric_curve(
+                lambda a: [
+                    math.cos(a),
+                    math.sin(a),
+                    0,
+                ],
+                t_range=[0, self.param_a.tracker.get_value()],
+                color=BLUE
+            )
+        )
+
+        function_point = always_redraw(
+            lambda: Dot(point=self.grid.input_to_graph_point(self.param_a.tracker.get_value(), function_partial), color=ORANGE)
+        )
+
+        self.play(
+            Transform(self.equations, new_equations),
+            FadeOut(self.function),
+            Create(function_point),
+            Flash(function_point),
+            run_time=1,
+        )
+        self.play(
+            Write(self.param_a),
+            run_time=0.5,
+        )
+        self.wait()
+        new_equations.add(self.param_a)
+
+        self.next_section("Draw_function")
+
+        self.add(function_partial)
+        self.play(
+            self.param_a.tracker.animate.set_value(2 * math.pi),
+            run_time=5,
+            rate_func=rate_functions.smooth,
         )
         self.wait()
