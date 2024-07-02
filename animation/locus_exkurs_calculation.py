@@ -9,6 +9,12 @@ class LocusExkursCalculation(GenericSolveBlocks):
         self.introduce_first_example()
         self.first_example_solve_x()
         self.first_example_insert()
+        self.clear_blocks()
+
+        self.introduce_second_example()
+        self.second_example_solve_x()
+        self.second_example_insert()
+        self.second_example_show_graph()
     
     def introduce_first_example(self):
         functions = [
@@ -34,3 +40,30 @@ class LocusExkursCalculation(GenericSolveBlocks):
         ]
 
         self.block("In y-Teil einsetzen", UP * 2 + RIGHT * 4, steps)
+    
+    def introduce_second_example(self):
+        functions = [
+            r"x(a) = cos(a)",
+            r"y(a) = sin(a)",
+        ]
+
+        self.block("Funktion", UP * 3, functions)
+    
+    def second_example_solve_x(self):
+        steps = [
+            r"x = cos(a)",
+            r"a = cos^{-1}(x)",
+        ]
+
+        self.block("x-Teil nach a auflösen", UP * 2 + LEFT * 4, steps)
+    
+    def second_example_insert(self):
+        steps = [
+            r"y = sin(a)",
+            r"y = sin(cos^{-1}(a))",
+        ]
+
+        self.block("In y-Teil einsetzen", UP * 2 + RIGHT * 4, steps)
+    
+    def second_example_show_graph(self):
+        pass
