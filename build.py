@@ -33,6 +33,8 @@ scenes = [
 
     "point_analysis",
     "practice_point_analysis",
+
+    "locus",
 ]
 
 # Create empty "out" directory
