@@ -4,9 +4,11 @@ from generic_solve_blocks import *
 
 class LocusCalculation(GenericSolveBlocks):
     def construct(self):
+        self.default_color=RED
         self.transition()
 
         self.solve_local_minimum()
+        self.solve_height()
     
     def transition(self):
         self.next_section("Setup")
@@ -30,4 +32,21 @@ class LocusCalculation(GenericSolveBlocks):
             r"x = ln(\frac{a}{2})",
         ]
 
-        self.block("Extremstelle bestimmen", LEFT * 4.25 + UP * 3, steps, scale=0.8)
+        self.block("Extremstelle bestimmen", LEFT * 4.25 + UP * 3.25, steps, scale=0.8)
+    
+    def solve_height(self):
+        steps = [
+            r"y = f_a(ln(\frac{a}{2}))",
+            r"y = e^{2 ln(\frac{a}{2})} - a e^{ln(\frac{a}{2})}",
+            r"y = (\frac{a}{2})^2 - a(\frac{a}{2})",
+            r"y = \frac{a^2}{4} - \frac{a^2}{2}",
+            r"y = -\frac{a^2}{4}",
+        ]
+
+        solution = [
+            r"x = ln(\frac{a}{2})",
+            r"y = -\frac{a^2}{4}",
+        ]
+
+        self.block("Tiefpunkt bestimmen", RIGHT * 4.25 + UP * 2.5, steps)
+        self.block("Lösung ??", UP, solution)
