@@ -14,5 +14,12 @@ class ExkursParametricFunction(Scene):
         title = VGroup(title_intro, title_text)
         title.arrange(DOWN)
 
-        self.add(title)
+        self.play(
+            SpinInFromNothing(title_intro),
+            run_time=1,
+        )
+        self.play(
+            FadeIn(title_text, shift=UP),
+            run_time=1,
+        )
         self.wait()
