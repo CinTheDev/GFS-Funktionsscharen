@@ -107,7 +107,7 @@ class Locus(Scene):
         self.grid.target.shift(UP * 3)
         self.play(
             MoveToTarget(self.grid),
-            run_time=3,
+            run_time=1,
             rate_func=rate_functions.smooth,
         )
 
@@ -120,6 +120,24 @@ class Locus(Scene):
 
         self.play(
             Create(self.locus_function)
+        )
+        self.wait()
+
+        self.next_section("Goes_Down_Further")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(3),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Goes_Back_Up")
+        
+        self.play(
+            self.param_a.tracker.animate.set_value(-1),
+            run_time=2,
+            rate_func=rate_functions.smooth,
         )
         self.wait()
     
