@@ -28,11 +28,17 @@ class Locus(Scene):
     def graph(self):
         screen = FullScreenRectangle()
 
+        grid_downshift = 1.5
+        visible_y_range=(-1.5, 3.5, 1)
+        visible_dy = visible_y_range[1] - visible_y_range[0]
+        y_extend = visible_dy * grid_downshift
+        y_range = (3.5 - y_extend, 3.5, 1)
+
         self.grid = NumberPlane(
             x_range=(-5, 5, 1),
-            y_range=(-1.5, 3.5, 1),
+            y_range=y_range,
             x_length=screen.width,
-            y_length=screen.height,
+            y_length=screen.height * grid_downshift,
             tips=True,
             background_line_style={
                 "stroke_color": RED,
@@ -43,6 +49,7 @@ class Locus(Scene):
                 "tip_shape": StealthTip,
             },
         )
+        self.grid.align_on_border(UP, buff=0)
 
         x_label = self.grid.get_x_axis_label("x")
         y_label = self.grid.get_y_axis_label("f(x)")
@@ -91,11 +98,38 @@ class Locus(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
+
+        self.next_section("Show_Locus")
+
+        # Scroll down
+
+        self.grid.generate_target()
+        self.grid.target.shift(UP * 3)
+        self.play(
+            MoveToTarget(self.grid),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+
+        self.locus_function = always_redraw(
+            lambda: self.grid.plot(
+                lambda x: self.graph_locus_function(x),
+                color=PURPLE,
+            )
+        )
+
+        self.play(
+            Create(self.locus_function)
+        )
+        self.wait()
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
 
         return math.exp(2*x) - a * math.exp(x)
+    
+    def graph_locus_function(self, x):
+        return -1 * math.exp(2 * x)
     
     def get_local_minimum(self):
         a = self.param_a.tracker.get_value()
