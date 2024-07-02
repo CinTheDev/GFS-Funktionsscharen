@@ -20,12 +20,25 @@ class Outro(Scene):
 
         animation_sources.align_on_border(LEFT)
 
-        self.add(
-            heading,
-            external_sources,
-            animation_sources,
-            subheading,
+        self.play(
+            LaggedStart(
+                Write(heading),
+                LaggedStart(
+                    [FadeIn(s, shift=DOWN) for s in external_sources],
+                    lag_ratio=0.1,
+                    run_time=3
+                ),
+                LaggedStart(
+                    [FadeIn(s, shift=DOWN) for s in animation_sources],
+                    lag_ratio=0.1,
+                    run_time=3
+                ),
+                Write(subheading),
+                lag_ratio=0.5,
+                run_time=3,
+            )
         )
+
         self.wait()
 
     def construct_external_sources(self):
