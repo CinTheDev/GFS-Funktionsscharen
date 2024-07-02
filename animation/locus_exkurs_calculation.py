@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from generic_solve_blocks import *
+import math
 
 class LocusExkursCalculation(GenericSolveBlocks):
     def construct(self):
@@ -66,4 +67,33 @@ class LocusExkursCalculation(GenericSolveBlocks):
         self.block("In y-Teil einsetzen", UP * 2 + RIGHT * 4, steps)
     
     def second_example_show_graph(self):
-        pass
+        self.next_section("Show_grid")
+
+        grid = Axes(
+            x_range=(-2, 2, 1),
+            y_range=(-2, 2, 1),
+            x_length=4,
+            y_length=4,
+            tips=True,
+            axis_config={
+                "include_numbers": True,
+            },
+        )
+        grid.move_to(DOWN * 1.5)
+
+        x_label = grid.get_x_axis_label("x")
+        y_label = grid.get_y_axis_label("y")
+        
+        function = grid.plot(
+            lambda x: math.sin(math.acos(x)),
+            x_range=[-1, 1, 0.01],
+            color=BLUE
+        )
+
+        entire_grid = VGroup(grid, x_label, y_label, function)
+
+        self.play(
+            FadeIn(entire_grid, shift=UP),
+            run_time=1
+        )
+        self.wait()
