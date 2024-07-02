@@ -5,6 +5,7 @@ from manim import *
 class ExkursParametricFunction(Scene):
     def construct(self):
         self.transition()
+        self.linear_function()
     
     def transition(self):
         self.next_section("Transition")
@@ -63,5 +64,63 @@ class ExkursParametricFunction(Scene):
             MoveToTarget(graph_screen),
             MoveToTarget(title),
             run_time=2,
+        )
+        #self.wait()
+    
+    def linear_function(self):
+        x_equation = MathTex(r"x(a) = a")
+        y_equation = MathTex(r"y(a) = a")
+
+        self.param_a = Variable(
+            0,
+            Tex("a", color=PURPLE),
+            num_decimal_places=2,
+        )
+
+        equations = VGroup(x_equation, y_equation, self.param_a)
+        equations.arrange(DOWN)
+        equations.move_to(LEFT * 4 + UP * 2.5)
+        equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.4)
+
+        function = self.grid.plot_parametric_curve(
+            lambda a: [
+                a,
+                a,
+                0,
+            ],
+            color=BLUE,
+        )
+
+        function_point = always_redraw(
+            lambda: Dot(
+                point=self.grid.input_to_graph_point(self.param_a.tracker.get_value(), function),
+                color=ORANGE,
+            )
+        )
+
+        self.play(
+            FadeIn(equations),
+            #Create(function),
+            Create(function_point),
+            Flash(function_point),
+            run_time=1,
+        )
+        self.wait()
+
+        self.next_section("a_5")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(2.5),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("a_n5")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(-2.5),
+            run_time=2,
+            rate_func=rate_functions.smooth,
         )
         self.wait()
