@@ -115,7 +115,48 @@ class Practice_Locus(GenericSolveBlocks):
         self.block("Einsetzen", RIGHT * 5, solve_function)
     
     def introduce_third_problem(self):
-        pass
+        equation = MathTex(r"f_a(x) = e^x - a^2x; a \neq 0")
+        self.blocks.append(equation)
+
+        self.play(
+            Write(equation),
+            run_time=1,
+        )
+        self.wait()
+
+        self.next_section("Make_room")
+
+        equation.generate_target()
+        equation.target.scale(0.8)
+        equation.target.move_to(UP * 3)
+
+        self.play(
+            MoveToTarget(equation),
+            run_time=1
+        )
     
     def solve_third_problem(self):
-        pass
+        solve_turning_point = [
+            r"f'_a(x) = e^x - a^2",
+            r"e^x - a^2 = 0",
+            r"e^x = a^2",
+            r"x = ln(a^2)",
+        ]
+        solve_height = [
+            r"y = f_a(ln(a^2))",
+            r"y = e^{ln(a^2)} - ln(a^2) a^2",
+            r"y = a^2 - ln(a^2) a^2",
+        ]
+        solve_a_x = [
+            r"x = ln(a^2)",
+            r"a^2 = e^x",
+        ]
+        solve_function = [
+            r"y = e^x - ln(e^x) e^x",
+            r"y = e^x - x e^x",
+        ]
+
+        self.block("Extremstelle", UP * 2 + LEFT * 5, solve_turning_point)
+        self.block("Tiefpunkt", UP * 2, solve_height)
+        self.block("Nach a auflösen", UP * 2 + RIGHT * 5, solve_a_x)
+        self.block("Einsetzen", RIGHT * 5, solve_function)
