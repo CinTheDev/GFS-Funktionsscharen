@@ -75,29 +75,28 @@ class CalculationInsertion(Scene):
 
         self.next_section("Parameter_Evaluation")
 
-        # TODO: Improve animation (it kinda looks confusing; it should only transform changed parts)
-        # TODO: Color the "3" purple
-        equation_inserted = MathTex(r"f_3(x) = x^4 - 0.4(3)x^2")
+        equation_inserted = MathTex(r"f_3(x) = x^4 - 0.4(3)x^2", substrings_to_isolate="3")
+        equation_inserted.set_color_by_tex("3", color=PURPLE)
 
         self.play(
-            Transform(equation, equation_inserted),
+            TransformMatchingShapes(equation, equation_inserted),
         )
         self.wait()
 
         self.next_section("Parameter_Evaluation_solve")
 
-        # TODO: Same as above
-        equation_solved = MathTex(r"f_3(x) = x^4 - 1.2x^2")
+        equation_solved = MathTex(r"f_3(x) = x^4 - 1.2x^2", substrings_to_isolate="3")
+        equation_solved.set_color_by_tex("3", color=PURPLE)
 
         self.play(
-            Transform(equation, equation_solved),
+            TransformMatchingShapes(equation_inserted, equation_solved),
         )
         self.wait()
 
         self.next_section("Fadeout")
 
         self.play(
-            FadeOut(equation),
+            FadeOut(equation_solved),
             FadeOut(parameter_equation),
             FadeOut(title),
         )
