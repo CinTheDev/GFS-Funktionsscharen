@@ -48,7 +48,7 @@ class Outro(Scene):
         block = VGroup(heading)
 
         sources = [
-            f'<span fgcolor="{ORANGE}">Definition Funktionsschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
+            f'<span fgcolor="{ORANGE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
         ]
 
         for s in sources:

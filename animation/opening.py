@@ -9,7 +9,7 @@ class Intro(Scene):
 
     def title(self):
         self.next_section("Title")
-        title = Tex(r"GFS Funktionsscharen")
+        title = Tex(r"GFS Funktionenscharen")
         formula = Tex(r"Mit \LaTeX \:yeah whats going on")
 
         VGroup(title, formula).arrange(DOWN)
@@ -77,8 +77,8 @@ class Intro(Scene):
         # Different names for "Funktionsscharen"
 
         names = [
-            Tex("- Funktionsschar", color=YELLOW),
             Tex("- Funktionenschar", color=YELLOW),
+            Tex("- Funktionsschar", color=YELLOW),
             Tex("- Kurvenschar", color=YELLOW),
             Tex("- Parameterfunktion", color=YELLOW),
         ]
