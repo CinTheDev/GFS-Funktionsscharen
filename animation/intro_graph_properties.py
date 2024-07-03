@@ -30,7 +30,7 @@ class IntroGraphProperties(Scene):
         return [0, x_1, x_2]
     
     def graph(self):
-        self.next_section("Empty_Graph")
+        self.next_section("Create_Graph")
         screen = FullScreenRectangle()
 
         # Draw coordinate system
@@ -50,9 +50,6 @@ class IntroGraphProperties(Scene):
         grid_labels = VGroup(x_label, y_label)
 
         self.add(grid, grid_labels)
-        self.wait()
-
-        self.next_section("Create_Function")
 
         label_a = Tex("a", color=PURPLE)
         param_a = Variable(

@@ -96,10 +96,3 @@ class Intro(Scene):
             )
         )
         self.wait()
-
-        self.next_section("Transition")
-
-        self.play(
-            FadeOut(function),
-            FadeOut(names_list),
-        )

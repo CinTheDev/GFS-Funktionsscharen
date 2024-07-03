@@ -312,7 +312,7 @@ class Bundles(Scene):
         self.play(
             Create(grid),
             Write(grid_labels),
-            run_time=3,
+            run_time=1,
         )
 
         param_a = Variable(

@@ -92,11 +92,3 @@ class CalculationInsertion(Scene):
             TransformMatchingShapes(equation_inserted, equation_solved),
         )
         self.wait()
-
-        self.next_section("Fadeout")
-
-        self.play(
-            FadeOut(equation_solved),
-            FadeOut(parameter_equation),
-            FadeOut(title),
-        )
