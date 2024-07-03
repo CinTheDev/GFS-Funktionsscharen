@@ -19,12 +19,21 @@ class Practice_Locus(GenericSolveBlocks):
         self.solve_third_problem()
     
     def transition(self):
-        # TODO: Better transition
+        transition_title = Tex("Letzte Übungsphase", color=RED)
+
+        self.add(transition_title)
+        self.wait()
+
+        self.next_section("Make_space")
+
         title = Tex("Bestimme die Ortskurve aller Tiefpunkte", color=RED)
         title.scale(0.6)
         title.move_to(UP * 3.5)
 
-        self.add(title)
+        self.play(
+            Transform(transition_title, title),
+            run_time=0.5,
+        )
     
     def introduce_first_problem(self):
         equation = MathTex(r"f_a(x) = e^{x-a} - x")
