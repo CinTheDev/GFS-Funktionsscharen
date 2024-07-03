@@ -4,6 +4,7 @@ from manim import *
 
 class PointAnalysis(Scene):
     def construct(self):
+        self.transition()
         self.graph()
         self.simple_insertion()
         self.solve_turning_point()
@@ -12,8 +13,23 @@ class PointAnalysis(Scene):
 
         # TODO: Second example
     
+    def transition(self):
+        self.next_section("Transition")
+
+        title = Tex("2: Extremwerte der Extrempunkte", color=ORANGE)
+
+        self.add(title)
+        self.wait()
+
+        self.next_section("Make_Room")
+
+        self.play(
+            FadeOut(title),
+            run_time=0.5,
+        )
+    
     def graph(self):
-        self.next_section("Draw_Graph")
+        #self.next_section("Draw_Graph")
         screen = FullScreenRectangle()
 
         self.grid = NumberPlane(

@@ -12,7 +12,7 @@ class Locus(Scene):
     
     def transition(self):
         self.next_section("Transition")
-        title = Tex("Ortskurven", color=RED)
+        title = Tex("3: Ortskurven", color=RED)
 
         self.play(
             SpinInFromNothing(title, point_color=ORANGE)
