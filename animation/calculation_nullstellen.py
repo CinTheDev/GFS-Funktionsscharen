@@ -88,13 +88,14 @@ class CalculationNullstellen(Scene):
 
         # steps solving
 
-        # TODO: Fix this (x = 0 should be part of solution)
-        solve_steps = [
+        solve_steps_ = [
             r"f_a(x) = 0",
             r"x^4 - 0.4ax^2 = 0",
-            r"x^4 = 0.4ax^2",
-            r"x^2 = 0.4a",
-            r"x = \pm \sqrt{0.4a}",
+            r"x^2(x^2 - 0.4a) = 0",
+            r"x_1 = 0; x_2 = ...",
+            r"x_2^2 - 0.4a = 0",
+            r"x_2^2 = 0.4a",
+            r"x_2 = \pm \sqrt{0.4a}",
         ]
 
         steps = self.animate_solve_steps(equation, solve_steps)
