@@ -47,28 +47,6 @@ Parameter sich ändert.
 
 Die meisten Lösungen werden aber abhängig vom Parameter sein.
 
-## Funktionsscharen bei verschiedenen Funktionstypen
-
-(Beipiele im Graph)
-
-### Ganzrationale
-
-- Meisens als Koeffizient
-- Kann auch im Exponenten stehen, solange die Exponenten Natürliche Zahlen bleiben
-
-### Exponentielle
-
-- Als Koeffizient der Basis
-- Als Koeffizient des Exponenten
-- Addiert mit dem Exponent
-
-### Trigonometrische
-
-- Als Koeffizient ausserhalb
-- Koeffizient innerhalb
-- Addition ausserhalb
-- Addition innerhalb
-
 ## Flächeninhalt
 
 Wie kann man Flächeninhalt bestimmen?
@@ -84,17 +62,12 @@ Methoden, um gemeinsame Punkte (genannt Funktionsbündel) zu bestimmen
 
 ### Methode aus dem Buch (zwei Werte einsetzen)
 
-Man setzt zwei Werte für a ein, und setzt beide Funktionen gleich. Alle Schnittpunkte sind
-gemeinsame Punkte.
+Man setzt zwei Werte für den Parameter ein, und setzt beide Funktionen gleich. Die
+Schnittpunkte, die unabhängig vom Parameter sind, sind potentielle Bündel. Man muss
+diese prüfen indem man die Höhe dieser berechnet. Falls die Höhe auch unabhängig vom
+Parameter ist, dann ist dieser Punkt ein Bündel der Funktion.
 
 - (Beispiel aus dem Buch)
-
-### Analytische Methode
-
-Man schaut welche Teile der Funktion von a betroffen sind, und schaut, ob es Werte für x
-gibt, wo jedes a vernichtet wird (z.B. mit Multiplikation mit 0)
-
-- (Gleiches Beispiel wie oben)
 
 ## Tiefste Hochpunkt der Schar
 
@@ -102,6 +75,12 @@ TODO: Allgemeinerer Titel
 
 Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
 den tiefsten oder höchsten Punkt der Extrempunkte finden?
+
+Man kann die Höhe der Extrempunkte berechnen (wo das Ergebnis abhängig von a ist).
+Falls man dann im Ergebnis a als unabhängige Variable betrachtet, ergibt sich eie neue Funktion,
+welcher die Höhe des Extrempunkts für alle Werte von a darstellt. Man kann diese Funktion nun
+auf Extremstellen untersuchen, und so einen "Tiefpunkt" oder "Hochpunkt" für den Extrempunkt
+der ursprünglichen Funktion berechnen.
 
 - (Mehrere Beispiele)
 
@@ -115,6 +94,21 @@ Man bezeichnet als Ortskurven den "Weg" von bestimmten speziellen Punkten in ein
 Falls man den Parameter ändert, können Punkte wie z.B. Extrempunkte sicht bewegen, wobei der
 zurückgelegte Weg ebenfalls auf einer Kurve liegt.
 
+Man kann den Extrempunkt berechnen (x und y). Dieses Ergebnis lässt sich als Parameterisierte Funktion
+interpretieren, welche in eine einfache Funktion umgewandelt werden kann.
+
+### Kurzer Exkurs: Parameterisierte Funktionen
+
+Parameterfunktionen (2D) bestehen aus 2 Teilfunktionen für die x-Komponente und y-Komponente. Beide
+Funktionen zusammen stellen einen Punkt dar, der sich nach der unabhängigen Variable bewegen. Falls man
+alle möglichen Punkte für alle einsetzbaren Werte darstellt, ergibt sich ein Graph.
+
+Man kann eine Parameterisierte Funktion in die Form `y = ... [x]` bringen, indem man den x-Teil
+nach dem Parameter auflöst, und dann in den y-Teil einsetzt.
+
+Falls man es andersherum macht kommt die Form `x = ... [y]` heraus, was ein normales Ergebnis ist,
+die andere Form wird aber offensichtlich bevorzugt.
+
 ### Betimmen Ortskurve von Extrempunkten
 
 1. f_a(x) nach x Ableiten und nullsetzen
@@ -122,10 +116,6 @@ zurückgelegte Weg ebenfalls auf einer Kurve liegt.
 3. a in ursprüngliche Funktion einsetzen.
 
 - (1-2 Beispiele)
-
-### Kurzer Exkurs: Parameterisierte Funktionen
-
-TODO: Schauen, ob dieses Kapitel tatsächlich nötig ist
 
 ## Anwendung in der echten Welt
 
