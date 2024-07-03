@@ -88,14 +88,35 @@ class CalculationNullstellen(Scene):
 
         # steps solving
 
-        solve_steps_ = [
+        solve_steps_1 = [
             r"f_a(x) = 0",
             r"x^4 - 0.4ax^2 = 0",
             r"x^2(x^2 - 0.4a) = 0",
-            r"x_1 = 0; x_2 = ...",
-            r"x_2^2 - 0.4a = 0",
-            r"x_2^2 = 0.4a",
-            r"x_2 = \pm \sqrt{0.4a}",
+            r"x_1 = 0; x_{2;3} = ...",
+        ]
+        solve_steps_2 = [
+            r"x^2 = 0.4a",
+            r"x_{2;3} = \pm \sqrt{0.4a}",
         ]
 
-        steps = self.animate_solve_steps(equation, solve_steps)
+        steps = self.animate_solve_steps(equation, solve_steps_1)
+        
+        self.next_section("Move_steps")
+        steps.generate_target()
+        steps.target.shift(LEFT * 4)
+
+        self.play(
+            MoveToTarget(steps),
+            run_time=1,
+        )
+
+        equation_2 = MathTex(r"x^2 - 0.4a = 0", substrings_to_isolate="a")
+        equation_2.set_color_by_tex("a", color=PURPLE)
+        equation_2.move_to(UP * 2 + RIGHT * 4)
+
+        self.play(
+            Write(equation_2),
+            run_time=1,
+        )
+
+        steps_2 = self.animate_solve_steps(equation_2, solve_steps_2)
