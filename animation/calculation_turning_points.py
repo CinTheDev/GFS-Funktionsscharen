@@ -396,34 +396,47 @@ class CalculationTurningPoints(Scene):
 
         # TODO: Add other paths as well
 
-        comment = Tex("Nur Tiefpunkt macht Sinn", color=YELLOW)
-        comment.scale(0.6)
-        comment.next_to(equation_second_derivative, DOWN)
+        comment_minimum = Tex("Tiefpunkt", color=YELLOW)
+        comment_minimum.scale(0.6)
+        comment_minimum.next_to(equation_second_derivative, DOWN)
+        comment_minimum.shift(LEFT * 4)
 
-        constraint = MathTex(
+        comment_saddle = Tex("Sattelpunkt", color=YELLOW)
+        comment_saddle.scale(0.6)
+        comment_saddle.next_to(equation_second_derivative, DOWN)
+        comment_saddle.shift(RIGHT * 4)
+
+        constraint_minimum = MathTex(
             r"f''_a(x) > 0",
             substrings_to_isolate="a",
         )
-        constraint.set_color_by_tex("a", color=PURPLE)
-        constraint.next_to(comment, DOWN)
+        constraint_minimum.set_color_by_tex("a", color=PURPLE)
+        constraint_minimum.next_to(comment_minimum, DOWN)
+
+        constraint_saddle = MathTex(
+            r"f''_a(x) = 0",
+            substrings_to_isolate="a",
+        )
+        constraint_saddle.set_color_by_tex("a", color=PURPLE)
+        constraint_saddle.next_to(comment_saddle, DOWN)
 
         self.play(
             Write(equation_second_derivative),
             run_time=0.5,
         )
         self.play(
-            Write(comment),
+            Write(comment_minimum),
             run_time=0.5,
         )
         self.play(
-            Write(constraint),
+            Write(constraint_minimum),
             run_time=0.5,
         )
         self.wait()
 
         self.next_section("Solve_Step")
 
-        solve_steps = [
+        solve_steps_minimum = [
             r"12(\sqrt{0.2a})^2 - 0.8a > 0",
             r"12(0.2a) - 0.8a > 0",
             r"2.4a - 0.8a > 0",
@@ -431,4 +444,24 @@ class CalculationTurningPoints(Scene):
             r"a > 0",
         ]
 
-        self.animate_solve_steps(constraint, solve_steps)
+        self.animate_solve_steps(constraint_minimum, solve_steps_minimum)
+
+        self.next_section("Saddle")
+
+        self.play(
+            Write(comment_saddle),
+            Write(constraint_saddle),
+            run_time=0.5,
+        )
+        self.wait()
+
+        self.next_section("Solve_Step")
+
+        solve_steps_saddle = [
+            r"a = 0",
+            r"f'''_a(x) \neq 0",
+            r"24x \neq 0",
+            r"x \neq 0",
+        ]
+
+        self.animate_solve_steps(constraint_saddle, solve_steps_saddle)
