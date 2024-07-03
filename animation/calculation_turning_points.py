@@ -376,7 +376,7 @@ class CalculationTurningPoints(Scene):
                 self.remove(step)
     
     def solve_type_other(self):
-        solution_x2 = MathTex(r"x_2 = \sqrt{0.2a}")
+        solution_x2 = MathTex(r"x_{2;3} = \pm \sqrt{0.2a}")
         solution_x2.move_to(self.solution)
 
         self.play(
@@ -393,8 +393,6 @@ class CalculationTurningPoints(Scene):
         )
         equation_second_derivative.set_color_by_tex("a", color=PURPLE)
         equation_second_derivative.next_to(self.solution, DOWN)
-
-        # TODO: Add other paths as well
 
         comment_minimum = Tex("Tiefpunkt", color=YELLOW)
         comment_minimum.scale(0.6)
@@ -437,7 +435,7 @@ class CalculationTurningPoints(Scene):
         self.next_section("Solve_Step")
 
         solve_steps_minimum = [
-            r"12(\sqrt{0.2a})^2 - 0.8a > 0",
+            r"12(\pm \sqrt{0.2a})^2 - 0.8a > 0",
             r"12(0.2a) - 0.8a > 0",
             r"2.4a - 0.8a > 0",
             r"1.6a > 0",
@@ -464,4 +462,21 @@ class CalculationTurningPoints(Scene):
             r"x \neq 0",
         ]
 
-        self.animate_solve_steps(constraint_saddle, solve_steps_saddle)
+        saddle_steps_group = self.animate_solve_steps(constraint_saddle, solve_steps_saddle)
+
+        self.next_section("Cross")
+
+        saddle_solution = saddle_steps_group[-1]
+
+        self.play(
+            Indicate(self.solution),
+            Indicate(saddle_solution),
+            run_time=1,
+        )
+
+        cross = Cross(saddle_steps_group, color=RED)
+
+        self.play(
+            Write(cross)
+        )
+        self.wait()
