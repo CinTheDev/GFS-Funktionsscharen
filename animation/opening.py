@@ -10,19 +10,9 @@ class Intro(Scene):
     def title(self):
         self.next_section("Title")
         title = Tex(r"GFS Funktionenscharen")
-        formula = Tex(r"Mit \LaTeX \:yeah whats going on")
-
-        VGroup(title, formula).arrange(DOWN)
 
         self.play(
             Write(title)
-        )
-        self.wait()
-
-        self.next_section("Example")
-
-        self.play(
-            Write(formula)
         )
         self.wait()
 
@@ -30,7 +20,6 @@ class Intro(Scene):
 
         self.play(
             FadeOut(title),
-            FadeOut(formula),
         )
     
     def intro(self):
