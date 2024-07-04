@@ -13,7 +13,7 @@ sich die Arbeitsschritte anzeigen lassen. Hierzu bei GitHub auf "Commits" drück
 Die Präsentation besteht aus 2 Teilen: Dem [mp4-presenter](https://github.com/CinTheDev/mp4-presenter)
 und den Animationen in diesem Repository.
 
-Der Presenter ist ein in Rust geschriebenes Program basierend auf egui, welches die mp4-Dateien
+Der Presenter ist ein in Rust geschriebenes Program basierend auf bevy, welches die mp4-Dateien
 einliest und abspielt. Man kann die Animationen (ähnlich wie in PowerPoint) abspielen. Das Program
 wurde von mir entwickelt, alles wurde aus Konvention in Englisch gehalten. (Das gleiche gilt für
 die Skripte der Animationen.)
