@@ -109,8 +109,8 @@ class PointAnalysis(Scene):
         screen = FullScreenRectangle()
 
         grid_second = NumberPlane(
-            x_range=(-2.5, 2.5, 1),
-            y_range=(-1.5, 3.5, 1),
+            x_range=(-1.5, 1.5, 0.5),
+            y_range=(-5.5, 17.5, 4),
             x_length=screen.width / 2,
             y_length=screen.height,
             background_line_style={
@@ -142,8 +142,8 @@ class PointAnalysis(Scene):
 
         grid_first.target.become(
             NumberPlane(
-                x_range=(-2.5, 2.5, 1),
-                y_range=(-1.5, 3.5, 1),
+                x_range=(-1.5, 1.5, 0.5),
+                y_range=(-5.5, 17.5, 4),
                 x_length=screen.width / 2,
                 y_length=screen.height,
                 background_line_style={
