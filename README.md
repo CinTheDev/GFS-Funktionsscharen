@@ -80,6 +80,8 @@ Die Quellen, die zur Präsentation beigetragen haben. (Werden am Ende der Präse
 
 - Schulbuch
 - [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
+- [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
+- [Vereinfachung cos^2(tan^-1(x))](https://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x)
 
 ## Potentielle Quellen
 
@@ -92,3 +94,4 @@ die englischen Artikel mehr Informationen an.
 - [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
 - [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
 - [Ortskurven](https://de.wikipedia.org/wiki/Ortskurve_(Kurvendiskussion))
+- [Vereinfachung cos^2(tan^-1(x))](https://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x)

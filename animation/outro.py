@@ -16,9 +16,10 @@ class Outro(Scene):
         animation_sources = self.construct_animation_sources()
 
         external_sources.align_on_border(RIGHT)
-        external_sources.shift(UP * 2)
+        external_sources.shift(UP * 1.5)
 
         animation_sources.align_on_border(LEFT)
+        animation_sources.shift(DOWN * 1)
 
         self.play(
             LaggedStart(
@@ -49,11 +50,13 @@ class Outro(Scene):
 
         sources = [
             f'<span fgcolor="{ORANGE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
+            f'<span fgcolor="{ORANGE}">Hüllkurven</span>\nhttps://de.wikipedia.org/wiki/Einh%C3%BCllende',
+            f'<span fgcolor="{ORANGE}">Vereinfachung cos^2(tan^-1(x))</span>\nhttps://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x',
         ]
 
         for s in sources:
             source_text = MarkupText(s)
-            source_text.scale(0.4)
+            source_text.scale(0.35)
             block.add(source_text)
         
         block.arrange(DOWN, aligned_edge=RIGHT)
@@ -73,7 +76,7 @@ class Outro(Scene):
 
         for s in sources:
             source_text = MarkupText(s)
-            source_text.scale(0.4)
+            source_text.scale(0.35)
             block.add(source_text)
 
         block.arrange(DOWN, aligned_edge=LEFT)        
