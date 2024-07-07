@@ -12,7 +12,7 @@ class PointAnalysis(Scene):
 
         self.solve_turning_point()
         self.solve_cool_function()
-        #self.graph_cool_function()
+        self.graph_cool_function()
 
         # TODO: Second example
     
@@ -220,7 +220,7 @@ class PointAnalysis(Scene):
         self.param_x.set_z_index(1)
         self.param_x.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
-        simple_insertion_function = always_redraw(
+        self.simple_insertion_function = always_redraw(
             lambda: grid_second.plot(
                 lambda a: self.graph_point_function(a),
                 color=PURPLE,
@@ -229,14 +229,14 @@ class PointAnalysis(Scene):
 
         self.play(
             FadeIn(self.param_x, shift=UP),
-            Create(simple_insertion_function),
+            Create(self.simple_insertion_function),
             run_time=1,
         )
         self.wait()
 
         self.next_section("Create_markers")
 
-        marker_x = always_redraw(
+        self.marker_x = always_redraw(
             lambda: DashedLine(
                 start=grid_first.c2p(self.param_x.tracker.get_value(), 20),
                 end=grid_first.c2p(self.param_x.tracker.get_value(), -10),
@@ -244,7 +244,7 @@ class PointAnalysis(Scene):
             )
         )
 
-        marker_a = always_redraw(
+        self.marker_a = always_redraw(
             lambda: DashedLine(
                 start=grid_second.c2p(self.param_a.tracker.get_value(), 20),
                 end=grid_second.c2p(self.param_a.tracker.get_value(), -10),
@@ -252,18 +252,18 @@ class PointAnalysis(Scene):
             )
         )
 
-        marker_horizontal = always_redraw(
+        self.marker_horizontal = always_redraw(
             lambda: DashedLine(
                 start=grid_first.input_to_graph_point(self.param_x.tracker.get_value(), self.base_function),
-                end=grid_second.input_to_graph_point(self.param_a.tracker.get_value(), simple_insertion_function),
+                end=grid_second.input_to_graph_point(self.param_a.tracker.get_value(), self.simple_insertion_function),
                 color=YELLOW
             )
         )
 
         self.play(
-            Create(marker_x),
-            Create(marker_a),
-            Create(marker_horizontal),
+            Create(self.marker_x),
+            Create(self.marker_a),
+            Create(self.marker_horizontal),
             run_time=1,
         )
         self.wait()
@@ -398,6 +398,8 @@ class PointAnalysis(Scene):
     def graph_cool_function(self):
         self.next_section("Compress_Blocks")
 
+        grid_second = self.second_graph[0]
+
         cool_function_equation = MathTex(r"g({{ a }}) = 5.5{{ a }}^2")
         cool_function_equation.set_color_by_tex("a", color=PURPLE)
         cool_function_equation.move_to(RIGHT * 4 + DOWN * 3)
@@ -411,13 +413,42 @@ class PointAnalysis(Scene):
 
         self.play(
             ShrinkToCenter(self.steps_tex_left),
+            FadeOut(self.param_x, shift=DOWN),
             Transform(self.steps_tex_right, cool_function_equation),
             run_time=1,
         )
+        self.play(
+            #Uncreate(self.marker_a),
+            Uncreate(self.marker_x),
+            Uncreate(self.marker_horizontal),
+            Uncreate(self.simple_insertion_function),
+            Unwrite(self.second_graph[1]),
+            run_time=0.5
+        )
+
+        self.turning_point_function = always_redraw(
+            lambda: grid_second.plot(
+                lambda a: self.graph_turning_point_function(a),
+                color=PINK,
+            )
+        )
+        new_labels = VGroup(
+            grid_second.get_x_axis_label("a"),
+            grid_second.get_y_axis_label("g(x)"),
+        )
+
+        self.second_graph[1] = new_labels
+
+        self.play(
+            Create(self.turning_point_function),
+            Write(self.second_graph[1]),
+            run_time=0.5,
+        )
         self.wait()
 
-        self.next_section("Graph_g")
+        #self.next_section("Graph_g")
 
+        """
         self.play(
             Unwrite(self.simple_insertion_function),
             Unwrite(self.grid_labels),
@@ -443,6 +474,7 @@ class PointAnalysis(Scene):
             run_time=0.5,
         )
         self.wait()
+        """
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
