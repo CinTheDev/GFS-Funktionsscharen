@@ -8,6 +8,7 @@ class EnveloppeCalculation(GenericSolveBlocks):
 
         self.parametric()
         self.derive()
+        self.solve_null()
     
     def parametric(self):
         equations_parametric = [
@@ -42,4 +43,17 @@ class EnveloppeCalculation(GenericSolveBlocks):
 
         self.block("Variablen tauschen", UP * 3.5, begin, scale=0.8)
         self.block(r"Nach $ \theta $ ableiten", UP * 1.25, steps, scale=0.7)
+        self.clear_blocks()
+    
+    def solve_null(self):
+        steps = [
+            r"h'_x(\theta) = \frac{x}{cos^2(\theta)} - \frac{tan(\theta)}{cos^2(\theta)}(\frac{g x^2}{v^2})",
+            r"0 = \frac{x}{cos^2(\theta)} - \frac{tan(\theta)}{cos^2(\theta)}(\frac{g x^2}{v^2})",
+            r"0 = x - tan(\theta)(\frac{g x^2}{v^2})",
+            r"tan(\theta)(\frac{g x^2}{v^2}) = x",
+            r"tan(\theta) = \frac{v^2}{g x}",
+            r"\theta = tan^{-1}(\frac{v^2}{g x})",
+        ]
+
+        self.block(r"Nullsetzen \& nach $ \theta $ auflösen", UP * 3, steps, scale=0.7)
         self.clear_blocks()
