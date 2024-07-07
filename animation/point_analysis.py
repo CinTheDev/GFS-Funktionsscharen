@@ -10,8 +10,8 @@ class PointAnalysis(Scene):
         self.graph_second()
         self.simple_insertion()
 
-        #self.solve_turning_point()
-        #self.solve_cool_function()
+        self.solve_turning_point()
+        self.solve_cool_function()
         #self.graph_cool_function()
 
         # TODO: Second example
