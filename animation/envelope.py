@@ -59,8 +59,9 @@ class Envelope(Scene):
         self.param_theta.move_to(RIGHT * 4 + UP * 3)
 
         function = always_redraw(
-            lambda: grid.plot(
-                lambda x: self.graph_function(x),
+            lambda: grid.plot_parametric_curve(
+                lambda t: self.graph_function(t),
+                t_range=[-10, 10, 0.1],
                 color=BLUE,
             )
         )
@@ -90,15 +91,13 @@ class Envelope(Scene):
         )
         self.wait()
     
-    def graph_function(self, x):
+    def graph_function(self, t):
         theta = self.param_theta.tracker.get_value()
         speed = 8
         gravity = 9.81
 
-        try:
-            lhs = math.tan(theta) * x
-            coef = gravity / (2 * speed**2 * math.cos(theta)**2)
-            rhs = coef * x**2
-            return lhs - rhs
-        except:
-            return None
+        return [
+            speed * math.cos(theta) * t,
+            -0.5 * gravity * t**2 + speed * math.sin(theta) * t,
+            0,
+        ]
