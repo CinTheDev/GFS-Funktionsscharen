@@ -42,6 +42,7 @@ class CalculationTurningPointsVerification(Scene):
         equations = VGroup(function_equation, param_a)
         equations.arrange(DOWN)
         equations.move_to(RIGHT * 4 + DOWN * 3)
+        equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=BLUE, buff=0.1)
 
         function = always_redraw(
             lambda: grid.plot(

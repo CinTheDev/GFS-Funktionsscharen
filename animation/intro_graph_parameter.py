@@ -68,6 +68,7 @@ class IntroGraphParameter(Scene):
         equations.arrange(DOWN)
         equations.shift(RIGHT * 4)
         equations.shift(DOWN * 1)
+        equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=BLUE, buff=0.1)
 
         self.play(
             FadeIn(equations)

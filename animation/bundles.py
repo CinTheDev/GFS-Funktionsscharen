@@ -328,6 +328,7 @@ class Bundles(Scene):
             num_decimal_places=2,
         )
         param_a.move_to(LEFT * 5 + DOWN * 3.25)
+        param_a.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=PURPLE, buff=0.1)
 
         draw_function = always_redraw(
             lambda: grid.plot(
