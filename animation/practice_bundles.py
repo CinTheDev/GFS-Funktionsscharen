@@ -6,12 +6,11 @@ class Practice_Bundles(GenericSolveBlocks):
     def construct(self):
         self.default_color = BLUE
         self.transition()
+        self.write_all_problems()
 
-        self.write_first_problem()
         self.solve_first_problem()
         self.clear_blocks()
 
-        self.write_second_problem()
         self.solve_second_problem()
     
     def transition(self):
@@ -32,28 +31,57 @@ class Practice_Bundles(GenericSolveBlocks):
             run_time=1,
         )
     
-    def write_first_problem(self):
-        equation = MathTex(r"f_r(x) = 2(x + 5) \cdot e^{rx}")
-        self.blocks.append(VGroup(equation))
+    def write_all_problems(self):
+        all_problems = [
+            r"f_r(x) = 2(x + 5) \cdot e^{rx}",
+            r"f_t(x) = x e^{t(x - 2)} + 3",
+        ]
+
+        problem_text = Tex("Untersuche die Schar auf Funktionsbündel", color=BLUE)
+
+        all_problems_tex = VGroup(problem_text)
+
+        for problem in all_problems:
+            problem_tex = MathTex(problem)
+            all_problems_tex.add(problem_tex)
+        
+        all_problems_tex.arrange(DOWN)
 
         self.play(
-            Write(equation),
-            run_time=1,
+            FadeIn(problem_text, shift=UP),
+            run_time=0.7,
+        )
+        self.play(
+            LaggedStart(
+                [Write(p) for p in all_problems_tex[1:]],
+                lag_ratio=0.3,
+                run_time=3,
+            ),
         )
         self.wait()
 
-        self.next_section("Move_Aside")
-
-        equation.generate_target()
-        equation.target.move_to(UP * 3)
+        self.next_section("Clear_Problems")
 
         self.play(
-            MoveToTarget(equation),
-            run_time=0.5,
+            LaggedStart(
+                [Unwrite(p) for p in all_problems_tex],
+                lag_ratio=0.3,
+                run_time=3,
+            )
+        )
+
+        self.heading = Tex("Lösungen", color=BLUE)
+        self.heading.scale(0.6)
+        self.heading.move_to(UP * 3.5)
+
+        self.play(
+            FadeIn(self.heading, shift=DOWN),
+            run_time=0.7,
         )
     
     def solve_first_problem(self):
         steps_1 = [
+            r"f_r(x) = 2(x + 5) \cdot e^{rx}",
             r"f_{0}(x) = f_1(x)",
             r"2(x + 5) = 2(x + 5) \cdot e^x",
             r"0 = 2(x + 5) \cdot e^x - 2(x + 5)",
@@ -79,28 +107,9 @@ class Practice_Bundles(GenericSolveBlocks):
         self.block("Nullprodukt", UP * 2 + LEFT * 5, steps_2)
         self.block("Kontrolle", UP * 2 + RIGHT * 5, steps_ctrl, scale=0.8)
     
-    def write_second_problem(self):
-        equation = MathTex(r"f_t(x) = x e^{t(x - 2)} + 3")
-        self.blocks.append(VGroup(equation))
-
-        self.play(
-            Write(equation),
-            run_time=1,
-        )
-        self.wait()
-
-        self.next_section("Move_Aside")
-
-        equation.generate_target()
-        equation.target.move_to(UP * 3)
-
-        self.play(
-            MoveToTarget(equation),
-            run_time=0.5,
-        )
-    
     def solve_second_problem(self):
         steps_1 = [
+            r"f_t(x) = x e^{t(x - 2)} + 3",
             r"f_0(x) = f_1(x)",
             r"x e^0 + 3 = x e^{x - 2} + 3",
             r"x = x e^{x - 2}",
