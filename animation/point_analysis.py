@@ -37,14 +37,13 @@ class PointAnalysis(Scene):
             y_range=(-1.5, 3.5, 1),
             x_length=screen.width,
             y_length=screen.height,
-            tips=True,
             background_line_style={
                 "stroke_color": ORANGE,
                 "stroke_opacity": 0.6,
             },
             axis_config={
                 "include_numbers": True,
-                "tip_shape": StealthTip,
+                "include_tip": True,
             },
         )
 
