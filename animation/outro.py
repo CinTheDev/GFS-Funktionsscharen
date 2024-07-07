@@ -52,6 +52,7 @@ class Outro(Scene):
             f'<span fgcolor="{ORANGE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
             f'<span fgcolor="{ORANGE}">Hüllkurven</span>\nhttps://de.wikipedia.org/wiki/Einh%C3%BCllende',
             f'<span fgcolor="{ORANGE}">Vereinfachung cos^2(tan^-1(x))</span>\nhttps://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x',
+            f'<span fgcolor="{ORANGE}">Allgemein</span>\nLambacher Schweizer Mathematik Kursstufe Leistungsfach',
         ]
 
         for s in sources:
