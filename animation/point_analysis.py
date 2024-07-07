@@ -252,9 +252,18 @@ class PointAnalysis(Scene):
             )
         )
 
+        marker_horizontal = always_redraw(
+            lambda: DashedLine(
+                start=grid_first.input_to_graph_point(self.param_x.tracker.get_value(), self.base_function),
+                end=grid_second.input_to_graph_point(self.param_a.tracker.get_value(), simple_insertion_function),
+                color=YELLOW
+            )
+        )
+
         self.play(
             Create(marker_x),
             Create(marker_a),
+            Create(marker_horizontal),
             run_time=1,
         )
         self.wait()
