@@ -18,6 +18,7 @@ class EnveloppeVisualization(Scene):
             },
             axis_config={
                 "include_numbers": True,
+                "include_tip": True,
             },
         )
 

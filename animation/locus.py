@@ -46,7 +46,7 @@ class Locus(Scene):
             },
             axis_config={
                 "include_numbers": True,
-                "tip_shape": StealthTip,
+                "include_tip": True,
             },
         )
         self.grid.align_on_border(UP, buff=0)

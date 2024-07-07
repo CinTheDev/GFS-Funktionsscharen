@@ -40,14 +40,13 @@ class ExkursParametricFunction(Scene):
             y_range=(-y_extend, y_extend, 1),
             x_length=screen.width,
             y_length=screen.height,
-            tips=True,
             background_line_style={
                 "stroke_color": RED,
                 "stroke_opacity": 0.6,
             },
             axis_config={
                 "include_numbers": True,
-                "tip_shape": StealthTip,
+                "include_tip": True,
             },
         )
 
