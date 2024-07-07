@@ -47,6 +47,24 @@ class EnveloppeVisualization(Scene):
             function,
         )
         self.wait()
+
+        self.next_section("Create_Enveloppe")
+
+        equation_enveloppe = MathTex(r"f(x) = \frac{v^2}{2 g} - \frac{g x^2}{2 v^2}")
+        equation_enveloppe.move_to(LEFT * 4 + UP * 3)
+        equation_enveloppe.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=ORANGE, buff=0.1)
+
+        enveloppe = grid.plot(
+            lambda x: self.graph_enveloppe(x),
+            color=ORANGE,
+        )
+
+        self.play(
+            Create(equation_enveloppe),
+            Create(enveloppe),
+            run_time=1,
+        )
+        self.wait()
     
     def graph_function(self, t):
         theta = self.param_theta.tracker.get_value()
@@ -58,3 +76,9 @@ class EnveloppeVisualization(Scene):
             -0.5 * gravity * t**2 + speed * math.sin(theta) * t,
             0,
         ]
+    
+    def graph_enveloppe(self, x):
+        speed = 8
+        gravity = 9.81
+
+        return speed**2 / (2 * gravity) - (gravity * x**2) / (2 * speed**2)
