@@ -25,8 +25,36 @@ class EnveloppeVisualization(Scene):
         y_label = grid.get_y_axis_label("f(x)")
         grid_labels = VGroup(x_label, y_label)
 
+        self.param_theta = Variable(
+            45 * (math.pi / 180),
+            MathTex(r"\theta", color=BLUE),
+            num_decimal_places=2,
+        )
+        self.param_theta.move_to(RIGHT * 4 + UP * 3)
+
+        function = always_redraw(
+            lambda: grid.plot_parametric_curve(
+                lambda t: self.graph_function(t),
+                t_range=[-10, 10, 0.1],
+                color=BLUE,
+            )
+        )
+
         self.add(
             grid,
             grid_labels,
+            self.param_theta,
+            function,
         )
         self.wait()
+    
+    def graph_function(self, t):
+        theta = self.param_theta.tracker.get_value()
+        speed = 8
+        gravity = 9.81
+
+        return [
+            speed * math.cos(theta) * t,
+            -0.5 * gravity * t**2 + speed * math.sin(theta) * t,
+            0,
+        ]
