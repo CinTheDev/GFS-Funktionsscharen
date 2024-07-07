@@ -45,13 +45,19 @@ class PracticePointAnalysis(GenericSolveBlocks):
             r"f_t(x) = x^2 - 8x + 20 + t^2 + 6t",
         ]
 
-        all_problems_tex = VGroup(self.title)
+        all_problems_tex = VGroup()
 
-        for problem in all_problems:
-            all_problems_tex.add(MathTex(problem))
+        for i in range(len(all_problems)):
+            number = Tex(str(i) + ": ", color=ORANGE)
+            problem_tex = MathTex(all_problems[i])
+            line = VGroup(number, problem_tex).arrange(RIGHT)
+            all_problems_tex.add(line)
         
         all_problems_tex.arrange(DOWN)
-        all_problems_tex.shift(DOWN)
+
+        all_problems_block = VGroup(self.title, all_problems_tex)
+        all_problems_block.arrange(DOWN)
+        all_problems_block.shift(DOWN)
 
         self.play(
             Write(self.title),
@@ -61,7 +67,7 @@ class PracticePointAnalysis(GenericSolveBlocks):
 
         self.play(
             LaggedStart(
-                [Write(p) for p in all_problems_tex[1:]],
+                [Write(p) for p in all_problems_tex],
                 lag_ratio=0.3,
                 run_time=3,
             )
@@ -76,7 +82,7 @@ class PracticePointAnalysis(GenericSolveBlocks):
 
         self.play(
             MoveToTarget(self.title),
-            Unwrite(all_problems_tex[1:]),
+            Unwrite(all_problems_tex),
             run_time=1,
         )
     
