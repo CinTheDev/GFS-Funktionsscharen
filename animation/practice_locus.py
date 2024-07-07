@@ -32,13 +32,18 @@ class Practice_Locus(GenericSolveBlocks):
             r"f_a(x) = e^x - a^2x; a \neq 0",
         ]
 
-        all_problems_tex = VGroup(title)
+        all_problems_tex = VGroup()
 
-        for problem in all_problems:
-            problem_tex = MathTex(problem)
-            all_problems_tex.add(problem_tex)
+        for i in range(len(all_problems)):
+            number = Tex(str(i) + ": ", color=RED)
+            problem_tex = MathTex(all_problems[i])
+            line = VGroup(number, problem_tex).arrange(RIGHT)
+            all_problems_tex.add(line)
         
-        all_problems_tex.arrange(DOWN)
+        all_problems_tex.arrange(DOWN, aligned_edge=LEFT)
+
+        all_problems_block = VGroup(title, all_problems_tex)
+        all_problems_block.arrange(DOWN)
 
         self.play(
             Transform(transition_title, title, replace_mobject_with_target_in_scene=True),
@@ -46,7 +51,7 @@ class Practice_Locus(GenericSolveBlocks):
         )
         self.play(
             LaggedStart(
-                [Write(p) for p in all_problems_tex[1:]],
+                [Write(p) for p in all_problems_tex],
                 lag_ratio=0.3,
                 run_time=3,
             ),
@@ -57,7 +62,7 @@ class Practice_Locus(GenericSolveBlocks):
 
         self.play(
             LaggedStart(
-                [Unwrite(p) for p in all_problems_tex],
+                [Unwrite(p) for p in all_problems_block],
                 lag_ratio=0.3,
                 run_time=3,
             )
