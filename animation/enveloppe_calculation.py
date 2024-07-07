@@ -7,6 +7,7 @@ class EnveloppeCalculation(GenericSolveBlocks):
         self.default_color = PINK
 
         self.parametric()
+        self.derive()
     
     def parametric(self):
         equations_parametric = [
@@ -24,3 +25,21 @@ class EnveloppeCalculation(GenericSolveBlocks):
 
         self.block("Funktion (Parameterisiert)", UP * 3.5, equations_parametric, scale=0.8)
         self.block("Funktion (hergeleitet)", UP * 1.5, steps, scale=0.7)
+        self.clear_blocks()
+    
+    def derive(self):
+        begin = [
+            r"f_\theta(x) = tan(\theta) x - (\frac{g}{2 v^2 \cdot cos^2(\theta)}) x^2",
+            r"h_x(\theta) = f_\theta(x)",
+        ]
+
+        steps = [
+            r"h_x(\theta) = tan(\theta) x - (\frac{g}{2 v^2 \cdot cos^2(\theta)}) x^2",
+            r"h'_x(\theta) = \frac{1}{cos^2(\theta)} x - (-sin(\theta))(-2)(\frac{1}{cos^3(\theta)})(\frac{g}{2 v^2}) x^2",
+            r"h'_x(\theta) = \frac{x}{cos^2(\theta)} - \frac{sin(\theta)}{cos^3(\theta)}(\frac{g x^2}{v^2})",
+            r"h'_x(\theta) = \frac{x}{cos^2(\theta)} - \frac{tan(\theta)}{cos^2(\theta)}(\frac{g x^2}{v^2})",
+        ]
+
+        self.block("Variablen tauschen", UP * 3.5, begin, scale=0.8)
+        self.block(r"Nach $ \theta $ ableiten", UP * 1.25, steps, scale=0.7)
+        self.clear_blocks()
