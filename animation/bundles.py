@@ -284,7 +284,7 @@ class Bundles(Scene):
             3,
         ]
 
-        self.quick_graph(function, bundles, two_vals, 1, animate_steps, animate_lengths, fadeout=False, y_range=(-4, 10, 2))
+        self.quick_graph(function, bundles, two_vals, 1, animate_steps, animate_lengths, fadeout=False, y_range=(-4, 15, 2))
     
     def quick_graph(self, function, bundles_x, two_vals, initial_param, animate_steps, animate_lengths, fadeout=True, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
         self.subtitle.generate_target()
@@ -322,7 +322,7 @@ class Bundles(Scene):
             Tex("a", color=BLUE),
             num_decimal_places=2,
         )
-        param_a.move_to(LEFT * 5 + DOWN * 3)
+        param_a.move_to(LEFT * 5 + DOWN * 3.25)
 
         draw_function = always_redraw(
             lambda: grid.plot(
