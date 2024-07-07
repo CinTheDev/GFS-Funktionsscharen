@@ -365,7 +365,7 @@ class Bundles(Scene):
         )
 
         self.play(
-            Write(param_a),
+            Create(param_a),
             run_time=0.5,
         )
         
@@ -392,7 +392,7 @@ class Bundles(Scene):
             Uncreate(grid),
             Uncreate(draw_function),
             Unwrite(grid_labels),
-            Unwrite(param_a),
+            Uncreate(param_a),
             [ShrinkToCenter(draw_bundle) for draw_bundle in draw_bundles],
             run_time=1,
         )

@@ -83,7 +83,7 @@ class IntroGraphProperties(Scene):
         )
 
         self.play(
-            Write(equations),
+            Create(equations),
         )
         self.play(
             Create(function),

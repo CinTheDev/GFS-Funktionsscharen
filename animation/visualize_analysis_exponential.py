@@ -54,7 +54,7 @@ class VisualizeAnalysisExponential(Scene):
         )
 
         self.play(
-            Write(equations),
+            Create(equations),
             Create(self.function),
         )
         self.wait()
