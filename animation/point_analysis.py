@@ -171,7 +171,7 @@ class PointAnalysis(Scene):
         grid_labels.generate_target()
         grid_labels.target.become(
             VGroup(
-                grid_second.target.get_x_axis_label("x"),
+                grid_second.target.get_x_axis_label("a"),
                 grid_second.target.get_y_axis_label("f(x)"),
             )
         )
