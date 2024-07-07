@@ -461,6 +461,24 @@ class PointAnalysis(Scene):
 
         self.wait()
 
+        self.next_section("a_left")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(-0.5),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("a_right")
+
+        self.play(
+            self.param_a.tracker.animate.set_value(0.5),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
         #self.next_section("Graph_g")
 
         """
