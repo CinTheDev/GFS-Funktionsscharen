@@ -5,6 +5,7 @@ from generic_solve_blocks import *
 class Practice_1(GenericSolveBlocks):
     def construct(self):
         self.transition()
+        self.write_all_problems()
 
         self.write_first_problem()
         self.solve_first_problem()
@@ -45,6 +46,42 @@ class Practice_1(GenericSolveBlocks):
         self.play(
             MoveToTarget(self.page_num),
             run_time=0.5,
+        )
+    
+    def write_all_problems(self):
+        all_problems = [
+            r"f_a(x) = x^2 - ax",
+            r"f_a(x) = \frac{x^2 - a^2}{x}",
+            r"f_a(x) = e^{\frac{x}{a}} - a",
+        ]
+
+        problem_text = Tex("Berechne die Nullpunkte der Funktionenschar.", color=YELLOW)
+
+        all_problems_tex = VGroup(problem_text)
+
+        for problem in all_problems:
+            problem_tex = MathTex(problem)
+            all_problems_tex.add(problem_tex)
+        
+        all_problems_tex.arrange(DOWN)
+
+        self.play(
+            LaggedStart(
+                [Write(p) for p in all_problems_tex],
+                lag_ratio=0.3,
+                run_time=5,
+            )
+        )
+        self.wait()
+
+        self.next_section("Clear_Problems")
+
+        self.play(
+            LaggedStart(
+                [Unwrite(p) for p in all_problems_tex],
+                lag_ratio=0.3,
+                run_time=5,
+            )
         )
     
     def write_first_problem(self):
