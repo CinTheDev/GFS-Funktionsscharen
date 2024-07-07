@@ -478,36 +478,6 @@ class PointAnalysis(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
-
-        #self.next_section("Graph_g")
-
-        """
-        self.play(
-            Unwrite(self.simple_insertion_function),
-            Unwrite(self.grid_labels),
-            run_time=0.5,
-        )
-
-        self.turning_point_function = always_redraw(
-            lambda: self.grid.plot(
-                lambda a: self.graph_turning_point_function(a),
-                color=PURPLE,
-            )
-        )
-        new_labels = VGroup(
-            self.grid.get_x_axis_label("a"),
-            self.grid.get_y_axis_label("g(x)"),
-        )
-
-        self.grid_labels.become(new_labels)
-
-        self.play(
-            Write(self.turning_point_function),
-            Write(self.grid_labels),
-            run_time=0.5,
-        )
-        self.wait()
-        """
     
     def graph_function(self, x):
         a = self.param_a.tracker.get_value()
