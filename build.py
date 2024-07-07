@@ -41,6 +41,8 @@ scenes = [
     "locus_continuation",
     "practice_locus",
 
+    "envelope",
+
     "outro",
 ]
 
