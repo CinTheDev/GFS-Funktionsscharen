@@ -66,6 +66,7 @@ class PointAnalysis(Scene):
         equations = VGroup(self.function_equation, self.param_a)
         equations.arrange(DOWN)
         equations.move_to(LEFT * 4 + DOWN * 3)
+        equations.set_z_index(1)
         equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=ORANGE, buff=0.1)
 
         self.base_function = always_redraw(
@@ -216,6 +217,7 @@ class PointAnalysis(Scene):
             num_decimal_places=2,
         )
         self.param_x.move_to(RIGHT * 5 + DOWN * 3)
+        self.param_x.set_z_index(1)
         self.param_x.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
 
         simple_insertion_function = always_redraw(
