@@ -398,6 +398,7 @@ class PointAnalysis(Scene):
     def graph_cool_function(self):
         self.next_section("Compress_Blocks")
 
+        grid_first = self.first_graph[0]
         grid_second = self.second_graph[0]
 
         cool_function_equation = MathTex(r"g({{ a }}) = 5.5{{ a }}^2")
@@ -444,6 +445,20 @@ class PointAnalysis(Scene):
             Write(self.second_graph[1]),
             run_time=0.5,
         )
+
+        self.marker_horizontal = always_redraw(
+            lambda: DashedLine(
+                start=grid_first.input_to_graph_point(self.param_a.tracker.get_value() * 0.5, self.base_function),
+                end=grid_second.input_to_graph_point(self.param_a.tracker.get_value(), self.turning_point_function),
+                color=YELLOW
+            )
+        )
+
+        self.play(
+            Create(self.marker_horizontal),
+            run_time=0.5
+        )
+
         self.wait()
 
         #self.next_section("Graph_g")
