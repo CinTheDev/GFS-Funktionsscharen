@@ -143,6 +143,9 @@ class PointAnalysis(Scene):
         grid_first = self.first_graph[0]
         grid_first.generate_target()
 
+        grid_first_labels = self.first_graph[1]
+        grid_first_labels.generate_target()
+
         grid_first.target.become(
             NumberPlane(
                 x_range=(-2.5, 2.5, 1),
@@ -161,12 +164,29 @@ class PointAnalysis(Scene):
         )
         grid_first.target.align_on_border(LEFT, buff=0)
 
+        grid_first_labels.target.become(
+            VGroup(
+                grid_first.target.get_x_axis_label("x"),
+                grid_first.target.get_y_axis_label("f(x)"),
+            )
+        )
+
         grid_second.generate_target()
         grid_second.target.align_on_border(RIGHT, buff=0)
 
+        grid_labels.generate_target()
+        grid_labels.target.become(
+            VGroup(
+                grid_second.target.get_x_axis_label("x"),
+                grid_second.target.get_y_axis_label("f(x)"),
+            )
+        )
+
         self.play(
             MoveToTarget(grid_first),
+            MoveToTarget(grid_first_labels),
             MoveToTarget(grid_second),
+            MoveToTarget(grid_labels),
             run_time=2,
         )
         self.wait()
