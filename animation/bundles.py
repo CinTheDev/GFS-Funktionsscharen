@@ -303,7 +303,7 @@ class Bundles(Scene):
             x_length=screen.width,
             y_length=screen.height,
             background_line_style={
-                "stroke_color": YELLOW,
+                "stroke_color": PURPLE,
                 "stroke_opacity": 0.6,
             },
             axis_config={
