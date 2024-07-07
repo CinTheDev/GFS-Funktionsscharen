@@ -16,8 +16,8 @@ class Practice_1(GenericSolveBlocks):
         self.solve_third_problem()
         self.clear_blocks()
 
-        #self.write_integral_problem()
-        #self.solve_integral_problem()
+        self.write_integral_problem()
+        self.solve_integral_problem()
     
     def transition(self):
         self.next_section("Transition")
@@ -130,20 +130,19 @@ class Practice_1(GenericSolveBlocks):
     
     def write_integral_problem(self):
         self.play(
-            Unwrite(self.equation),
+            FadeOut(self.heading, shift=UP),
             FadeOut(self.page_num, shift=UP),
             run_time=0.5,
         )
 
-        new_equation = MathTex(r"\int_0^{\frac{\pi}{a}} sin(ax) \, dx")
-        self.equation.become(new_equation)
+        equation = MathTex(r"\int_0^{\frac{\pi}{a}} sin(ax) \, dx")
 
         comment = Tex("Löse das Integral", color=YELLOW)
         comment.scale(0.6)
-        comment.next_to(new_equation, UP)
+        comment.next_to(equation, UP)
 
         self.play(
-            Write(self.equation),
+            Write(equation),
             run_time=0.5,
         )
         self.play(
@@ -154,15 +153,15 @@ class Practice_1(GenericSolveBlocks):
 
         self.next_section("Integral_Move")
 
-        self.equation.generate_target()
-        self.equation.target.move_to(UP * 3)
+        equation.generate_target()
+        equation.target.move_to(UP * 3)
 
         self.play(
             Unwrite(comment),
             run_time=0.5,
         )
         self.play(
-            MoveToTarget(self.equation),
+            MoveToTarget(equation),
             run_time=0.5,
         )
         self.wait()
