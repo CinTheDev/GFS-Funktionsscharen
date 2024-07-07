@@ -8,8 +8,8 @@ class PointAnalysis(Scene):
 
         self.graph_first()
         self.graph_second()
+        self.simple_insertion()
 
-        #self.simple_insertion()
         #self.solve_turning_point()
         #self.solve_cool_function()
         #self.graph_cool_function()
@@ -130,12 +130,6 @@ class PointAnalysis(Scene):
 
         self.second_graph = VGroup(grid_second, grid_labels)
 
-        self.param_x = Variable(
-            0,
-            Tex("x", color=RED),
-            num_decimal_places=2,
-        )
-
         self.add(self.second_graph)
 
         # Shrink left coordinate system so the right one fits into screen
@@ -195,8 +189,33 @@ class PointAnalysis(Scene):
             Write(seperator),
             run_time=1,
         )
-        self.wait()
     
+    def simple_insertion(self):
+        grid_second = self.second_graph[0]
+
+        self.param_x = Variable(
+            0,
+            Tex("x", color=RED),
+            num_decimal_places=2,
+        )
+        self.param_x.move_to(RIGHT * 5 + DOWN * 3)
+        self.param_x.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=RED, buff=0.1)
+
+        simple_insertion_function = always_redraw(
+            lambda: grid_second.plot(
+                lambda a: self.graph_point_function(a),
+                color=PURPLE,
+            )
+        )
+
+        self.play(
+            FadeIn(self.param_x, shift=UP),
+            Create(simple_insertion_function),
+            run_time=1,
+        )
+        self.wait()
+
+    """    
     def simple_insertion(self):
         self.next_section("Transition")
 
@@ -250,6 +269,7 @@ class PointAnalysis(Scene):
             run_time=2,
         )
         self.wait()
+    """
     
     def solve_turning_point(self):
         self.next_section("Start_Solving_turning_point")
@@ -396,7 +416,7 @@ class PointAnalysis(Scene):
         return 2 * x**2 - 8 * a * x + 9 * a**2
 
     def graph_point_function(self, a):
-        x = self.param_a.tracker.get_value()
+        x = self.param_x.tracker.get_value()
         return 2 * x**2 - 8 * a * x + 9 * a**2
     
     def graph_turning_point_function(self, a):
