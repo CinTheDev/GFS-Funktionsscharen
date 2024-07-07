@@ -78,20 +78,11 @@ Notizen über Recherche sind in RESEARCH.md geschrieben.
 
 Die Quellen, die zur Präsentation beigetragen haben. (Werden am Ende der Präsentation genannt.)
 
-- Schulbuch
-- [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
-- [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
-- [Vereinfachung cos^2(tan^-1(x))](https://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x)
-
-## Potentielle Quellen
-
-Quellen, welche evtl. hilfreich sein werden. (Z.B. Verständnis, optionales Thema, ...)
-
 Anmerkung zu Wikipedia: Es wurde jeweils in Deutsch und in Englisch recherchiert, da
 hierzu die Artikel jeweils unterschiedliche Informationen anbieten. Meistens bieten
 die englischen Artikel mehr Informationen an.
 
+- Schulbuch
 - [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
 - [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
-- [Ortskurven](https://de.wikipedia.org/wiki/Ortskurve_(Kurvendiskussion))
 - [Vereinfachung cos^2(tan^-1(x))](https://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x)
