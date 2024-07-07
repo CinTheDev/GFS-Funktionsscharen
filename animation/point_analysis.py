@@ -5,7 +5,10 @@ from manim import *
 class PointAnalysis(Scene):
     def construct(self):
         self.transition()
-        self.graph()
+
+        self.graph_first()
+        self.graph_second()
+
         self.simple_insertion()
         self.solve_turning_point()
         self.solve_cool_function()
@@ -28,7 +31,7 @@ class PointAnalysis(Scene):
             run_time=0.5,
         )
     
-    def graph(self):
+    def graph_first(self):
         #self.next_section("Draw_Graph")
         screen = FullScreenRectangle()
 
@@ -98,6 +101,9 @@ class PointAnalysis(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
+    
+    def graph_second(self):
+        pass
     
     def simple_insertion(self):
         self.next_section("Transition")
