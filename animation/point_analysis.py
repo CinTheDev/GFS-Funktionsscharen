@@ -303,62 +303,6 @@ class PointAnalysis(Scene):
             rate_func=rate_functions.smooth,
         )
         self.wait()
-
-    """    
-    def simple_insertion(self):
-        self.next_section("Transition")
-
-        self.play(
-            Unwrite(self.base_function),
-            Unwrite(self.grid_labels),
-            Unwrite(self.param_a),
-            run_time=1,
-        )
-
-        self.simple_insertion_function = always_redraw(
-            lambda: self.grid.plot(
-                lambda a: self.graph_point_function(a),
-                color=PURPLE,
-            )
-        )
-        new_labels = VGroup(
-            self.grid.get_x_axis_label("a"),
-            self.grid.get_y_axis_label("f_a(x)"),
-        )
-        new_param = Variable(
-            0,
-            Tex("x", color=RED),
-            num_decimal_places=2,
-        )
-        new_param.move_to(self.param_a)
-
-        self.grid_labels.become(new_labels)
-        self.param_a.become(new_param)
-
-        self.play(
-            Write(self.simple_insertion_function),
-            Write(self.grid_labels),
-            Write(self.param_a),
-            run_time=2,
-        )
-        self.wait()
-
-        self.next_section("Move_left")
-
-        self.play(
-            self.param_a.tracker.animate.set_value(-3),
-            run_time=1,
-        )
-        self.wait()
-
-        self.next_section("Move_center")
-
-        self.play(
-            self.param_a.tracker.animate.set_value(0),
-            run_time=2,
-        )
-        self.wait()
-    """
     
     def solve_turning_point(self):
         self.next_section("Start_Solving_turning_point")
