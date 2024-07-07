@@ -11,16 +11,16 @@ class Practice_1(GenericSolveBlocks):
         self.solve_first_problem()
         self.clear_blocks()
 
-        self.write_second_problem()
-        self.solve_second_problem()
-        self.clear_blocks()
+        #self.write_second_problem()
+        #self.solve_second_problem()
+        #self.clear_blocks()
 
-        self.write_third_problem()
-        self.solve_third_problem()
-        self.clear_blocks()
+        #self.write_third_problem()
+        #self.solve_third_problem()
+        #self.clear_blocks()
 
-        self.write_integral_problem()
-        self.solve_integral_problem()
+        #self.write_integral_problem()
+        #self.solve_integral_problem()
     
     def transition(self):
         self.next_section("Transition")
@@ -66,11 +66,15 @@ class Practice_1(GenericSolveBlocks):
         all_problems_tex.arrange(DOWN)
 
         self.play(
+            FadeIn(problem_text, shift=UP),
+            run_time=0.7,
+        )
+        self.play(
             LaggedStart(
-                [Write(p) for p in all_problems_tex],
+                [Write(p) for p in all_problems_tex[1:]],
                 lag_ratio=0.3,
-                run_time=5,
-            )
+                run_time=3,
+            ),
         )
         self.wait()
 
@@ -80,7 +84,7 @@ class Practice_1(GenericSolveBlocks):
             LaggedStart(
                 [Unwrite(p) for p in all_problems_tex],
                 lag_ratio=0.3,
-                run_time=5,
+                run_time=3,
             )
         )
     
