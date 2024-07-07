@@ -35,7 +35,7 @@ class PointAnalysis(Scene):
         #self.next_section("Draw_Graph")
         screen = FullScreenRectangle()
 
-        self.grid = NumberPlane(
+        grid = NumberPlane(
             x_range=(-5, 5, 1),
             y_range=(-1.5, 3.5, 1),
             x_length=screen.width,
@@ -50,9 +50,9 @@ class PointAnalysis(Scene):
             },
         )
 
-        x_label = self.grid.get_x_axis_label("x")
-        y_label = self.grid.get_y_axis_label("f(x)")
-        self.grid_labels = VGroup(x_label, y_label)
+        x_label = grid.get_x_axis_label("x")
+        y_label = grid.get_y_axis_label("f(x)")
+        grid_labels = VGroup(x_label, y_label)
 
         self.param_a = Variable(
             0,
@@ -75,9 +75,11 @@ class PointAnalysis(Scene):
             )
         )
 
+        self.first_graph = VGroup(grid, grid_labels)
+
         self.play(
-            Create(self.grid),
-            Write(self.grid_labels),
+            Create(grid),
+            Write(grid_labels),
             Write(self.base_function),
             FadeIn(equations),
             run_time=2,
@@ -105,7 +107,7 @@ class PointAnalysis(Scene):
     def graph_second(self):
         screen = FullScreenRectangle()
 
-        self.grid_second = NumberPlane(
+        grid_second = NumberPlane(
             x_range=(-5, 5, 1),
             y_range=(-1.5, 3.5, 1),
             x_length=screen.width / 2,
@@ -123,6 +125,8 @@ class PointAnalysis(Scene):
         x_label = self.grid_second.get_x_axis_label("x")
         y_label = self.grid_second.get_y_axis_label("f(x)")
         grid_labels = VGroup(x_label, y_label)
+
+        self.second_graph = VGroup(grid_second, grid_labels)
 
         self.param_x = Variable(
             0,
