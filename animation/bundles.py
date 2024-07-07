@@ -344,7 +344,7 @@ class Bundles(Scene):
         draw_bundles = VGroup()
         
         for bundle in bundles_x:
-            draw_bundle = Dot(point=grid.input_to_graph_point(bundle, draw_function), color=PURPLE)
+            draw_bundle = Dot(point=grid.input_to_graph_point(bundle, draw_function), color=ORANGE)
             draw_bundles.add(draw_bundle)
 
             self.play(
