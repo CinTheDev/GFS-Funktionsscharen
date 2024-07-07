@@ -65,6 +65,24 @@ class EnveloppeVisualization(Scene):
             run_time=1,
         )
         self.wait()
+
+        self.next_section("Goes_Left")
+
+        self.play(
+            self.param_theta.tracker.animate.set_value(135 * (math.pi / 180)),
+            run_time=2,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Goes_Right")
+        
+        self.play(
+            self.param_theta.tracker.animate.set_value(0),
+            run_time=5,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
     
     def graph_function(self, t):
         theta = self.param_theta.tracker.get_value()
