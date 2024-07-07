@@ -9,10 +9,10 @@ class PointAnalysis(Scene):
         self.graph_first()
         self.graph_second()
 
-        self.simple_insertion()
-        self.solve_turning_point()
-        self.solve_cool_function()
-        self.graph_cool_function()
+        #self.simple_insertion()
+        #self.solve_turning_point()
+        #self.solve_cool_function()
+        #self.graph_cool_function()
 
         # TODO: Second example
     
@@ -103,7 +103,32 @@ class PointAnalysis(Scene):
         self.wait()
     
     def graph_second(self):
-        pass
+        screen = FullScreenRectangle()
+
+        self.grid_second = NumberPlane(
+            x_range=(-5, 5, 1),
+            y_range=(-1.5, 3.5, 1),
+            x_length=screen.width / 2,
+            y_length=screen.height,
+            background_line_style={
+                "stroke_color": RED,
+                "stroke_opacity": 0.6,
+            },
+            axis_config={
+                "include_numbers": True,
+                "include_tip": True,
+            },
+        )
+
+        x_label = self.grid_second.get_x_axis_label("x")
+        y_label = self.grid_second.get_y_axis_label("f(x)")
+        grid_labels = VGroup(x_label, y_label)
+
+        self.param_x = Variable(
+            0,
+            Tex("x", color=RED),
+            num_decimal_places=2,
+        )
     
     def simple_insertion(self):
         self.next_section("Transition")
