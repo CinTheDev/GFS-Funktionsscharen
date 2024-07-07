@@ -40,10 +40,31 @@ class PracticePointAnalysis(GenericSolveBlocks):
 
         self.next_section("Introduce_Problem")
 
+        all_problems = [
+            r"f_t(x) = x^2 - tx + 4t^2 - 3t",
+            r"f_t(x) = x^2 - 8x + 20 + t^2 + 6t",
+        ]
+
+        all_problems_tex = VGroup(self.title)
+
+        for problem in all_problems:
+            all_problems_tex.add(MathTex(problem))
+        
+        all_problems_tex.arrange(DOWN)
+        all_problems_tex.shift(DOWN)
+
         self.play(
             Write(self.title),
             FadeIn(self.page_num, shift=DOWN),
             run_time=1,
+        )
+
+        self.play(
+            LaggedStart(
+                [Write(p) for p in all_problems_tex[1:]],
+                lag_ratio=0.3,
+                run_time=3,
+            )
         )
         self.wait()
 
@@ -55,28 +76,20 @@ class PracticePointAnalysis(GenericSolveBlocks):
 
         self.play(
             MoveToTarget(self.title),
+            Unwrite(all_problems_tex[1:]),
             run_time=1,
         )
     
     def introduce_first_problem(self):
         equation = MathTex(r"f_t(x) = x^2 - tx + 4t^2 - 3t")
+        equation.scale(0.8)
+        equation.move_to(UP * 1.5)
+
         self.blocks.append(equation)
 
         self.play(
             Write(equation),
             run_time=0.5,
-        )
-        self.wait()
-
-        self.next_section("Move_equation")
-
-        equation.generate_target()
-        equation.target.move_to(UP * 1.5)
-        equation.target.scale(0.8)
-
-        self.play(
-            MoveToTarget(equation),
-            run_time=1,
         )
         self.wait()
     
@@ -106,23 +119,14 @@ class PracticePointAnalysis(GenericSolveBlocks):
     
     def introduce_second_problem(self):
         equation = MathTex(r"f_t(x) = x^2 - 8x + 20 + t^2 + 6t")
+        equation.scale(0.8)
+        equation.move_to(UP * 1.5)
+
         self.blocks.append(equation)
 
         self.play(
             Write(equation),
             run_time=0.5,
-        )
-        self.wait()
-
-        self.next_section("Move_equation")
-
-        equation.generate_target()
-        equation.target.move_to(UP * 1.5)
-        equation.target.scale(0.8)
-
-        self.play(
-            MoveToTarget(equation),
-            run_time=1,
         )
         self.wait()
     
