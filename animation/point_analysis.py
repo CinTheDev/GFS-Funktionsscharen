@@ -13,8 +13,6 @@ class PointAnalysis(Scene):
         self.solve_turning_point()
         self.solve_cool_function()
         self.graph_cool_function()
-
-        # TODO: Second example
     
     def transition(self):
         self.next_section("Transition")

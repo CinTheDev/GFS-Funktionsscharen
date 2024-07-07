@@ -71,8 +71,6 @@ Parameter ist, dann ist dieser Punkt ein Bündel der Funktion.
 
 ## Tiefste Hochpunkt der Schar
 
-TODO: Allgemeinerer Titel
-
 Exprempunkte (wie z.B. Hochpunkte) können sich bei Funktionsscharen "bewegen". Wie kann man
 den tiefsten oder höchsten Punkt der Extrempunkte finden?
 
@@ -116,10 +114,6 @@ die andere Form wird aber offensichtlich bevorzugt.
 3. a in ursprüngliche Funktion einsetzen.
 
 - (1-2 Beispiele)
-
-## Anwendung in der echten Welt
-
-TODO: Mehr Recherche und verstehen
 
 ## Hüllkurven
 
@@ -182,9 +176,3 @@ Funktionenschar. Egal welches a man einsetzt, kommt die Funktion niemals aus die
 Wurfbahnen können als Funktionsschar dargestellt werden, um alle möglichen Wurfbahnen darzustellen.
 Die Hüllkurve markiert die Grenze, wo das Wurfobjekte hinkommen kann, und welchen Bereich es
 niemals erreichen wird.
-
-TODO
-
-### Kaustik
-
-TODO
