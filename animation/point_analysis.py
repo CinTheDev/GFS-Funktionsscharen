@@ -182,12 +182,18 @@ class PointAnalysis(Scene):
             )
         )
 
+        seperator = Line(start=UP * 4, end=DOWN * 4, color=YELLOW)
+
         self.play(
             MoveToTarget(grid_first),
             MoveToTarget(grid_first_labels),
             MoveToTarget(grid_second),
             MoveToTarget(grid_labels),
             run_time=2,
+        )
+        self.play(
+            Write(seperator),
+            run_time=1,
         )
         self.wait()
     
