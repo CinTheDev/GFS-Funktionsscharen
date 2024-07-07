@@ -43,6 +43,7 @@ scenes = [
 
     "enveloppe",
     "enveloppe_calculation",
+    "enveloppe_visualization",
 
     "outro",
 ]
