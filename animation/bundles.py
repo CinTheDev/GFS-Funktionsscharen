@@ -336,24 +336,9 @@ class Bundles(Scene):
         )
 
         self.play(
-            Write(draw_function),
-            Write(draw_function_2),
+            Create(draw_function),
+            Create(draw_function_2),
             run_time=2,
-        )
-
-        self.wait()
-
-        self.next_section("Unify")
-
-        self.play(
-            param_a.tracker.animate.set_value(initial_param),
-            Unwrite(draw_function_2),
-            run_time=1,
-        )
-
-        self.play(
-            Write(param_a),
-            run_time=0.5,
         )
 
         draw_bundles = VGroup()
@@ -366,6 +351,21 @@ class Bundles(Scene):
                 GrowFromCenter(draw_bundle, point_color=RED),
                 run_time=0.5,
             )
+
+        self.wait()
+
+        self.next_section("Unify")
+
+        self.play(
+            param_a.tracker.animate.set_value(initial_param),
+            Uncreate(draw_function_2),
+            run_time=1,
+        )
+
+        self.play(
+            Write(param_a),
+            run_time=0.5,
+        )
         
         self.wait()
 
