@@ -6,11 +6,11 @@ class Bundles(Scene):
     def construct(self):
         self.transition()
 
-        self.first_example()
+        #self.first_example()
         self.first_example_graph()
 
-        self.second_example()
-        self.second_example_graph()
+        #self.second_example()
+        #self.second_example_graph()
     
     def transition(self):
         self.next_section("Transition")
@@ -155,6 +155,7 @@ class Bundles(Scene):
     def first_example_graph(self):
         function = lambda x, a: a * x**2 - 4*a
         bundles = [-2, 2]
+        two_vals = (1, 2)
         animate_steps = [
             -1,
             0.5,
@@ -164,7 +165,7 @@ class Bundles(Scene):
             2,
         ]
 
-        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths)
+        self.quick_graph(function, bundles, two_vals, 1, animate_steps, animate_lengths)
     
     def second_example(self):
         equation = MathTex(r"f_a(x) = x^2 - (a + 2)x + (a - 2)a")
@@ -273,7 +274,8 @@ class Bundles(Scene):
     def second_example_graph(self):
         function = lambda x, a: x**2 - (a + 2)*x + (a - 2)*a
         bundles = []
-        animate_steps = [
+        two_vals = (-2, 2)
+        animate_steps = [        self.next_
             -1,
             8,
         ]
@@ -282,9 +284,9 @@ class Bundles(Scene):
             3,
         ]
 
-        self.quick_graph(function, bundles, 1, animate_steps, animate_lengths, fadeout=False, y_range=(-4, 10, 2))
+        self.quick_graph(function, bundles, two_vals, 1, animate_steps, animate_lengths, fadeout=False, y_range=(-4, 10, 2))
     
-    def quick_graph(self, function, bundles_x, initial_param, animate_steps, animate_lengths, fadeout=True, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
+    def quick_graph(self, function, bundles_x, two_vals, initial_param, animate_steps, animate_lengths, fadeout=True, x_range=(-7, 7, 1), y_range=(-5, 5, 1)):
         self.subtitle.generate_target()
         self.subtitle.target.shift(UP)
 
@@ -316,16 +318,11 @@ class Bundles(Scene):
         )
 
         param_a = Variable(
-            initial_param,
+            two_vals[0],
             Tex("a", color=BLUE),
             num_decimal_places=2,
         )
         param_a.move_to(LEFT * 5 + DOWN * 3)
-
-        self.play(
-            Write(param_a),
-            run_time=0.5,
-        )
 
         draw_function = always_redraw(
             lambda: grid.plot(
@@ -333,9 +330,30 @@ class Bundles(Scene):
                 color=BLUE,
             )
         )
+        draw_function_2 = grid.plot(
+            lambda x: function(x, two_vals[1]),
+            color=GREEN,
+        )
 
         self.play(
-            Create(draw_function),
+            Write(draw_function),
+            Write(draw_function_2),
+            run_time=2,
+        )
+
+        self.wait()
+
+        self.next_section("Unify")
+
+        self.play(
+            param_a.tracker.animate.set_value(initial_param),
+            Unwrite(draw_function_2),
+            run_time=1,
+        )
+
+        self.play(
+            Write(param_a),
+            run_time=0.5,
         )
 
         draw_bundles = VGroup()
