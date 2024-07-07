@@ -110,7 +110,7 @@ class PointAnalysis(Scene):
 
         grid_second = NumberPlane(
             x_range=(-1.5, 1.5, 0.5),
-            y_range=(-5.5, 17.5, 4),
+            y_range=(-5.5, 7.5, 2),
             x_length=screen.width / 2,
             y_length=screen.height,
             background_line_style={
@@ -134,34 +134,31 @@ class PointAnalysis(Scene):
 
         # Shrink left coordinate system so the right one fits into screen
 
-        grid_first = self.first_graph[0]
-        grid_first.generate_target()
+        grid_first_old = self.first_graph[0]
 
         grid_first_labels = self.first_graph[1]
         grid_first_labels.generate_target()
 
-        grid_first.target.become(
-            NumberPlane(
-                x_range=(-1.5, 1.5, 0.5),
-                y_range=(-5.5, 17.5, 4),
-                x_length=screen.width / 2,
-                y_length=screen.height,
-                background_line_style={
-                    "stroke_color": ORANGE,
-                    "stroke_opacity": 0.6,
-                },
-                axis_config={
-                    "include_numbers": True,
-                    "include_tip": True,
-                },
-            )
+        grid_first = NumberPlane(
+            x_range=(-1.5, 1.5, 0.5),
+            y_range=(-5.5, 7.5, 2),
+            x_length=screen.width / 2,
+            y_length=screen.height,
+            background_line_style={
+                "stroke_color": ORANGE,
+                "stroke_opacity": 0.6,
+            },
+            axis_config={
+                "include_numbers": True,
+                "include_tip": True,
+            },
         )
-        grid_first.target.align_on_border(LEFT, buff=0)
+        grid_first.align_on_border(LEFT, buff=0)
 
         grid_first_labels.target.become(
             VGroup(
-                grid_first.target.get_x_axis_label("x"),
-                grid_first.target.get_y_axis_label("f(x)"),
+                grid_first.get_x_axis_label("x"),
+                grid_first.get_y_axis_label("f(x)"),
             )
         )
 
@@ -179,7 +176,11 @@ class PointAnalysis(Scene):
         seperator = Line(start=UP * 4, end=DOWN * 4, color=YELLOW)
 
         self.play(
-            MoveToTarget(grid_first),
+            Uncreate(self.base_function),
+            run_time=0.5,
+        )
+        self.play(
+            Transform(grid_first_old, grid_first),
             MoveToTarget(grid_first_labels),
             MoveToTarget(grid_second),
             MoveToTarget(grid_labels),
@@ -189,6 +190,18 @@ class PointAnalysis(Scene):
         self.play(
             Write(seperator),
             run_time=1,
+        )
+
+        # Reinstance base_function because otherwise it's wrong
+        self.base_function = always_redraw(
+            lambda: grid_first.plot(
+                lambda x: self.graph_function(x),
+                color=BLUE,
+            )
+        )
+        self.play(
+            Create(self.base_function),
+            run_time=0.5,
         )
     
     def simple_insertion(self):
