@@ -335,22 +335,18 @@ class Bundles(Scene):
             color=GREEN,
         )
 
-        self.play(
-            Create(draw_function),
-            Create(draw_function_2),
-            run_time=2,
-        )
-
         draw_bundles = VGroup()
         
         for bundle in bundles_x:
             draw_bundle = Dot(point=grid.input_to_graph_point(bundle, draw_function), color=ORANGE)
             draw_bundles.add(draw_bundle)
 
-            self.play(
-                GrowFromCenter(draw_bundle, point_color=RED),
-                run_time=0.5,
-            )
+        self.play(
+            Create(draw_function),
+            Create(draw_function_2),
+            [GrowFromCenter(b, point_color=RED) for b in draw_bundles],
+            run_time=2,
+        )
 
         self.wait()
 
