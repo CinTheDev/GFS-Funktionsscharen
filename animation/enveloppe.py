@@ -5,7 +5,7 @@
 from manim import *
 import math
 
-class Envelope(Scene):
+class Enveloppe(Scene):
     def construct(self):
         self.transition()
         self.graph()
