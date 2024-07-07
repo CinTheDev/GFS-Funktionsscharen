@@ -63,7 +63,11 @@ class Practice_Bundles(GenericSolveBlocks):
                 run_time=3,
             ),
         )
-        self.wait()
+
+        steps = [
+            r"f_a(x) = f_b(x); \:\: a \neq b",
+        ]
+        steps_block = self.block("Methode", DOWN * 2.5, steps, invincible=True)
 
         self.next_section("Clear_Problems")
 
@@ -72,7 +76,8 @@ class Practice_Bundles(GenericSolveBlocks):
                 [Unwrite(p) for p in all_problems_block],
                 lag_ratio=0.3,
                 run_time=3,
-            )
+            ),
+            Unwrite(steps_block)
         )
 
         self.heading = Tex("Lösungen", color=BLUE)
