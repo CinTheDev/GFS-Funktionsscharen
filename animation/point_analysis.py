@@ -295,10 +295,10 @@ class PointAnalysis(Scene):
         )
         self.wait()
 
-        self.next_section("x_m1")
+        self.next_section("x_1")
 
         self.play(
-            self.param_x.tracker.animate.set_value(-1),
+            self.param_x.tracker.animate.set_value(1),
             run_time=3,
             rate_func=rate_functions.smooth,
         )
