@@ -9,6 +9,7 @@ class EnveloppeCalculation(GenericSolveBlocks):
         self.parametric()
         self.derive()
         self.solve_null()
+        self.insert()
     
     def parametric(self):
         equations_parametric = [
@@ -57,3 +58,30 @@ class EnveloppeCalculation(GenericSolveBlocks):
 
         self.block(r"Nullsetzen \& nach $ \theta $ auflösen", UP * 3, steps, scale=0.7)
         self.clear_blocks()
+    
+    def insert(self):
+        previous_solution = [
+            r"\theta = tan^{-1}(\frac{v^2}{g x})",
+        ]
+
+        steps_1 = [
+            r"f_\theta(x) = tan(\theta) x - (\frac{g}{2 v^2 \cdot cos^2(\theta)}) x^2",
+            r"f(x) = (\frac{v^2}{g x}) x - (\frac{g}{2 v^2 \cdot cos^2(tan^{-1}(\frac{v^2}{g x}))}) x^2",
+        ]
+
+        inbetween = [
+            r"cos^2(tan^{-1}(x)) = 1 - \frac{x^2}{1 + x^2}",
+            r"cos^2(tan^{-1}(\frac{v^2}{g x})) = 1 - \frac{(\frac{v^2}{g x})^2}{1 + (\frac{v^2}{g x})^2}",
+            r"cos^2(tan^{-1}(\frac{v^2}{g x})) = 1 - \frac{v^4}{g^2 x^2 + v^4}",
+        ]
+
+        steps_2 = [
+            r"f(x) = \frac{v^2}{g} - \frac{g x^2}{2 v^2 (1 - \frac{v^4}{g^2 x^2 + v^4})}",
+            r"f(x) = \frac{v^2}{g} - \frac{g x^2}{2 v^2 - \frac{v^6}{g^2 x^2 + v^4}}",
+            r"f(x) = \frac{v^2}{2g} - \frac{g x^2}{2 v^2}",
+        ]
+
+        self.block("Zwischenergebnis", UP * 3.5 + LEFT * 4, previous_solution, scale=0.8)
+        self.block("Einsetzen", UP * 3.5 + RIGHT * 3, steps_1, scale=0.8)
+        self.block("Zwischenrechnung", UP * 1 + LEFT * 4, inbetween, scale=0.8)
+        self.block("Vereinfachen", UP * 0.25 + RIGHT * 3, steps_2, scale=0.75)
