@@ -310,7 +310,7 @@ class PointAnalysis(Scene):
             r"f'_a(x) = 0",
             r"4x - 8a = 0",
             r"4x = 8a",
-            r"x = 0.5a",
+            r"x = 2a",
         ]
 
         heading = Tex("Extremstelle herausfinden", color=ORANGE)
@@ -356,10 +356,10 @@ class PointAnalysis(Scene):
         self.next_section("Solve_cool_function")
 
         steps = [
-            r"g(a) = f_a(0.5a)",
-            r"g(a) = 2(0.5a)^2 - 8a(0.5a) + 9a^2",
-            r"g(a) = 0.5a^2 - 4a^2 + 9a^2",
-            r"g(a) = 5.5a^2",
+            r"g(a) = f_a(2a)",
+            r"g(a) = 2(2a)^2 - 8a(2a) + 9a^2",
+            r"g(a) = 8a^2 - 16a^2 + 9a^2",
+            r"g(a) = a^2",
         ]
 
         self.steps_tex_right = VGroup()
@@ -401,7 +401,7 @@ class PointAnalysis(Scene):
         grid_first = self.first_graph[0]
         grid_second = self.second_graph[0]
 
-        cool_function_equation = MathTex(r"g({{ a }}) = 5.5{{ a }}^2")
+        cool_function_equation = MathTex(r"g({{ a }}) = {{ a }}^2")
         cool_function_equation.set_color_by_tex("a", color=PURPLE)
         cool_function_equation.move_to(RIGHT * 4 + DOWN * 3)
         cool_function_equation.add_background_rectangle(
@@ -448,7 +448,7 @@ class PointAnalysis(Scene):
 
         self.marker_horizontal = always_redraw(
             lambda: DashedLine(
-                start=grid_first.input_to_graph_point(self.param_a.tracker.get_value() * 0.5, self.base_function),
+                start=grid_first.input_to_graph_point(self.param_a.tracker.get_value() * 2, self.base_function),
                 end=grid_second.input_to_graph_point(self.param_a.tracker.get_value(), self.turning_point_function),
                 color=YELLOW
             )
@@ -500,4 +500,4 @@ class PointAnalysis(Scene):
         return 2 * x**2 - 8 * a * x + 9 * a**2
     
     def graph_turning_point_function(self, a):
-        return 5.5 * a**2
+        return a**2
