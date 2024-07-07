@@ -42,6 +42,7 @@ scenes = [
     "practice_locus",
 
     "enveloppe",
+    "enveloppe_calculation",
 
     "outro",
 ]
