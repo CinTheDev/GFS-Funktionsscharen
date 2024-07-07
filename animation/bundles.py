@@ -6,11 +6,11 @@ class Bundles(Scene):
     def construct(self):
         self.transition()
 
-        #self.first_example()
+        self.first_example()
         self.first_example_graph()
 
-        #self.second_example()
-        #self.second_example_graph()
+        self.second_example()
+        self.second_example_graph()
     
     def transition(self):
         self.next_section("Transition")
@@ -275,7 +275,7 @@ class Bundles(Scene):
         function = lambda x, a: x**2 - (a + 2)*x + (a - 2)*a
         bundles = []
         two_vals = (-2, 2)
-        animate_steps = [        self.next_
+        animate_steps = [
             -1,
             8,
         ]
