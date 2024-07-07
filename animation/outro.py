@@ -4,13 +4,13 @@ from manim import *
 
 class Outro(Scene):
     def construct(self):
-        heading = Tex("GFS Funktionenscharen", color=RED)
+        heading = Tex("GFS Funktionenscharen", color=PINK)
         heading.scale(0.8)
-        heading.move_to(UP * 3.5)
+        heading.move_to(LEFT * 4 + UP * 3.5)
 
-        subheading = Tex("Vielen Dank für Aufmerksamkeit", color=RED)
+        subheading = Tex("Vielen Dank für Aufmerksamkeit", color=PINK)
         subheading.scale(0.6)
-        subheading.move_to(DOWN * 3)
+        subheading.move_to(RIGHT * 4 + DOWN * 3)
 
         external_sources = self.construct_external_sources()
         animation_sources = self.construct_animation_sources()
@@ -43,16 +43,16 @@ class Outro(Scene):
         self.wait()
 
     def construct_external_sources(self):
-        heading = Tex("Externe Quellen", color=YELLOW)
+        heading = Tex("Externe Quellen", color=BLUE)
         heading.scale(0.6)
 
         block = VGroup(heading)
 
         sources = [
-            f'<span fgcolor="{ORANGE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
-            f'<span fgcolor="{ORANGE}">Hüllkurven</span>\nhttps://de.wikipedia.org/wiki/Einh%C3%BCllende',
-            f'<span fgcolor="{ORANGE}">Vereinfachung cos^2(tan^-1(x))</span>\nhttps://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x',
-            f'<span fgcolor="{ORANGE}">Allgemein</span>\nLambacher Schweizer Mathematik Kursstufe Leistungsfach',
+            f'<span fgcolor="{PURPLE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
+            f'<span fgcolor="{PURPLE}">Hüllkurven</span>\nhttps://de.wikipedia.org/wiki/Einh%C3%BCllende',
+            f'<span fgcolor="{PURPLE}">Vereinfachung cos^2(tan^-1(x))</span>\nhttps://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x',
+            f'<span fgcolor="{PURPLE}">Allgemein</span>\nLambacher Schweizer Mathematik Kursstufe Leistungsfach',
         ]
 
         for s in sources:
@@ -67,11 +67,11 @@ class Outro(Scene):
         block = VGroup()
 
         sources = [
-            f'<span fgcolor="{YELLOW}">Animation mit Manim Community</span>',
+            f'<span fgcolor="{BLUE}">Animation mit Manim Community</span>',
             f'https://www.manim.community/',
-            f'<span fgcolor="{YELLOW}">Presenter</span>',
+            f'<span fgcolor="{BLUE}">Presenter</span>',
             f'https://github.com/CinTheDev/mp4-presenter',
-            f'<span fgcolor="{YELLOW}">GFS Projektdateien</span>',
+            f'<span fgcolor="{BLUE}">GFS Projektdateien</span>',
             f'https://github.com/CinTheDev/GFS-Funktionsscharen',
         ]
 
