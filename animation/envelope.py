@@ -3,6 +3,7 @@
 # Hüllkurven
 
 from manim import *
+import math
 
 class Envelope(Scene):
     def construct(self):
@@ -25,14 +26,9 @@ class Envelope(Scene):
     def graph(self):
         screen = FullScreenRectangle()
 
-        x_range=(-10, 10, 2)
-        dx = x_range[1] - x_range[0]
-        dy = dx * (screen.height / screen.width)
-        y_range=(-1, -1 + dy, 2)
-
         grid = NumberPlane(
-            x_range=x_range,
-            y_range=y_range,
+            x_range=(-10, 10, 2),
+            y_range=(-1, 4.5, 1),
             x_length=screen.width,
             y_length=screen.height,
             background_line_style={
@@ -54,4 +50,55 @@ class Envelope(Scene):
             Create(self.graph),
             run_time=2,
         )
+
+        self.param_theta = Variable(
+            0,
+            MathTex(r"\theta", color=BLUE),
+            num_decimal_places=2,
+        )
+        self.param_theta.move_to(RIGHT * 4 + UP * 3)
+
+        function = always_redraw(
+            lambda: grid.plot(
+                lambda x: self.graph_function(x),
+                color=BLUE,
+            )
+        )
+
+        self.play(
+            Write(self.param_theta),
+            Write(function),
+            run_time=3,
+        )
         self.wait()
+
+        self.next_section("Change_Angle")
+
+        self.play(
+            self.param_theta.tracker.animate.set_value(math.pi),
+            run_time=5,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+
+        self.next_section("Change_angle_efficient")
+
+        self.play(
+            self.param_theta.tracker.animate.set_value(45 * (math.pi / 180)),
+            run_time=3,
+            rate_func=rate_functions.smooth,
+        )
+        self.wait()
+    
+    def graph_function(self, x):
+        theta = self.param_theta.tracker.get_value()
+        speed = 8
+        gravity = 9.81
+
+        try:
+            lhs = math.tan(theta) * x
+            coef = gravity / (2 * speed**2 * math.cos(theta)**2)
+            rhs = coef * x**2
+            return lhs - rhs
+        except:
+            return None
