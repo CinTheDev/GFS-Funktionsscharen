@@ -208,7 +208,7 @@ class PointAnalysis(Scene):
         grid_second = self.second_graph[0]
 
         self.param_x = Variable(
-            0,
+            0.5,
             Tex("x", color=RED),
             num_decimal_places=2,
         )
