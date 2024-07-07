@@ -87,6 +87,15 @@ class Practice_1(GenericSolveBlocks):
                 run_time=3,
             )
         )
+
+        self.heading = Tex("Lösungen", color=YELLOW)
+        self.heading.scale(0.6)
+        self.heading.move_to(UP * 3.5)
+
+        self.play(
+            FadeIn(self.heading, shift=DOWN),
+            run_time=0.7,
+        )
     
     def write_first_problem(self):
         self.equation = MathTex(r"f_a(x) = x^2 - ax")
