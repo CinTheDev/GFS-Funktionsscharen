@@ -56,7 +56,13 @@ class Practice_Locus(GenericSolveBlocks):
                 run_time=3,
             ),
         )
-        self.wait()
+        
+        steps = [
+            "1. Extrempunkt (x und y) bestimmen",
+            "2. x-Teil nach a umstellen",
+            "3. x-Teil in y-Teil einsetzen",
+        ]
+        steps_block = self.block("Schritte", DOWN * 2.5, steps, invincible=True)
         
         self.next_section("Clear_Problems")
 
@@ -65,7 +71,8 @@ class Practice_Locus(GenericSolveBlocks):
                 [Unwrite(p) for p in all_problems_block],
                 lag_ratio=0.3,
                 run_time=3,
-            )
+            ),
+            Unwrite(steps_block)
         )
 
         self.heading = Tex("Lösungen", color=RED)
