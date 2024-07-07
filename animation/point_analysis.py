@@ -69,7 +69,7 @@ class PointAnalysis(Scene):
         equations.add_background_rectangle(opacity=1, stroke_width=1, stroke_opacity=1, stroke_color=ORANGE, buff=0.1)
 
         self.base_function = always_redraw(
-            lambda: self.grid.plot(
+            lambda: grid.plot(
                 lambda x: self.graph_function(x),
                 color=BLUE,
             )
@@ -105,10 +105,11 @@ class PointAnalysis(Scene):
         self.wait()
     
     def graph_second(self):
+        self.next_section("Show_Second_Graph")
         screen = FullScreenRectangle()
 
         grid_second = NumberPlane(
-            x_range=(-5, 5, 1),
+            x_range=(-2.5, 2.5, 1),
             y_range=(-1.5, 3.5, 1),
             x_length=screen.width / 2,
             y_length=screen.height,
@@ -121,9 +122,10 @@ class PointAnalysis(Scene):
                 "include_tip": True,
             },
         )
+        grid_second.next_to(self.first_graph, RIGHT)
 
-        x_label = self.grid_second.get_x_axis_label("x")
-        y_label = self.grid_second.get_y_axis_label("f(x)")
+        x_label = grid_second.get_x_axis_label("x")
+        y_label = grid_second.get_y_axis_label("f(x)")
         grid_labels = VGroup(x_label, y_label)
 
         self.second_graph = VGroup(grid_second, grid_labels)
@@ -133,6 +135,41 @@ class PointAnalysis(Scene):
             Tex("x", color=RED),
             num_decimal_places=2,
         )
+
+        self.add(self.second_graph)
+
+        # Shrink left coordinate system so the right one fits into screen
+
+        grid_first = self.first_graph[0]
+        grid_first.generate_target()
+
+        grid_first.target.become(
+            NumberPlane(
+                x_range=(-2.5, 2.5, 1),
+                y_range=(-1.5, 3.5, 1),
+                x_length=screen.width / 2,
+                y_length=screen.height,
+                background_line_style={
+                    "stroke_color": ORANGE,
+                    "stroke_opacity": 0.6,
+                },
+                axis_config={
+                    "include_numbers": True,
+                    "include_tip": True,
+                },
+            )
+        )
+        grid_first.target.align_on_border(LEFT, buff=0)
+
+        grid_second.generate_target()
+        grid_second.target.align_on_border(RIGHT, buff=0)
+
+        self.play(
+            MoveToTarget(grid_first),
+            MoveToTarget(grid_second),
+            run_time=2,
+        )
+        self.wait()
     
     def simple_insertion(self):
         self.next_section("Transition")
