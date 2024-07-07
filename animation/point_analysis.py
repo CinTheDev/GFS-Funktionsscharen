@@ -184,7 +184,7 @@ class PointAnalysis(Scene):
             MoveToTarget(grid_first_labels),
             MoveToTarget(grid_second),
             MoveToTarget(grid_labels),
-            self.param_a.tracker.animate.set_value(0),
+            self.param_a.tracker.animate.set_value(0.25),
             run_time=2,
         )
         self.play(
