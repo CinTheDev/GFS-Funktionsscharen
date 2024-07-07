@@ -297,13 +297,18 @@ class Bundles(Scene):
 
         screen = FullScreenRectangle()
 
-        grid = Axes(
+        grid = NumberPlane(
             x_range=x_range,
             y_range=y_range,
             x_length=screen.width,
             y_length=screen.height,
+            background_line_style={
+                "stroke_color": YELLOW,
+                "stroke_opacity": 0.6,
+            },
             axis_config={
                 'include_numbers': True,
+                "include_tip": True,
             },
         )
 

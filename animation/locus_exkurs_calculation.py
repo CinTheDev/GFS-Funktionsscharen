@@ -69,14 +69,18 @@ class LocusExkursCalculation(GenericSolveBlocks):
     def second_example_show_graph(self):
         self.next_section("Show_grid")
 
-        grid = Axes(
+        grid = NumberPlane(
             x_range=(-2, 2, 1),
             y_range=(-2, 2, 1),
             x_length=4,
             y_length=4,
-            tips=True,
+            background_line_style={
+                "stroke_color": RED,
+                "stroke_opacity": 0.6,
+            },
             axis_config={
-                "include_numbers": True,
+                'include_numbers': True,
+                "include_tip": True,
             },
         )
         grid.move_to(DOWN * 1.5)

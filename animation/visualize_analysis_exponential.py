@@ -8,13 +8,18 @@ class VisualizeAnalysisExponential(Scene):
         self.next_section("Construct_Scene")
         screen = FullScreenRectangle()
 
-        self.grid = Axes(
+        self.grid = NumberPlane(
             x_range=(-5, 5, 1),
             y_range=(-2, 3, 1),
             x_length=screen.width,
             y_length=screen.height,
+            background_line_style={
+                "stroke_color": BLUE,
+                "stroke_opacity": 0.6,
+            },
             axis_config={
-                "include_numbers": True,
+                'include_numbers': True,
+                "include_tip": True,
             },
         )
 
