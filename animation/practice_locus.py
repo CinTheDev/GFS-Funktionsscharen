@@ -44,6 +44,7 @@ class Practice_Locus(GenericSolveBlocks):
 
         all_problems_block = VGroup(title, all_problems_tex)
         all_problems_block.arrange(DOWN)
+        all_problems_block.shift(UP)
 
         self.play(
             Transform(transition_title, title, replace_mobject_with_target_in_scene=True),
@@ -62,7 +63,7 @@ class Practice_Locus(GenericSolveBlocks):
             "2. x-Teil nach a umstellen",
             "3. x-Teil in y-Teil einsetzen",
         ]
-        steps_block = self.block("Schritte", DOWN * 2.5, steps, invincible=True)
+        steps_block = self.block("Schritte", DOWN * 1.5 + LEFT * 5, steps, scale=0.6, math=False, invincible=True, aligned_edge=LEFT)
         
         self.next_section("Clear_Problems")
 
