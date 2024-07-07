@@ -180,7 +180,7 @@ class PointAnalysis(Scene):
             run_time=0.5,
         )
         self.play(
-            Transform(grid_first_old, grid_first),
+            Transform(grid_first_old, grid_first, replace_mobject_with_target_in_scene=True),
             MoveToTarget(grid_first_labels),
             MoveToTarget(grid_second),
             MoveToTarget(grid_labels),
@@ -191,6 +191,8 @@ class PointAnalysis(Scene):
             Write(seperator),
             run_time=1,
         )
+
+        self.first_graph[0] = grid_first
 
         # Reinstance base_function because otherwise it's wrong
         self.base_function = always_redraw(
@@ -205,6 +207,7 @@ class PointAnalysis(Scene):
         )
     
     def simple_insertion(self):
+        grid_first = self.first_graph[0]
         grid_second = self.second_graph[0]
 
         self.param_x = Variable(
@@ -225,6 +228,31 @@ class PointAnalysis(Scene):
         self.play(
             FadeIn(self.param_x, shift=UP),
             Create(simple_insertion_function),
+            run_time=1,
+        )
+        self.wait()
+
+        self.next_section("Create_markers")
+
+        marker_x = always_redraw(
+            lambda: DashedLine(
+                start=grid_first.c2p(self.param_x.tracker.get_value(), 20),
+                end=grid_first.c2p(self.param_x.tracker.get_value(), -10),
+                color=RED,
+            )
+        )
+
+        marker_a = always_redraw(
+            lambda: DashedLine(
+                start=grid_second.c2p(self.param_a.tracker.get_value(), 20),
+                end=grid_second.c2p(self.param_a.tracker.get_value(), -10),
+                color=PURPLE,
+            )
+        )
+
+        self.play(
+            Create(marker_x),
+            Create(marker_a),
             run_time=1,
         )
         self.wait()
