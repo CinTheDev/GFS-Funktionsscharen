@@ -85,4 +85,5 @@ die englischen Artikel mehr Informationen an.
 - Schulbuch
 - [Definition Funktionsschar](https://de.wikipedia.org/wiki/Kurvenschar)
 - [Hüllfunktionen](https://de.wikipedia.org/wiki/Einh%C3%BCllende)
+- [Wurfparabel](https://de.wikipedia.org/wiki/Wurfparabel)
 - [Vereinfachung cos^2(tan^-1(x))](https://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x)

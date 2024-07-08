@@ -50,6 +50,7 @@ class Outro(Scene):
 
         sources = [
             f'<span fgcolor="{PURPLE}">Definition Funktionenschar</span>\nhttps://de.wikipedia.org/wiki/Kurvenschar',
+            f'<span fgcolor="{PURPLE}">Wurfparabeln</span>\nhttps://de.wikipedia.org/wiki/Wurfparabel',
             f'<span fgcolor="{PURPLE}">Hüllkurven</span>\nhttps://de.wikipedia.org/wiki/Einh%C3%BCllende',
             f'<span fgcolor="{PURPLE}">Vereinfachung cos^2(tan^-1(x))</span>\nhttps://socratic.org/questions/how-do-you-simplify-cos-2-tan-1-x',
             f'<span fgcolor="{PURPLE}">Allgemein</span>\nLambacher Schweizer Mathematik Kursstufe Leistungsfach',
