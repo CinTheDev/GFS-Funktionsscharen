@@ -148,7 +148,7 @@ class Practice_2(GenericSolveBlocks):
             r"a < 0",
         ]
 
-        self.block("Hochpunkt for x=(2/3)a", DOWN * 0.25 + LEFT * 4.5, steps, scale=0.6)
+        self.block("Hochpunkt für x=(2/3)a", DOWN * 0.25 + LEFT * 4.5, steps, scale=0.6)
     
     def turning_points_minimum_0(self):
         steps = [
